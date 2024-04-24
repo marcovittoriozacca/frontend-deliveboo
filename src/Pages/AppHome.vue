@@ -14,7 +14,7 @@
     <div id="bg-first-section">
 
         <!--Container bianco con img e searchbar-->
-        <div class="bg-white container rounded-5 translate-middle position-absolute start-50 z-3">
+        <div class="bg-white container rounded-5 translate-middle position-absolute start-50">
 
             <!--Contenitore che permette lo spostamento dell'immagine al di fuori del div bianco-->
             <div class="hofame-relative">
