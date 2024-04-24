@@ -1,11 +1,24 @@
 <script>
-import { store } from'../store.js'
+import {store} from '../Store';
+import axios from 'axios';
 export default{
     name: "Restaurant",
     data(){
         return{
-            store,
-        } 
+            // store,
+        }
+    },
+    methods:{
+        restaurants(){
+        axios.get('http://127.0.0.1:8000/api/restaurants')
+        .then(res=>{
+            this.restaurant=res.data,
+            console.log(this.restaurant)
+        })
+        .catch(error => {
+            console.error('Errore durante la richiesta API:', error);
+        });
+}
     },
 }
 </script>
