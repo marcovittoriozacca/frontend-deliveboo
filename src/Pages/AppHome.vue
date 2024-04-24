@@ -1,7 +1,9 @@
 <script>
 import axios from 'axios';
 import {store} from '../Store';
-import Typologies from '../components/Typologies.vue';
+
+import Typologies from '../components/HomeComponents/Typologies.vue';
+
     export default {
         name: "AppHome",
         components:{
@@ -16,14 +18,12 @@ import Typologies from '../components/Typologies.vue';
         methods:{
             types(){
                 axios.get('http://127.0.0.1:8000/api/type').then(res=>{
-                    store.type=res.data.type,
-                    console.log(store.type)
+                    store.type=res.data.type
                 })
             },
             restaurants(){
                 axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
-                    this.restaurant=res.data.restaurant,
-                    console.log(this.restaurant)
+                    this.restaurant=res.data.restaurant
                 })
             }
         },
@@ -35,10 +35,6 @@ import Typologies from '../components/Typologies.vue';
     }
     
 </script>
-
-
-
-
 
 
 <template>
@@ -629,4 +625,4 @@ import Typologies from '../components/Typologies.vue';
 
     }
 
-</style>
+</style>../components/HomeComponents/Typologies.vue

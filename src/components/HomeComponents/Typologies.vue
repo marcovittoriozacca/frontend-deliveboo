@@ -1,5 +1,5 @@
 <script>
-import { store } from '../Store';
+import { store } from '../../Store';
 export default {
     name: 'Typologies',
 
