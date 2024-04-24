@@ -28,7 +28,7 @@
                 <div class="d-flex flex-column gap-3 hofame-search">
                     <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
                     <form class="d-flex flex-column gap-3" role="search">
-                        <input class="form-control me-2 w-50 align-self-center" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2 align-self-center searchbar-width" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-orange align-self-center" type="submit">Ho Fame!</button>
                     </form>
                 </div>
@@ -238,6 +238,11 @@
 
 
 <style lang="scss" scoped>
+
+    .searchbar-width{
+        width: 50%;
+    }
+
     #bg-first-section{
         background-image: url(../assets/img/bghome.jpg);
         background-repeat: no-repeat;
@@ -541,12 +546,18 @@
         }   
 
         .bg-white{
-            height: 50%;
+            height: 350px;
             top: 65%;
         }
 
         .hofame-search{
-            padding-top: 25%;
+            padding-top: 20%;
+        }
+    }
+
+    @media screen and (max-width: 768px){
+        .searchbar-width{
+            width: 100%;
         }
     }
 
@@ -561,6 +572,16 @@
             height: 125px;
             margin-top: 50px;
         }
+
+        .search-title{
+            font-size: 24px;
+        } 
+
+        .hofame-search{
+            padding-top: 35%;
+            padding-bottom: 10%;
+        }
+
     }
 
 </style>
