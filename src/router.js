@@ -9,6 +9,11 @@ const router = createRouter({
         //     component: AppHome,
         // },
         // {
+        //     path: '/',
+        //     name: '',
+        //     component: SingleRestaurant,
+        // },
+        // {
         //     path: '/:patchMatch(.*)*',
         //     name: 'not-found',
         //     component: NotFound,
