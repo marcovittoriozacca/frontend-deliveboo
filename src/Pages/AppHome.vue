@@ -21,7 +21,7 @@
 
                 <!--Immagine spostata-->
                 <div class="hofame-absolute">
-                    <img src="../assets/img/hofame.webp" alt="image">
+                    <img src="../assets/img/hofame.webp" alt="image" class="hofame-img-width">
                 </div>
 
                 <!--Parte con Searchbar e titolo-->
@@ -51,9 +51,9 @@
 
         <!--Sezione blu con pulsante di registrazione ristoratori-->
         <div class="dritto-blu">
-            <div class="d-flex flex-column align-items-center gap-5">
-                    <h1 class="text-light">Hai una attività di ristorazione e vuoi crescere insieme a noi?</h1>
-                    <h2 class="text-light">Clicca il Pulsante in basso e registra subito la tua attività</h2>
+            <div class="d-flex flex-column align-items-center gap-5 container text-center">
+                    <h1 class="text-light fs-64">Hai una attività di ristorazione e vuoi crescere insieme a noi?</h1>
+                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività</h2>
                     <button class="Btn">
                         <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="#ffffff" d="M280 32c-13.3 0-24 10.7-24 24s10.7 24 24 24h57.7l16.4 30.3L256 192l-45.3-45.3c-12-12-28.3-18.7-45.3-18.7H64c-17.7 0-32 14.3-32 32v32h96c88.4 0 160 71.6 160 160c0 11-1.1 21.7-3.2 32h70.4c-2.1-10.3-3.2-21-3.2-32c0-52.2 25-98.6 63.7-127.8l15.4 28.6C402.4 276.3 384 312 384 352c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128c-13.5 0-26.5 2.1-38.7 6L418.2 128H480c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H459.6c-7.5 0-14.7 2.6-20.5 7.4L391.7 78.9l-14-26c-7-12.9-20.5-21-35.2-21H280zM462.7 311.2l28.2 52.2c6.3 11.7 20.9 16 32.5 9.7s16-20.9 9.7-32.5l-28.2-52.2c2.3-.3 4.7-.4 7.1-.4c35.3 0 64 28.7 64 64s-28.7 64-64 64s-64-28.7-64-64c0-15.5 5.5-29.7 14.7-40.8zM187.3 376c-9.5 23.5-32.5 40-59.3 40c-35.3 0-64-28.7-64-64s28.7-64 64-64c26.9 0 49.9 16.5 59.3 40h66.4C242.5 268.8 190.5 224 128 224C57.3 224 0 281.3 0 352s57.3 128 128 128c62.5 0 114.5-44.8 125.8-104H187.3zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
 
@@ -246,6 +246,14 @@
         padding-top: 200px;
     }
 
+    .fs-64{
+        font-size: 64px;
+    }
+
+    .fs-52{
+        font-size: 52px;
+    }
+
     .carosello-blu{
         background: #03071e;
         padding-top: 300px;
@@ -263,7 +271,7 @@
 
     .diagonale-blu-alto-sinistra{
         width: 100%;
-        height: 200px;
+        height: 150px;
         background: #03071e;
         transform: skewY(3deg);
         transform-origin: top right;
@@ -285,7 +293,7 @@
         padding-top: 100px;
         background: #03071e;
         width: 100%;
-        height: 450px;
+        height: 650px;
     }
     .div-arancione{
         background: #ff9654;
@@ -325,8 +333,12 @@
 
     .hofame-absolute{
         position: absolute;
-        left: 50%;
+        left: 42%;
         transform: translate(-50%, -50%)
+    }
+    .hofame-img-width{
+        width: 130%;
+        height: auto;
     }
 
     .hofame-search{
@@ -352,24 +364,24 @@
     }
 
     .Btn {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border: none;
-    padding: 0px 20px;
-    background-color: #f58115;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 10px;
-    transition-duration: .3s;
-    overflow: hidden;
-    padding-block: 5px;
-    padding-inline: 40px;
-    font-weight: bold;
-    font-size: 22px;
-  }
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border: none;
+        padding: 0px 20px;
+        background-color: #f58115;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 10px;
+        transition-duration: .3s;
+        overflow: hidden;
+        padding-block: 5px;
+        padding-inline: 40px;
+        font-weight: bold;
+        font-size: 32px;
+    }
   
   #Lavora-con-noi{
     padding-left: 70px;
