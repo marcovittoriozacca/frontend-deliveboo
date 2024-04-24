@@ -41,7 +41,7 @@ import {store} from '../Store';
     <div id="bg-first-section">
 
         <!--Container bianco con img e searchbar-->
-        <div class="bg-white container rounded-5 translate-middle position-absolute start-50 z-3">
+        <div class="bg-white container rounded-5 translate-middle position-absolute start-50 ">
 
             <!--Contenitore che permette lo spostamento dell'immagine al di fuori del div bianco-->
             <div class="hofame-relative">
@@ -255,6 +255,21 @@ import {store} from '../Store';
             
         </div>
     </div>
+
+    <!-- offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
+
+
+
+
 </template>
 
 

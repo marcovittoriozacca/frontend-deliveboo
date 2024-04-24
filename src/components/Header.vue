@@ -1,6 +1,10 @@
 <script>
+import Cart from './Cart.vue'
     export default {
-        name: "Header"
+        name: "Header",
+        components: {
+        Cart
+    }
     }
 </script>
 
@@ -10,7 +14,8 @@
 
 
 <template>
-    <div id="app">
+    
+    <div id="app" class="position-fixed w-100">
         <nav class="navbar navbar-expand-md navbar-light bg-nav shadow-sm ">
             <div class="container">
                 <router-link :to="{ name: 'home' }">
@@ -41,11 +46,14 @@
                             <!-- porta a laravel -->
                             <a class="link-orange" href="http://127.0.0.1:8000">Register</a>
                         </li>
+                        
+                            <Cart/>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
-</div>
+    </div>
 
 
   
@@ -65,6 +73,9 @@
         background-color: #03071E ;
     }
 
+    #app{
+        z-index: 100!important;
+    }
 
 
 
