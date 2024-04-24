@@ -75,7 +75,7 @@
         <div class="div-arancione">
 
             <!---Flex orizzontale Cards-->
-            <div class="container d-flex flex-md-wrap justify-content-center row-gap-4 gap-4">
+            <div class="container d-flex flex-column flex-md-row flex-md-wrap justify-content-center row-gap-4 gap-4 align-items-md-stretch align-items-center">
 
                 <!--Card 1-->
                 <div class="card rounded-5 p-4 gap-2" style="width: 18rem;">
@@ -122,7 +122,7 @@
         
         <!--Inizio Ul Footer -->
         <div class="container pb-5">
-            <div class="d-flex gap-3 justify-content-between">
+            <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between">
                 <div>
                     <ul>
                         <li class="titleLi">
@@ -522,6 +522,45 @@
 
     .bg-blu{
         background-color: #03071E ;
+    }
+
+    @media screen and (max-width: 992px) {
+        .fs-64{
+        font-size: 25px;
+        }
+        .fs-52{
+            font-size: 18px;
+        }
+
+        .dritto-blu{
+            height: 500px;
+        }
+
+        .search-title{
+            font-size: 32px;
+        }   
+
+        .bg-white{
+            height: 50%;
+            top: 65%;
+        }
+
+        .hofame-search{
+            padding-top: 25%;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .Btn {
+            padding-block: 5px;
+            padding-inline: 20px;
+            font-size: 18px;
+        }
+
+        .diagonale-blu-alto-sinistra{
+            height: 125px;
+            margin-top: 50px;
+        }
     }
 
 </style>
