@@ -61,7 +61,9 @@
 
 
 <style lang="scss" scoped>
-    
+    .bg-nav{
+        background-color: #03071E ;
+    }
 
 
 

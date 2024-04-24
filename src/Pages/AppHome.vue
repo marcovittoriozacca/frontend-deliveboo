@@ -383,141 +383,144 @@
         font-size: 32px;
     }
   
-  #Lavora-con-noi{
-    padding-left: 70px;
-  }
+    #Lavora-con-noi{
+        padding-left: 70px;
+    }
 
+    .svg2{
+        top: 20px;
+        display: none;
+    }
 
+    .svg,
+    .svg2,
+    .svg3,
+    .svg4,
+    .svg5{
+        width: 30px;
+        position: absolute;
+        right: 100;
+        margin-right: 20px;
+        fill: white;
+        transition-duration: .3s;
+    }
+    
 
-  .svg2{
-    top: 20px;
-    display: none;
-  }
-  .svg,
-  .svg2,
-  .svg3,
-  .svg4,
-  .svg5{
-    width: 30px;
-    position: absolute;
-    right: 100;
-    margin-right: 20px;
-    fill: white;
-    transition-duration: .3s;
-  }
+    .svg3,
+    .svg4,
+    .svg5{
+        width: 8px;
+        top: 40%;
+        display: none;
+        opacity: 100%;
+    }
+
+    .Btn:hover {
+        color: transparent;
+    }
   
+    .Btn:hover svg {
+        right: 10%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        transition-duration: .2s;
+    }
 
-  .svg3,
-  .svg4,
-  .svg5{
-    width: 8px;
-    top: 40%;
-    display: none;
-    opacity: 100%;
-  }
+    .Btn:hover .svg3 {
+        right: 22%;
+    }
 
-  .Btn:hover {
-    color: transparent;
-  }
+    .Btn:hover .svg4 {
+        right: 30%;
+        top: 30%;
+    }
+
+    .Btn:hover .svg5 {
+        right: 38%;
+        top: 40%;
+    }
+
+    .Btn:hover svg  {
+        animation: bounce 0.3s infinite alternate;
+    }
+
+
+    .Btn:hover .svg3  {
+        animation: bouncedot 0.7s infinite alternate;
+    }
+
+    .Btn:hover .svg4  {
+        animation: bouncedot 0.755s infinite alternate;
+    }
+
+    .Btn:hover .svg5  {
+        animation: bouncedot 0.78s infinite alternate;
+    }
+    
+    @keyframes bounce {
+        0% {
+        transform: translateY(0);
+        }
+        100% {
+        transform: translateY(-2px);
+        }
+    }
+
+    @keyframes bouncedot {
+        0% {
+        transform: translateY(0);
+        width: 0px;
+        /* opacity: 0%; */
+        }
+        50% {
+            transform: translateY(-1);
+            width: 10px;
+            /* opacity: 100%; */
+        }
+        100% {
+        transform: translateY(-2px);
+        width: 0px;
+        /* opacity: 0%; */
+        }
+    }
+
+    .Btn:hover .svg2 {
+        display: inline-block;
+    }
+
+    .Btn:hover .svg3 {
+        display: inline-block;
+    }
+
+    .Btn:hover .svg4 {
+        display: inline-block;
+    }
+
+    .Btn:hover .svg5 {
+        display: inline-block;
+    }
+
+    .Btn:hover .svg2 {
+        animation: stripes 0.5s linear infinite ;
+    }
+
+    @keyframes stripes {
+        0% {
+        transform: translateX(2000%);
+        }
+        100% {
+        transform: translateX(-2000%);
+        }
+    }
   
-  .Btn:hover svg {
-    right: 10%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    transition-duration: .2s;
-  }
-
-  .Btn:hover .svg3 {
-    right: 22%;
-  }
-
-  .Btn:hover .svg4 {
-    right: 30%;
-    top: 30%;
-  }
-
-  .Btn:hover .svg5 {
-    right: 38%;
-    top: 40%;
-  }
-
-  .Btn:hover svg  {
-    animation: bounce 0.3s infinite alternate;
-  }
-
-
-  .Btn:hover .svg3  {
-    animation: bouncedot 0.7s infinite alternate;
-  }
-
-  .Btn:hover .svg4  {
-    animation: bouncedot 0.755s infinite alternate;
-  }
-
-  .Btn:hover .svg5  {
-    animation: bouncedot 0.78s infinite alternate;
-  }
-  
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
+    .Btn:active {
+        transform: translate(3px , 3px);
+        transition-duration: .3s;
     }
-    100% {
-      transform: translateY(-2px);
+
+    .bg-blu{
+        background-color: #03071E ;
     }
-  }
-
-  @keyframes bouncedot {
-    0% {
-      transform: translateY(0);
-      width: 0px;
-      /* opacity: 0%; */
-    }
-    50% {
-        transform: translateY(-1);
-        width: 10px;
-        /* opacity: 100%; */
-      }
-    100% {
-      transform: translateY(-2px);
-      width: 0px;
-      /* opacity: 0%; */
-    }
-  }
-
-  .Btn:hover .svg2 {
-    display: inline-block;
-  }
-
-  .Btn:hover .svg3 {
-    display: inline-block;
-  }
-
-  .Btn:hover .svg4 {
-    display: inline-block;
-  }
-
-  .Btn:hover .svg5 {
-    display: inline-block;
-  }
-
-  .Btn:hover .svg2 {
-    animation: stripes 0.5s linear infinite ;
-  }
-
-  @keyframes stripes {
-    0% {
-      transform: translateX(2000%);
-    }
-    100% {
-      transform: translateX(-2000%);
-    }
-  }
-  
-  .Btn:active {
-    transform: translate(3px , 3px);
-    transition-duration: .3s;
-  }
 
 </style>
