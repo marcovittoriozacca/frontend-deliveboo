@@ -1,6 +1,27 @@
 <script>
+import axios from 'axios';
+import {store} from '../Store';
     export default {
         name: "AppHome",
+        data(){
+            return{
+                store,
+                type:'',
+            }
+        },
+        methods:{
+            types(){
+                axios.get('http://127.0.0.1:8000/api/type').then(res=>{
+                    this.type=res.data,
+                    console.log(this.type)
+                })
+            }
+        },
+
+        mounted(){
+            this.types();
+        
+        },
     }
     
 </script>
@@ -13,7 +34,7 @@
 <template>
     <div id="bg-first-section">
         <div>
-
+            
         </div>
     </div>
     <section>
