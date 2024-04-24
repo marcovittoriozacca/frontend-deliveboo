@@ -1,22 +1,26 @@
 <script>
 // commentato perche non sono stati definiti i componenti
-// import HeaderApp from './components/.vue'
+    import Header from './components/Header.vue'
 export default {
         components:{
-        //   HeaderApp
+            Header,
         }
         
     }
+    
 
+    export default{
+    components: {
+      Header,
+    }
+  }
 </script>
 
 <template>
-    <!-- <HeaderApp/>
-    <router-view></router-view> -->
   
 </template>
 
 <style scoped lang="scss">
-@use './assets/sass/general.scss';
+    @use './assets/sass/app.scss';
 
 </style>
