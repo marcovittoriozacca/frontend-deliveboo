@@ -41,7 +41,7 @@ import {store} from '../Store';
     <div id="bg-first-section">
 
         <!--Container bianco con img e searchbar-->
-        <div class="bg-white container rounded-5 translate-middle position-absolute start-50 z-3">
+        <div class="bg-white container rounded-5 translate-middle position-absolute start-50">
 
             <!--Contenitore che permette lo spostamento dell'immagine al di fuori del div bianco-->
             <div class="hofame-relative">
@@ -55,7 +55,7 @@ import {store} from '../Store';
                 <div class="d-flex flex-column gap-3 hofame-search">
                     <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
                     <form class="d-flex flex-column gap-3" role="search">
-                        <input class="form-control me-2 w-50 align-self-center" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2 align-self-center searchbar-width" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-orange align-self-center" type="submit">Ho Fame!</button>
                     </form>
                 </div>
@@ -102,7 +102,7 @@ import {store} from '../Store';
         <div class="div-arancione">
 
             <!---Flex orizzontale Cards-->
-            <div class="container d-flex flex-md-wrap justify-content-center row-gap-4 gap-4">
+            <div class="container d-flex flex-column flex-md-row flex-md-wrap justify-content-center row-gap-4 gap-4 align-items-md-stretch align-items-center">
 
                 <!--Card 1-->
                 <div class="card rounded-5 p-4 gap-2" style="width: 18rem;">
@@ -149,7 +149,7 @@ import {store} from '../Store';
         
         <!--Inizio Ul Footer -->
         <div class="container pb-5">
-            <div class="d-flex gap-3 justify-content-between">
+            <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between">
                 <div>
                     <ul>
                         <li class="titleLi">
@@ -265,6 +265,11 @@ import {store} from '../Store';
 
 
 <style lang="scss" scoped>
+
+    .searchbar-width{
+        width: 50%;
+    }
+
     #bg-first-section{
         background-image: url(../assets/img/bghome.jpg);
         background-repeat: no-repeat;
@@ -549,6 +554,61 @@ import {store} from '../Store';
 
     .bg-blu{
         background-color: #03071E ;
+    }
+
+    @media screen and (max-width: 992px) {
+        .fs-64{
+        font-size: 25px;
+        }
+        .fs-52{
+            font-size: 18px;
+        }
+
+        .dritto-blu{
+            height: 500px;
+        }
+
+        .search-title{
+            font-size: 32px;
+        }   
+
+        .bg-white{
+            height: 350px;
+            top: 65%;
+        }
+
+        .hofame-search{
+            padding-top: 20%;
+        }
+    }
+
+    @media screen and (max-width: 768px){
+        .searchbar-width{
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .Btn {
+            padding-block: 5px;
+            padding-inline: 20px;
+            font-size: 18px;
+        }
+
+        .diagonale-blu-alto-sinistra{
+            height: 125px;
+            margin-top: 50px;
+        }
+
+        .search-title{
+            font-size: 24px;
+        } 
+
+        .hofame-search{
+            padding-top: 35%;
+            padding-bottom: 10%;
+        }
+
     }
 
 </style>
