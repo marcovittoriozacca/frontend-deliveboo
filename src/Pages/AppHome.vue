@@ -42,26 +42,29 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 
 
 <template>
-    <div id="bg-first-section">
-
-        <!--Container bianco con img e searchbar-->
-        <div class="bg-white container rounded-5 translate-middle position-absolute start-50 ">
-
-            <!--Contenitore che permette lo spostamento dell'immagine al di fuori del div bianco-->
-            <div class="hofame-relative">
-
-                <!--Immagine spostata-->
-                <div class="hofame-absolute">
-                    <img src="/img/hofame.webp" alt="image" class="hofame-img-width">
-                </div>
-
-                <!--Parte con Searchbar e titolo-->
-                <div class="d-flex flex-column gap-3 hofame-search">
-                    <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
-                    <form class="d-flex flex-column gap-3" role="search">
-                        <input class="form-control me-2 align-self-center searchbar-width" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-orange align-self-center" type="submit">Ho Fame!</button>
-                    </form>
+    <div class="reset-header-height">
+        <div id="bg-first-section">
+            <div class="container">
+                <div class="banner-max-w bg-white rounded-4 p-5">
+                    <div class="row row-gap-5 justify-content-center flex-column align-items-center">
+                        <!-- Banner hamburger -->
+                        <div class="col-12">
+                            <div class="position-relative responsive-margin-bottom">
+                                <figure class=" banner-burger-position position-absolute">
+                                    <img class="burger-img" src="/img/hofame.webp" alt="burger-image">
+                                </figure>
+                            </div>
+                        </div>
+    
+                        <div class="col-12">
+                            <!--Parte con Searchbar e titolo-->
+                            <div class="d-flex flex-column gap-3 hofame-search">
+                                <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
+                                <input class="form-control" type="text" placeholder="Cerca..." aria-label="Search">
+                                <button class="btn btn-orange align-self-center" type="button">Ho Fame!</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,9 +73,9 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
     <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
         <!--Prima sezione blu con carosello-->
-        <div>
+        <!-- <div>
             <Typologies/>
-        </div>
+        </div> -->
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
@@ -112,18 +115,57 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 
 <style lang="scss" scoped>
 
-    .searchbar-width{
-        width: 50%;
-    }
+// <--------------- inizio stile del banner con l'hamburger --------------->
+#bg-first-section{
+    background-image: url('/img/bghome.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.banner-max-w{
+    max-width: 936px;
+    margin: 0 auto
+}
 
+.banner-burger-position{
+    top: -100px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.responsive-margin-bottom{
+    margin-bottom: 25px;
+}
+.burger-img{
+    width: 300px;
+}
+
+@media screen and (min-width: 768px) {
     #bg-first-section{
-        background-image: url('/img/bghome.jpg');
-        background-repeat: no-repeat;
-        
-        height: 500px;
-        padding-top: 200px;
+        padding-top: 100px;
     }
-
+    .banner-burger-position{
+        top: -120px;
+    }
+    //Immagine dell'hamburger nel banner in alto
+    .responsive-margin-bottom{
+        margin-bottom: 80px;
+    }
+    .burger-img{
+        width: 400px;
+    }
+}
+@media screen and (min-width: 992px) {
+    //Immagine dell'hamburger nel banner in alto
+    .responsive-margin-bottom{
+        margin-bottom: 140px;
+    }
+    .burger-img{
+        width: 550px;
+    }
+}
+// <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
         background: #ff9654;
         width: 100%;
@@ -161,12 +203,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         padding: 17em 0 13em 0;
     }
 
-    .bg-white{
-        background-color: white;
-        height: 500px;
-        top: 65%;
-    }
-
     .btn-orange{
         background-color: #f58115;
         color: white;
@@ -184,24 +220,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         color: #f58115;
         font-weight: bold;
         font-size: 48px;
-    }
-
-    .hofame-relative{
-        position: relative;
-    }
-
-    .hofame-absolute{
-        position: absolute;
-        left: 42%;
-        transform: translate(-50%, -50%)
-    }
-    .hofame-img-width{
-        width: 130%;
-        height: auto;
-    }
-
-    .hofame-search{
-        padding-top: 280px;
     }
 
     
@@ -244,20 +262,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
             font-size: 32px;
         }   
 
-        .bg-white{
-            height: 350px;
-            top: 65%;
-        }
-
-        .hofame-search{
-            padding-top: 20%;
-        }
-    }
-
-    @media screen and (max-width: 768px){
-        .searchbar-width{
-            width: 100%;
-        }
     }
 
     @media screen and (max-width: 400px) {
@@ -269,12 +273,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         .search-title{
             font-size: 24px;
         } 
-
-        .hofame-search{
-            padding-top: 35%;
-            padding-bottom: 10%;
-        }
-
     }
 
 </style>
