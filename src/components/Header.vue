@@ -1,5 +1,5 @@
 <script>
-import Cart from './cart.vue'
+import Cart from './Cart.vue'
     export default {
         name: "Header",
         components: {
@@ -7,11 +7,6 @@ import Cart from './cart.vue'
     }
     }
 </script>
-
-
-
-
-
 
 <template>
     
@@ -30,7 +25,7 @@ import Cart from './cart.vue'
 
                 <!-- logo hamburger menu -->
                 <button class="navbar-toggler px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
-                    <img width="50" src="../assets/img/hamburger_menu.png" alt="burger-menu">
+                    <img width="50" src="/img/hamburger_menu.png" alt="burger-menu">
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
