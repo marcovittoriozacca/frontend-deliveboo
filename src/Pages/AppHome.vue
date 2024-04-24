@@ -73,9 +73,9 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
     <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
         <!--Prima sezione blu con carosello-->
-        <!-- <div>
+        <div>
             <Typologies/>
-        </div> -->
+        </div>
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
