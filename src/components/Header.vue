@@ -26,23 +26,12 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav align-items-center ms-md-auto gap-4 py-3 py-md-0">
-                        <!-- Authentication Links -->
-                        
                         <li class="nav-item">
                             <a class="link-orange" href="">Login</a>
                         </li>
                         
                         <li class="nav-item">
                             <a class="link-orange" href="">Register</a>
-                        </li>
-                    
-                        <li class="d-flex flex-column gap-4 flex-md-row">
-                            <div>
-                                <span class="text-white text-center">
-                                    username
-                                </span>
-                            </div>
-                            <a class="dropdown-item link-orange text-center" href="">Dashboard</a>
                         </li>
                     </ul>
                 </div>
