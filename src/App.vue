@@ -11,12 +11,21 @@
 </script>
 
 <template>
-    <Header/>
-    <router-view></router-view>
-    <Footer/>
+    <header>
+        <Header/>
+    </header>
+    <main>
+        <router-view></router-view>
+    </main>
+    <footer>
+        <Footer/>
+    </footer>
 </template>
 
 <style scoped lang="scss">
-    @use './assets/sass/app.scss';
+
+    a{
+        text-decoration: none;
+    }
 
 </style>
