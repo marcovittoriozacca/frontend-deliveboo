@@ -75,7 +75,7 @@
         <div class="div-arancione">
 
             <!---Flex orizzontale Cards-->
-            <div class="container d-flex justify-content-between">
+            <div class="container d-flex justify-content-between flex-md-wrap row-gap-4">
 
                 <!--Card 1-->
                 <div class="card rounded-5 p-4 gap-2" style="width: 18rem;">
@@ -297,7 +297,7 @@
     }
     .div-arancione{
         background: #ff9654;
-        height: 950px;
+        padding-bottom: 200px;
         width: 100%;
         padding-top: 300px;
     }
