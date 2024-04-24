@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    
+    <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
 
         <!--Prima sezione blu con carosello-->
