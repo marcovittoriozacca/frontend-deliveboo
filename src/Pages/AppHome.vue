@@ -6,21 +6,27 @@ import {store} from '../Store';
         data(){
             return{
                 store,
-                type:'',
+                restaurant:[],
             }
         },
         methods:{
             types(){
                 axios.get('http://127.0.0.1:8000/api/type').then(res=>{
-                    this.type=res.data,
-                    console.log(this.type)
+                    store.type=res.data,
+                    console.log(store.type)
+                })
+            },
+            restaurants(){
+                axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
+                    this.restaurant=res.data,
+                    console.log(this.restaurant)
                 })
             }
         },
 
         mounted(){
             this.types();
-        
+            this.restaurants();
         },
     }
     
