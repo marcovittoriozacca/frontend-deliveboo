@@ -42,26 +42,29 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 
 
 <template>
-    <div id="bg-first-section">
-
-        <!--Container bianco con img e searchbar-->
-        <div class="bg-white container rounded-5 translate-middle position-absolute start-50 ">
-
-            <!--Contenitore che permette lo spostamento dell'immagine al di fuori del div bianco-->
-            <div class="hofame-relative">
-
-                <!--Immagine spostata-->
-                <div class="hofame-absolute">
-                    <img src="/img/hofame.webp" alt="image" class="hofame-img-width">
-                </div>
-
-                <!--Parte con Searchbar e titolo-->
-                <div class="d-flex flex-column gap-3 hofame-search">
-                    <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
-                    <form class="d-flex flex-column gap-3" role="search">
-                        <input class="form-control me-2 align-self-center searchbar-width" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-orange align-self-center" type="submit">Ho Fame!</button>
-                    </form>
+    <div class="reset-header-height">
+        <div id="bg-first-section">
+            <div class="container">
+                <div class="banner-max-w bg-white rounded-4 p-5">
+                    <div class="row row-gap-5 justify-content-center flex-column align-items-center">
+                        <!-- Banner hamburger -->
+                        <div class="col-12">
+                            <div class="position-relative responsive-margin-bottom">
+                                <figure class=" banner-burger-position position-absolute">
+                                    <img class="burger-img" src="/img/hofame.webp" alt="burger-image">
+                                </figure>
+                            </div>
+                        </div>
+    
+                        <div class="col-12">
+                            <!--Parte con Searchbar e titolo-->
+                            <div class="d-flex flex-column gap-3 hofame-search">
+                                <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
+                                <input class="form-control" type="text" placeholder="Cerca..." aria-label="Search">
+                                <button class="btn btn-orange align-self-center" type="button">Ho Fame!</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,11 +72,10 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 
     <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
-
         <!--Prima sezione blu con carosello-->
-        <div>
+        <!-- <div>
             <Typologies/>
-        </div>
+        </div> -->
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
@@ -85,124 +87,17 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
             <div class="d-flex flex-column align-items-center gap-5 container text-center">
                     <h1 class="text-light fs-64">Hai una attività di ristorazione e vuoi crescere insieme a noi?</h1>
                     <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività</h2>
-
                     <WorkWithUsBtn/>
                 </div>
             <div class="diagonale-blu-alto-sinistra"></div>
         </div>
+
         <div class="div-arancione">
-            <!---Flex orizzontale Cards-->
             <InfoCard/>
         </div>
+
         <div class="diagonale-blu-alto-destra"></div>
         
-        <!--Inizio Ul Footer -->
-        <div class="container pb-5">
-            <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between">
-                <div>
-                    <ul>
-                        <li class="titleLi">
-                            <span>Servizio clienti</span>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">domande frequenti</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">accedi</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">registrati</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">scarica l'app</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">segnala un problema</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li class="titleLi">
-                            <span>Scopri di più su di noi</span>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">la nostra storia</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">il nostro impegno per la qualità</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">i nostri valori</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">unisciti al nostro team</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li class="titleLi">
-                            <span>Cucine</span>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">pizza</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">giapponese</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">messicano</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">brasiliano</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">cinese</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li class="titleLi">
-                            <span>Il nostro impegno</span>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">sostenibilità</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">modalità di consegna</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">carriera e opportunità</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">Promozioni attive</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li class="titleLi">
-                            <span>Programmi</span>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">Programma fedeltà</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">Recensioni dei Clienti</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">Orari di apertura</a>
-                        </li>
-                        <li class="text-capitalize">
-                            <a href="#">guida alla sicurezza alimentare</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-        </div>
     </div>
 
     <!-- offcanvas -->
@@ -216,45 +111,65 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
   </div>
 </div>
 
-
-
-
 </template>
-
-
-
-
-
-
-
 
 <style lang="scss" scoped>
 
-    .searchbar-width{
-        width: 50%;
-    }
+// <--------------- inizio stile del banner con l'hamburger --------------->
+#bg-first-section{
+    background-image: url('/img/bghome.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.banner-max-w{
+    max-width: 936px;
+    margin: 0 auto
+}
 
+.banner-burger-position{
+    top: -100px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.responsive-margin-bottom{
+    margin-bottom: 25px;
+}
+.burger-img{
+    width: 300px;
+}
+
+@media screen and (min-width: 768px) {
     #bg-first-section{
-        background-image: url(/img/bghome.jpg);
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 500px;
-        padding-top: 200px;
+        padding-top: 100px;
     }
-
-    .fs-64{
-        font-size: 64px;
+    .banner-burger-position{
+        top: -120px;
     }
-
-    .fs-52{
-        font-size: 52px;
+    //Immagine dell'hamburger nel banner in alto
+    .responsive-margin-bottom{
+        margin-bottom: 80px;
     }
-
+    .burger-img{
+        width: 400px;
+    }
+}
+@media screen and (min-width: 992px) {
+    //Immagine dell'hamburger nel banner in alto
+    .responsive-margin-bottom{
+        margin-bottom: 140px;
+    }
+    .burger-img{
+        width: 550px;
+    }
+}
+// <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
         background: #ff9654;
         width: 100%;
         height: 700px;
-        border: 1px solid red;
     }
 
     .diagonale-blu-alto-sinistra{
@@ -288,12 +203,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         padding: 17em 0 13em 0;
     }
 
-    .bg-white{
-        background-color: white;
-        height: 500px;
-        top: 65%;
-    }
-
     .btn-orange{
         background-color: #f58115;
         color: white;
@@ -313,63 +222,23 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         font-size: 48px;
     }
 
-    .hofame-relative{
-        position: relative;
-    }
-
-    .hofame-absolute{
-        position: absolute;
-        left: 42%;
-        transform: translate(-50%, -50%)
-    }
-    .hofame-img-width{
-        width: 130%;
-        height: auto;
-    }
-
-    .hofame-search{
-        padding-top: 280px;
-    }
-
-    ul{
-        list-style-type: none;
-    }
-
-    ul>li>a{
-        text-decoration: none;
-        color: rgb(255, 255, 255, 0.5);
-    }
-
-    .titleLi{
-        color: white;
-        font-weight: bold;
-    }
-
+    
     .card-svg-height{
         height: 200px;
     }
 
     
-  
-    #Lavora-con-noi{
-        padding-left: 70px;
-    }
-
-    .svg2{
-        top: 20px;
-        display: none;
-    }
-
-    
-    .Btn:active {
-        transform: translate(3px , 3px);
-        transition-duration: .3s;
-    }
-
     .bg-blu{
         background-color: #03071E ;
     }
 
+    .fs-64{
+        font-size: 64px;
+    }
+
+    .fs-52{
+        font-size: 52px;
+    }
 
     @media screen and (min-width: 992px) {
         .canva{
@@ -393,29 +262,9 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
             font-size: 32px;
         }   
 
-        .bg-white{
-            height: 350px;
-            top: 65%;
-        }
-
-        .hofame-search{
-            padding-top: 20%;
-        }
-    }
-
-    @media screen and (max-width: 768px){
-        .searchbar-width{
-            width: 100%;
-        }
     }
 
     @media screen and (max-width: 400px) {
-        .Btn {
-            padding-block: 5px;
-            padding-inline: 20px;
-            font-size: 18px;
-        }
-
         .diagonale-blu-alto-sinistra{
             height: 125px;
             margin-top: 50px;
@@ -424,12 +273,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         .search-title{
             font-size: 24px;
         } 
-
-        .hofame-search{
-            padding-top: 35%;
-            padding-bottom: 10%;
-        }
-
     }
 
-</style>../components/HomeComponents/Typologies.vue
+</style>

@@ -19,7 +19,7 @@ export default {
             <div class="custom-type-col"  v-for="(type, index) in store.type" :key="type.id">
                 <div class="d-flex flex-column row-gap-3">
                     <figure class="mb-0">
-                        <img class="img-fluid dish-img" :src="type.image" :alt="type.slug">
+                        <img class="dish-img" :src="type.image" :alt="type.slug">
                     </figure>
                     <span class="text-white text-capitalize text-center fs-5">{{ type.slug }}</span>
                 </div>
@@ -35,10 +35,6 @@ export default {
 
     .carosello-blu{
         background: #03071e;
-        padding-top: 300px;
-        width: 100%;
-        border: 1px solid red;
-
     }
     .custom-type-col{
         width: calc(100% / 10);

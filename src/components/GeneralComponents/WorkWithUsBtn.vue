@@ -44,6 +44,15 @@ export default {
         font-weight: bold;
         font-size: 32px;
     }
+  
+    #Lavora-con-noi{
+        padding-left: 70px;
+    }
+
+    .svg2{
+        top: 20px;
+        display: none;
+    }
 
     .svg,
     .svg2,
@@ -167,4 +176,17 @@ export default {
         }
     }
   
+    .Btn:active {
+        transform: translate(3px , 3px);
+        transition-duration: .3s;
+    }
+
+    @media screen and (max-width: 400px) {
+        .Btn {
+            padding-block: 5px;
+            padding-inline: 20px;
+            font-size: 18px;
+        }
+    }
+
 </style>
