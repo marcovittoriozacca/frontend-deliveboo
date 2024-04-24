@@ -15,7 +15,7 @@ import Cart from './Cart.vue'
 
 <template>
     
-    <div id="app" class="position-fixed w-100">
+    <div id="app" class="position-fixed w-100 position-relative">
         <nav class="navbar navbar-expand-md navbar-light bg-nav shadow-sm ">
             <div class="container">
                 <router-link :to="{ name: 'home' }">

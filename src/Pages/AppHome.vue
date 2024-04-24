@@ -257,7 +257,7 @@ import {store} from '../Store';
     </div>
 
     <!-- offcanvas -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -569,6 +569,13 @@ import {store} from '../Store';
 
     .bg-blu{
         background-color: #03071E ;
+    }
+
+
+    @media screen and (min-width: 992px) {
+        .canva{
+            width: 30%!important;
+        }
     }
 
     @media screen and (max-width: 992px) {
