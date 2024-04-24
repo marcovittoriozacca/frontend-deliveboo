@@ -1,8 +1,12 @@
 <script>
 import axios from 'axios';
 import {store} from '../Store';
+import Typologies from '../components/Typologies.vue';
     export default {
         name: "AppHome",
+        components:{
+            Typologies,
+        },
         data(){
             return{
                 store,
@@ -12,13 +16,13 @@ import {store} from '../Store';
         methods:{
             types(){
                 axios.get('http://127.0.0.1:8000/api/type').then(res=>{
-                    store.type=res.data,
+                    store.type=res.data.type,
                     console.log(store.type)
                 })
             },
             restaurants(){
                 axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
-                    this.restaurant=res.data,
+                    this.restaurant=res.data.restaurant,
                     console.log(this.restaurant)
                 })
             }
@@ -67,8 +71,8 @@ import {store} from '../Store';
     <div class="bg-blu">
 
         <!--Prima sezione blu con carosello-->
-        <div class="carosello-blu">
-            <h1 class="text-light">Prima sezione blu con carosello</h1>
+        <div>
+            <Typologies/>
         </div>
 
         <!--Prima sezione arancione con risultati ricerca?-->
@@ -299,14 +303,6 @@ import {store} from '../Store';
 
     .fs-52{
         font-size: 52px;
-    }
-
-    .carosello-blu{
-        background: #03071e;
-        padding-top: 300px;
-        width: 100%;
-        height: 700px;
-        border: 1px solid red;
     }
 
     .ristoranti-arancione{
