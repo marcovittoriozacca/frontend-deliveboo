@@ -82,7 +82,7 @@ import Restaurant from '../components/Restaurant.vue'
             <div class="py-4">
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
-                    <!-- con la corretta tipologia -->
+                    <!-- con la corretta tipologia -->    
                     <Restaurant/>
                 </div>
             </div>
