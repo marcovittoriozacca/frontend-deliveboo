@@ -44,22 +44,29 @@ export default{
 
 <template>
 <!-- componente ristoranti -->
+    
     <div 
         v-for="(restaurant, index ) in restaurants" :key="restaurant.id">
-        <div v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0">
-            <figure>
-                <img v-if="restaurant.image" width="150" class="restaurant-image" :src="`http://127.0.0.1:8000/storage/${restaurant.image}`" alt="img-ristorante">
-                <img v-else src="" alt="image-missing">
-            </figure>
-            <div class="">
-                <h2>{{ restaurant.activity_name  }}</h2>
-                <span>{{ restaurant.address }}</span>
-                <p v-for="(types, index) in restaurant.types" :key="index">
-                {{  types.slug }}
-                </p>
+        <router-link :to="{name:'Single-Restaurant',params:{slug:restaurant.id}}">
+            <div class="d-flex contenitore gap-4 text-light" v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0">
+                <figure>
+                    <img v-if="restaurant.image" width="150" class="restaurant-image rounded-4" :src="`http://127.0.0.1:8000/storage/${restaurant.image}`" alt="img-ristorante">
+                    <img v-else src="" alt="image-missing">
+                </figure>
+                <div class="">
+                    <h2>{{ restaurant.activity_name  }}</h2>
+                    <span>{{ restaurant.address }}</span>
+                    <div class="d-flex gap-3">
+                        <p class="badge rounded-pill" v-for="(types, index) in restaurant.types" :key="index">
+                        {{  types.slug }}
+                        </p>
+                    
+                    </div>
+                </div>
+                
             </div>
-            <hr>
-        </div>
+        </router-link>
+        <hr>
     </div>
 
 
@@ -68,11 +75,37 @@ export default{
 
 <style scoped lang="scss">
 
-.restaurant-image{
-    width: 300px; 
-    aspect-ratio: 1;
+
+
+
+
+.contenitore{
+    height: 200px;
+    width: 100%;
+
+    figure{
+        .restaurant-image{
+            width: 300px; 
+            height: 100%;
+        }
+    }
+
+    div{
+        .rounded-pill{
+            background-color: black!important;;
+        }
+    } 
+
+   
+
+    
 }
+
 hr{
-    background-color: black;
-}
+    border: 1px solid black;
+    opacity: 1;
+   }
+
+
+
 </style>
