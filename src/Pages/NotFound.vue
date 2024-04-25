@@ -1,11 +1,19 @@
 <script>
+import { store } from '../Store';
+
 
 export default{
     name: "NotFound",
     data(){
         return{
-          
+          store
         }
+    },
+    mounted(){
+       this.store.showfooter=false;
+    },
+    beforeUnmount(){
+        this.store.showfooter=true;
     }
 }
 </script>
