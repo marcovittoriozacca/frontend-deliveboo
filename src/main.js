@@ -8,4 +8,6 @@ import 'bootstrap'
 
 import 'vue3-carousel/dist/carousel.css'
 
+
+
 createApp(App).use(router).mount('#app')
