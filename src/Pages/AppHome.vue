@@ -22,8 +22,6 @@ import Restaurant from '../components/Restaurant.vue'
             return{
                 store,
                 restaurant:[],
-
-                active_typologies: [],
             }
         },
         methods:{
@@ -31,9 +29,6 @@ import Restaurant from '../components/Restaurant.vue'
                 axios.get('http://127.0.0.1:8000/api/type').then(res=>{
                     store.type=res.data.type
                 })
-            },
-            activeTypologies(slug) {
-                console.log(`Tipo attivato: ${slug}`);
             },
         },
 
@@ -79,13 +74,18 @@ import Restaurant from '../components/Restaurant.vue'
         <!--Prima sezione blu con carosello-->
         <div>
             <Typologies
-                @activate-type="activeTypologies"
             />
         </div>
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
-            <Restaurant/>
+            <div class="py-4">
+                <div class="container">
+                    <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
+                    <!-- con la corretta tipologia -->
+                    <Restaurant/>
+                </div>
+            </div>
         </div>
 
         <!--Sezione blu con pulsante di registrazione ristoratori-->
@@ -189,8 +189,6 @@ import Restaurant from '../components/Restaurant.vue'
 // <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
         background: #ff9654;
-        width: 100%;
-        height: 700px;
     }
 
     .diagonale-blu-alto-sinistra{

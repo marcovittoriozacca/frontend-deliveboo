@@ -4,5 +4,8 @@ import axios from 'axios'
 export const store = reactive({
      type:  [],
      showfooter:true,
+
+
+     active_typologies: [],
     
 });
