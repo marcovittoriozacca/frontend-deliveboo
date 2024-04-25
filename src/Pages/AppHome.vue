@@ -13,10 +13,15 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
             InfoCard,
             WorkWithUsBtn,
         },
+        props: {
+            activateType: String,
+        },
         data(){
             return{
                 store,
                 restaurant:[],
+
+                active_typologies: [],
             }
         },
         methods:{
@@ -29,7 +34,10 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
                 axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                     this.restaurant=res.data.restaurant
                 })
-            }
+            },
+            activeTypologies(slug) {
+                console.log(`Tipo attivato: ${slug}`);
+            },
         },
 
         mounted(){
@@ -74,7 +82,9 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
     <div class="bg-blu">
         <!--Prima sezione blu con carosello-->
         <div>
-            <Typologies/>
+            <Typologies
+                @activate-type="activeTypologies"
+            />
         </div>
 
         <!--Prima sezione arancione con risultati ricerca?-->

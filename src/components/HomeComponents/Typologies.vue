@@ -1,5 +1,5 @@
 <script>
-import { Carousel, Navigation, Slide } from 'vue3-carousel'
+import { Carousel, Slide } from 'vue3-carousel'
 import { store } from '../../Store';
 export default {
     name: 'Typologies',
@@ -7,14 +7,70 @@ export default {
     components: {
         Carousel,
         Slide,
-        Navigation,
     },
+
+
 
     data() {
         return {
             store,
+            currentSlide: 0,
+            breakpoints: {
+                0:{
+                    itemsToShow: 1,
+                    snapAlign: "center",
+                    itemsToScroll: 1,
+                },
+                350:{
+                    itemsToShow: 1.8,
+                    snapAlign: "center",
+                    itemsToScroll: 1,
+                },
+                500:{
+                    itemsToShow: 3,
+                    snapAlign: "center",
+                    itemsToScroll: 1,
+                },
+				// 700px and up
+				700: {
+					itemsToShow: 3.5,
+					snapAlign: "center",
+                    itemsToScroll: 3.5,
+				},
+				800: {
+					itemsToShow: 4,
+					snapAlign: "center",
+                    itemsToScroll: 3.5,
+				},
+				900: {
+					itemsToShow: 5,
+					snapAlign: "center",
+                    itemsToScroll: 4,
+				},
+				// 1024 and up
+				1024: {
+					itemsToShow: 5,
+					snapAlign: "start"
+				},
+				// 1024 and up
+				1200: {
+					itemsToShow: 7,
+					snapAlign: "center",
+                    itemsToScroll: 6,
+				}
+			}
+
         }
 
+    },
+
+    methods: {
+        next() {
+            this.$refs.carousel.next()
+        },
+        prev() {
+            this.$refs.carousel.prev()
+        },
     },
 }
 </script>
@@ -22,37 +78,45 @@ export default {
 
 <template>
 
-<Carousel :items-to-show="5" :items-to-scroll="4" :wrap-around="true" class="carosello-blu" :i18n="{
-    iconArrowLeft:'Scorri verso sinistra',
-    iconArrowRight:'Scorri verso destra'
-}">
-    <Slide v-for="(type, index) in store.type" :key="type.id">
-        <div class="carousel__item p-3">
-            <div class="orange-border rounded-5 p-4">
-                <div class="d-flex flex-column row-gap-3 rounded rounded-4">
-                    <figure class="mb-0 m-0">
-                        <img width="100" class="dish-img" :src="type.image" :alt="type.slug">
-                    </figure>
-                    <div class="orange-bg rounded-pill px-2 py-1 fit-content mx-auto">
-                        <p class="text-white mb-0 text-uppercase">{{ type.slug }}</p>
+<div class="position-relative">
+    <Carousel ref="carousel" v-model="currentSlide" :breakpoints="breakpoints" :items-to-show="5" :items-to-scroll="4" :wrap-around="true" class="carosello-blu" :i18n="{
+        iconArrowLeft:'Scorri verso sinistra',
+        iconArrowRight:'Scorri verso destra'
+    }">
+        <Slide v-for="(type, index) in store.type" :key="type.id">
+            <div class="carousel__item p-3">
+                <!-- intera card, emit -->
+                <div @click="$emit('activateType', type.slug)" class="orange-border rounded-5 bg-danger p-4">
+                    <div class="d-flex flex-column row-gap-3 rounded rounded-4">
+                        <figure class="mb-0 m-0 my-max-h">
+                            <img width="100" class="dish-img" :src="type.image" :alt="type.slug">
+                        </figure>
+                        <div class="orange-bg rounded-pill px-2 py-1 fit-content mx-auto">
+                            <p class="text-white mb-0 text-uppercase">{{ type.slug }}</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
-        </div>
-    </Slide>
-
-    <template #addons>
-      <Navigation />
-    </template>
-
-</Carousel>
+        </Slide>    
+    </Carousel>
+    <button class="rounded position-absolute carousel-btn" id="prev" @click="prev">
+        <i class="fas fa-arrow-left-long"></i>
+    </button>
+    <button class=" rounded position-absolute carousel-btn" id="next" @click="next">
+        <i class="fas fa-arrow-right-long"></i>
+    </button>
+    
+</div>
 
 </template>
 
 
 <style lang="scss" scoped>
 @use '../../assets/sass/partials/variables' as *;
-
+.my-max-h{
+    max-height: 270px;
+}
     .carosello-blu{
         background: #03071e;
     }
@@ -73,8 +137,19 @@ export default {
     .orange-border{
         border: 1px solid $base-orange;
     }
-    .svg{
-        color: red;
+    .carousel-btn{
+        padding: 5px 10px;
+        border: none;
+        top: 50%;
+        transform: translate(-50%);
+        background-color: $orange;
+    }
+
+    #prev{
+        left: 20px;
+    }
+    #next{
+        right: 0;
     }
 
 
