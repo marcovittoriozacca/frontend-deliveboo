@@ -33,7 +33,14 @@ import Restaurant from '../components/Restaurant.vue'
                 })
             },
             activeTypologies(slug) {
-                console.log(`Tipo attivato: ${slug}`);
+                //funzione che carica e rimuove una tipologia dall'array al click della corrispettiva card
+                if(this.active_typologies.includes(slug)){
+                    this.active_typologies.splice(slug, 1);
+                }else{
+                    this.active_typologies.push(slug);
+                }
+
+                console.log(this.active_typologies)
             },
         },
 
