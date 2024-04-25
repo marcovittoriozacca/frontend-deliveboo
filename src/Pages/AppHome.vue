@@ -114,7 +114,7 @@ import Restaurant from '../components/Restaurant.vue'
   <div class="offcanvas-body">
 
         <div class="d-flex bg-primary rounded-2">
-            <figure class="w-50 bg-warning m-0 aa">
+            <figure class="w-50 bg-warning m-0 figure_cart">
                 <img class="img-fluid" src="" alt="qualcosa">
             </figure>
             <div class="m-0 w-100 d-flex justify-content-between align-items-center px-2">
