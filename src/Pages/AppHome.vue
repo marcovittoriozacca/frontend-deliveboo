@@ -5,6 +5,7 @@ import {store} from '../Store';
 import Typologies from '../components/HomeComponents/Typologies.vue';
 import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
+import Restaurant from '../components/Restaurant.vue'
 
     export default {
         name: "AppHome",
@@ -12,6 +13,7 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
             Typologies,
             InfoCard,
             WorkWithUsBtn,
+            Restaurant,
         },
         props: {
             activateType: String,
@@ -30,11 +32,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
                     store.type=res.data.type
                 })
             },
-            restaurants(){
-                axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
-                    this.restaurant=res.data.restaurant
-                })
-            },
             activeTypologies(slug) {
                 console.log(`Tipo attivato: ${slug}`);
             },
@@ -42,7 +39,6 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 
         mounted(){
             this.types();
-            this.restaurants();
         },
     }
     
@@ -89,7 +85,7 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
-            <h1 class="text-light">Prima sezione arancione con risultati ricerca?</h1>
+            <Restaurant/>
         </div>
 
         <!--Sezione blu con pulsante di registrazione ristoratori-->
