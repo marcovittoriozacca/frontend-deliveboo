@@ -31,10 +31,25 @@ main{
     border-radius: 0 10px 10px 0;
 }
 
+<<<<<<< HEAD
 a{
     text-decoration: none!important;
     color: $orange!important;
 }
 
+*::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+*::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 20px;
+  }
+  
+*::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+>>>>>>> origin/scrollbar
     
 
