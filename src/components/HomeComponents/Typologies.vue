@@ -73,6 +73,9 @@ export default {
     .orange-border{
         border: 1px solid $base-orange;
     }
+    .svg{
+        color: red;
+    }
 
 
 </style>
