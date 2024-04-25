@@ -9,11 +9,20 @@ export default{
             restaurants:[],
             store,
             maxrestaurant:0,
+            hrCount: 0
         };
     },
 
 
     methods: {
+
+        countHrTags() {
+            this.hrCount = document.querySelectorAll('hr').length;
+            if(this.hrCount > 0){
+                document.getElementsByTagName('hr')[this.hrCount-1].style.display="none"
+            }
+        },
+
         getRestaurants(){
             axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                 this.restaurants=res.data.restaurant;
@@ -24,6 +33,7 @@ export default{
             });
         },
         arraysContainSameElement(array1, array2) {
+            
             const toArray = []; 
             array2.forEach((element,index) => {
                 toArray.push(element.slug);
@@ -40,11 +50,29 @@ export default{
             }
             
             return false;
-        }
+        },
+
+        
     },
     mounted() {
         this.getRestaurants();
-    }
+
+
+
+        this.countHrTags();
+        // Osserva le modifiche nel DOM
+        const observer = new MutationObserver(() => {
+            this.countHrTags();
+        });
+        observer.observe(document.body, { subtree: true, childList: true });
+
+
+        
+}
+
+
+
+
 }
 </script>
 
@@ -54,7 +82,8 @@ export default{
     <div 
         v-for="(restaurant, index ) in restaurants" :key="restaurant.id">
         <router-link :to="{name:'Single-Restaurant',params:{slug:restaurant.id}}">
-            <div class="d-flex flex-column contenitore text-light" v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0">
+            <div class="d-flex flex-column contenitore text-light" v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0" >
+                
                 <div class="d-flex gap-4">
                     <figure class="m-0">
                         <img v-if="restaurant.image" width="150" class="restaurant-image rounded-4" :src="`http://127.0.0.1:8000/storage/${restaurant.image}`" alt="img-ristorante">
@@ -71,8 +100,10 @@ export default{
                         </div>
                     </div>
                 </div>
-                <hr :class="{'d-none': index==maxrestaurant}">
+                <!-- <hr :class="{'d-none': index==hrCount - 1 }"> -->
+                <hr> 
             </div>
+        
         </router-link>
         
     </div>
@@ -88,6 +119,7 @@ export default{
 
 
 .contenitore{
+    
     width: 100%;
     figure{
         width: 300px; 
@@ -107,13 +139,10 @@ export default{
     hr{
     border: 1px solid black;
     opacity: 1;
+        
    }
 
   
-
-   
-
-    
 }
 
 
