@@ -21,7 +21,7 @@ export default {
         },
         methods:{
             getPlate(){
-                axios.get('http://127.0.0.1:8000/api/restaurant/${this.$route.params.id}').then(res=>{
+                axios.get(`http://127.0.0.1:8000/api/restaurant/${this.$route.params.slug}`).then(res=>{
                     this.plate=res.data.dishes
                     console.log(this.plate)
                 })
