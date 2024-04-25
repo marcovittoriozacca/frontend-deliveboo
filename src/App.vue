@@ -27,5 +27,6 @@
 
 <style scoped lang="scss">
 
+@use './assets/sass/app.scss' as *;
 
 </style>
