@@ -8,6 +8,7 @@ export default{
         return{
             restaurants:[],
             store,
+            maxrestaurant:0,
         };
     },
 
@@ -16,6 +17,7 @@ export default{
         getRestaurants(){
             axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                 this.restaurants=res.data.restaurant;
+                this.maxrestaurant=this.restaurants.length-1
             })
             .catch(error => {
               console.error('Errore durante la richiesta API:', error);
@@ -31,8 +33,12 @@ export default{
                     if (array1[i] === toArray[j]) {
                         return true;
                     }
+                    
+
                 }
+               
             }
+            
             return false;
         }
     },
@@ -48,25 +54,27 @@ export default{
     <div 
         v-for="(restaurant, index ) in restaurants" :key="restaurant.id">
         <router-link :to="{name:'Single-Restaurant',params:{slug:restaurant.id}}">
-            <div class="d-flex contenitore gap-4 text-light" v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0">
-                <figure>
-                    <img v-if="restaurant.image" width="150" class="restaurant-image rounded-4" :src="`http://127.0.0.1:8000/storage/${restaurant.image}`" alt="img-ristorante">
-                    <img v-else src="" alt="image-missing">
-                </figure>
-                <div class="">
-                    <h2>{{ restaurant.activity_name  }}</h2>
-                    <span>{{ restaurant.address }}</span>
-                    <div class="d-flex gap-3">
-                        <p class="badge rounded-pill" v-for="(types, index) in restaurant.types" :key="index">
-                        {{  types.slug }}
-                        </p>
-                    
+            <div class="d-flex flex-column contenitore text-light" v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0">
+                <div class="d-flex gap-4">
+                    <figure class="m-0">
+                        <img v-if="restaurant.image" width="150" class="restaurant-image rounded-4" :src="`http://127.0.0.1:8000/storage/${restaurant.image}`" alt="img-ristorante">
+                        <img v-else src="" alt="image-missing">
+                    </figure>
+                    <div class="">
+                        <h2>{{ restaurant.activity_name  }}</h2>
+                        <span>{{ restaurant.address }}</span>
+                        <div class="d-flex gap-3">
+                            <p class="badge rounded-pill" v-for="(types, index) in restaurant.types" :key="index">
+                            {{  types.slug }}
+                            </p>
+                        
+                        </div>
                     </div>
                 </div>
-                
+                <hr :class="{'d-none': index==maxrestaurant}">
             </div>
         </router-link>
-        <hr>
+        
     </div>
 
 
@@ -80,14 +88,14 @@ export default{
 
 
 .contenitore{
-    height: 200px;
     width: 100%;
-
     figure{
-        .restaurant-image{
-            width: 300px; 
-            height: 100%;
-        }
+        width: 300px; 
+        height: 200px;
+            .restaurant-image{
+                width: 100%; 
+                height: 100%;
+            }
     }
 
     div{
@@ -96,15 +104,19 @@ export default{
         }
     } 
 
+    hr{
+    border: 1px solid black;
+    opacity: 1;
+   }
+
+  
+
    
 
     
 }
 
-hr{
-    border: 1px solid black;
-    opacity: 1;
-   }
+
 
 
 
