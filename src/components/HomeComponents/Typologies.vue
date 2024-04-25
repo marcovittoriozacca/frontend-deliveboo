@@ -9,8 +9,6 @@ export default {
         Slide,
     },
 
-
-
     data() {
         return {
             store,
@@ -71,6 +69,18 @@ export default {
         prev() {
             this.$refs.carousel.prev()
         },
+
+        activeTypologies(slug) {
+                //funzione che carica e rimuove una tipologia dall'array al click della corrispettiva card
+                const index = store.active_typologies.indexOf(slug);
+                //quando un elemento NON è presente, l'index restituito dalla funzione indexOf è sempre -1, quindi eseguiamo un controllo su quel parametro
+                if (index !== -1) {
+                    store.active_typologies.splice(index, 1); // Rimuove l'elemento
+                } else {
+                    store.active_typologies.push(slug); // Aggiunge l'elemento
+                }
+                //se l'elemento non esiste nel nostro array lo pushiamo, altrimenti lo rimuoviamo
+            },
     },
 }
 </script>
@@ -85,8 +95,8 @@ export default {
     }">
         <Slide v-for="(type, index) in store.type" :key="type.id">
             <div class="carousel__item p-3">
-                <!-- intera card, emit -->
-                <div @click="$emit('activateType', type.slug)" class="orange-border rounded-5 bg-danger p-4">
+                <!-- intera card, function -->
+                <div @click="activeTypologies(type.slug)" class="orange-border rounded-5 p-4" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
                     <div class="d-flex flex-column row-gap-3 rounded rounded-4">
                         <figure class="mb-0 m-0 my-max-h">
                             <img width="100" class="dish-img" :src="type.image" :alt="type.slug">
@@ -96,7 +106,6 @@ export default {
                         </div>
                     </div>
                 </div>
-
             </div>
         </Slide>    
     </Carousel>
@@ -150,6 +159,13 @@ export default {
     }
     #next{
         right: 0;
+    }
+
+    .active-card{
+        transition: .1s all linear;
+        transform: scale(105%);
+        border: 2px solid $orange;
+        background-color: lightgray;
     }
 
 
