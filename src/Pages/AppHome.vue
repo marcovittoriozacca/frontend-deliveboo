@@ -103,11 +103,26 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
     <!-- offcanvas -->
     <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    ...
+
+        <div class="d-flex bg-primary rounded-2">
+            <figure class="w-50 bg-warning m-0 aa">
+                <img class="img-fluid" src="" alt="qualcosa">
+            </figure>
+            <div class="m-0 w-100 d-flex justify-content-between align-items-center px-2">
+                <div class="d-flex flex-column">
+                    <h3>nomepiatto</h3>
+                    <h5>quantità</h5>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="text-end">23€</span>
+                    <button class="btn p-0 p-lg-1 bg-danger">rimuovi</button>
+                </div>
+            </div>
+        </div>
+    
   </div>
 </div>
 
