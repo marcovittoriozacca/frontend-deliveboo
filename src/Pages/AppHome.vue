@@ -88,7 +88,7 @@ import Cart from '../components/Cart.vue'
                         </p>
                     </div>
                     <div class="col-md-6 text-center">
-                        <img src="/public/Orange and Black Modern Restaurant Logo (1).png" alt="Immagine Deliveboo" class="img-fluid">
+                        <img src="/public/cena con amici.jpg" alt="Immagine Deliveboo" class="img-fluid">
                     </div>
                 </div>
             </div>
