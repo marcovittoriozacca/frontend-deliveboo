@@ -10,7 +10,7 @@
 <!--Inizio Ul Footer -->
 <div class="bg-blu">
     <div class="container pb-5">
-        <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between">
+        <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between pt-5">
             <div>
                 <ul>
                     <li class="titleLi">
