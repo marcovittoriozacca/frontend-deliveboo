@@ -21,7 +21,8 @@ import Restaurant from '../components/Restaurant.vue'
         data(){
             return{
                 store,
-                restaurant:[],
+                restaurants:[],
+                filtered_restaurants:[],
             }
         },
         methods:{
@@ -30,12 +31,38 @@ import Restaurant from '../components/Restaurant.vue'
                     store.type=res.data.type
                 })
             },
-        },
 
+            getRestaurants(){
+                axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
+                    this.restaurants = res.data.restaurant;
+
+                })
+                .catch(error => {
+                console.error('Errore durante la richiesta API:', error);
+                });
+            },
+
+        },
         mounted(){
             this.types();
+            this.getRestaurants();
+            
         },
+        
+        
+        watch: {
+        'store.active_typologies': {
+
+            handler(newVal, oldVal) {
+
+            //ancora da sistemare
+                
+            },
+            deep: true
+        }
     }
+}
+
     
 </script>
 
@@ -83,7 +110,11 @@ import Restaurant from '../components/Restaurant.vue'
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <Restaurant/>
+                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id">
+                        <Restaurant
+                            :restaurant="restaurant"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

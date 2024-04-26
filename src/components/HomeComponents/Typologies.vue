@@ -71,16 +71,14 @@ export default {
         },
 
         activeTypologies(slug) {
-                //funzione che carica e rimuove una tipologia dall'array al click della corrispettiva card
-                const index = store.active_typologies.indexOf(slug);
-                //quando un elemento NON è presente, l'index restituito dalla funzione indexOf è sempre -1, quindi eseguiamo un controllo su quel parametro
-                if (index !== -1) {
-                    store.active_typologies.splice(index, 1); // Rimuove l'elemento
-                } else {
-                    store.active_typologies.push(slug); // Aggiunge l'elemento
-                }
+            
+            if (store.active_typologies.includes(slug)) {
+                store.active_typologies.splice(store.active_typologies.indexOf(slug), 1);
+            } else {
+                store.active_typologies.push(slug);
+            }
                 //se l'elemento non esiste nel nostro array lo pushiamo, altrimenti lo rimuoviamo
-            },
+        },
     },
 }
 </script>
@@ -96,13 +94,15 @@ export default {
         <Slide v-for="(type, index) in store.type" :key="type.id">
             <div class="carousel__item p-3">
                 <!-- intera card, function -->
-                <div @click="activeTypologies(type.slug)" class="orange-border rounded-5 p-4" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
-                    <div class="d-flex flex-column row-gap-3 rounded rounded-4">
-                        <figure class="mb-0 m-0 my-max-h">
-                            <img width="100" class="dish-img" :src="type.image" :alt="type.slug">
-                        </figure>
-                        <div class="orange-bg rounded-pill px-2 py-1 fit-content mx-auto">
-                            <p class="text-white mb-0 text-uppercase">{{ type.slug }}</p>
+                <div @click="activeTypologies(type.slug)" class="orange-border rounded-5" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
+                    <div class="rounded rounded-4">
+                        <div class="position-relative">
+                            <figure class="mb-0 m-0">
+                                <img width="100" class="dish-img" :src="type.image" :alt="type.slug">
+                            </figure>
+                            <div class="opacity-bg-black rounded px-3 py-1 position-absolute top-50 start-50 translate-middle">
+                                <p class="mb-0 text-uppercase">{{ type.slug }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ export default {
     .dish-img{
         width: 100%;
         aspect-ratio: 1;
-        object-fit: cover;
+        object-fit: contain;
     }
     .fit-content{
         width: fit-content;
@@ -143,6 +143,7 @@ export default {
     .orange-bg{
         background-color: $base-orange;
     }
+
     .orange-border{
         border: 1px solid $base-orange;
     }
@@ -160,12 +161,24 @@ export default {
     #next{
         right: 0;
     }
-
+    .opacity-bg-black{
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+    }
     .active-card{
         transition: .1s all linear;
-        transform: scale(105%);
-        border: 2px solid $orange;
-        background-color: lightgray;
+        transform: scale(110%);
+        border: 5px solid $orange;
+        background-color: rgba(107, 107, 107, 0.794);
+
+        .opacity-bg-black{
+        background-color: rgba(0, 0, 0, 1);
+        color: $orange;
+            p::after{
+                margin-left: 5px;
+                content: '\2713';
+            }
+        }
     }
 
 
