@@ -1,12 +1,14 @@
 <script>
 import { Carousel, Slide } from 'vue3-carousel'
 import { store } from '../../Store';
+import Loader from '../GeneralComponents/Loader.vue';
 export default {
     name: 'Typologies',
 
     components: {
         Carousel,
         Slide,
+        Loader,
     },
 
     data() {
@@ -91,7 +93,12 @@ export default {
         iconArrowLeft:'Scorri verso sinistra',
         iconArrowRight:'Scorri verso destra'
     }">
-        <Slide v-for="(type, index) in store.type" :key="type.id">
+        <Slide v-if="store.typesLoading">
+            <Loader/>
+        </Slide>
+
+
+        <Slide v-for="(type, index) in store.type" :key="type.id" v-else>
             <div class="carousel__item p-3">
                 <!-- intera card, function -->
                 <div @click="activeTypologies(type.slug)" class="orange-border rounded-5" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
@@ -107,12 +114,13 @@ export default {
                     </div>
                 </div>
             </div>
-        </Slide>    
+        </Slide>
+
     </Carousel>
-    <button class="rounded position-absolute carousel-btn" id="prev" @click="prev">
+    <button class="d-none d-md-block rounded position-absolute carousel-btn" id="prev" @click="prev">
         <i class="fas fa-arrow-left-long"></i>
     </button>
-    <button class=" rounded position-absolute carousel-btn" id="next" @click="next">
+    <button class="d-none d-md-block rounded position-absolute carousel-btn" id="next" @click="next">
         <i class="fas fa-arrow-right-long"></i>
     </button>
     
