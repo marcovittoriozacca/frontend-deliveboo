@@ -1,12 +1,14 @@
 <script>
-import Plate from '../components/Plate.vue';
 import axios from 'axios';
 import {store} from '../Store';
+import Plate from '../components/Plate.vue';
+import Cart from '../components/Cart.vue'
 
 export default {
         name: "SingleRestaurant",
         components:{
-            Plate
+            Plate,
+            Cart,
         },
         data(){
             return{
@@ -47,6 +49,8 @@ export default {
         </div>
     </div>
 </div>
+
+<Cart/>
 
 </template>
 

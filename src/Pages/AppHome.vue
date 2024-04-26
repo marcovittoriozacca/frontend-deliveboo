@@ -6,6 +6,7 @@ import Typologies from '../components/HomeComponents/Typologies.vue';
 import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 import Restaurant from '../components/Restaurant.vue'
+import Cart from '../components/Cart.vue'
 
     export default {
         name: "AppHome",
@@ -14,6 +15,7 @@ import Restaurant from '../components/Restaurant.vue'
             InfoCard,
             WorkWithUsBtn,
             Restaurant,
+            Cart
         },
         props: {
             activateType: String,
@@ -22,6 +24,7 @@ import Restaurant from '../components/Restaurant.vue'
             return{
                 store,
                 restaurants:[],
+                restauran:[],
                 filtered_restaurants:[],
             }
         },
@@ -72,25 +75,7 @@ import Restaurant from '../components/Restaurant.vue'
         <div id="bg-first-section">
             <div class="container">
                 <div class="banner-max-w bg-white rounded-4 p-5">
-                    <div class="row row-gap-5 justify-content-center flex-column align-items-center">
-                        <!-- Banner hamburger -->
-                        <div class="col-12">
-                            <div class="position-relative responsive-margin-bottom">
-                                <figure class=" banner-burger-position position-absolute">
-                                    <img class="burger-img" src="/img/hofame.webp" alt="burger-image">
-                                </figure>
-                            </div>
-                        </div>
-    
-                        <div class="col-12">
-                            <!--Parte con Searchbar e titolo-->
-                            <div class="d-flex flex-column gap-3 hofame-search">
-                                <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
-                                <input class="form-control" type="text" placeholder="Cerca..." aria-label="Search">
-                                <button class="btn btn-orange align-self-center" type="button">Ho Fame!</button>
-                            </div>
-                        </div>
-                    </div>
+                    <h1 class="text-center" id="title">DELIVEBOO</h1>
                 </div>
             </div>
         </div>
@@ -110,10 +95,15 @@ import Restaurant from '../components/Restaurant.vue'
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id">
+                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id" v-if="restauran.length > 0">
                         <Restaurant
                             :restaurant="restaurant"
                         />
+                    </div>
+                    <div v-else class="text-center d-flex flex-column gap-4 py-5">
+                        <h1 class="fw-bold animate__animated animate__fadeIn">Sfortunatamente al momento non sono stati trovati risultati con le tipologie selezionate</h1>
+                        <h2 class="animate__animated animate__fadeIn">Selezione altre tipologie di cucina</h2>
+                        <h3 class="animate__animated animate__fadeIn">Siamo sicuri che ci saranno ristoranti buonissi!</h3>
                     </div>
                 </div>
             </div>
@@ -137,65 +127,13 @@ import Restaurant from '../components/Restaurant.vue'
         
     </div>
 
-    <!-- offcanvas -->
-<div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-    <div class="offcanvas-body">
-    <h1 class="text-light mb-3">Riassunto Carrello</h1>
-        <!-- card prodotto -->
-        <div class="d-flex bg-white rounded-2 p-3 align-items-start">
-            <!-- bottoni quantità -->
-            <div class="d-flex flex-column m-2 gap-2">
-                <button class="btn border">+</button>
-                <span class="border rounded p-1">Pz</span>
-                <button class="btn border">-</button>
-            </div>
-            <!-- immagine prodotto  -->
-            <figure class="w-50  m-0 figure_cart">
-                <img class="img-fluid" src="" alt="immagine">
-            </figure>
-            <!-- descrizione prodotto  -->
-            <div class="m-0 w-100 d-flex justify-content-between align-items-center px-2">
-                <div class="d-flex flex-column">
-                    <h3>nomepiatto</h3>
-                    <p>Descrizione</p>
-                </div>
-                <div class="d-flex flex-column ">
-                    <span class="text-end">23€</span>
-                    <button class="btn p-0 p-lg-1 bg-danger">rimuovi</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- card prezzo totale  -->
-        <div class="bg-light rounded my-3 p-3">
-            <div class="d-flex justify-content-between">
-                <span>Subtotale</span>
-                <span>€</span>
-            </div>
-            <div class="d-flex justify-content-between">
-                <span>Consegna</span>
-                <span>€</span>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-                <span>Prezzo totale</span>
-                <span>€</span>
-            </div>
-        </div>
-
-        <!-- bottone checkout  -->
-        <div class="d-grid">
-            <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
-        </div>
-  </div>
-</div>
+    <Cart/>
 
 </template>
 
 <style lang="scss" scoped>
+
+@use '../assets/sass/partials/variables' as *;
 
 // <--------------- inizio stile del banner con l'hamburger --------------->
 #bg-first-section{
@@ -205,23 +143,15 @@ import Restaurant from '../components/Restaurant.vue'
     padding-top: 80px;
     padding-bottom: 80px;
 }
-.banner-max-w{
-    max-width: 936px;
-    margin: 0 auto
+
+#title{
+color: $orange;
 }
 
-.banner-burger-position{
-    top: -100px;
-    left: 50%;
-    transform: translate(-50%);
-}
 
-.responsive-margin-bottom{
-    margin-bottom: 25px;
-}
-.burger-img{
-    width: 300px;
-}
+
+
+
 
 @media screen and (min-width: 768px) {
     #bg-first-section{
