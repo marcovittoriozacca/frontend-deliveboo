@@ -122,10 +122,9 @@ export default {
     }
 
     .info-flex{
-        top: 46%;
+        top: 55%;
         left: 5%;
-        width: 100%;
-        gap: 46rem;
+        gap: 55rem;
     }
 
     .add-to-cart{
