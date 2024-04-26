@@ -24,19 +24,26 @@ import Cart from '../components/Cart.vue'
             }
         },
         methods:{
-            types(){
-                axios.get('http://127.0.0.1:8000/api/type').then(res=>{
-                    store.type=res.data.type
-                })
+            async types(){
+                store.typesLoading = true;
+                await axios.get('http://127.0.0.1:8000/api/type').then(res=>{
+                    store.type=res.data.type;
+                    store.typesLoading = false;
+                }).catch(error => {
+                console.error('Errore durante la richiesta API:', error);
+                store.typesLoading = false;
+                });
             },
 
-            getRestaurants(){
-                axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
+            async getRestaurants(){
+                store.restaurantLoading = true;
+                await axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                     this.restaurants = res.data.restaurant;
-
+                    store.restaurantLoading = false;
                 })
                 .catch(error => {
                 console.error('Errore durante la richiesta API:', error);
+                store.restaurantLoading = false;
                 });
             },
 
@@ -109,19 +116,20 @@ import Cart from '../components/Cart.vue'
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <div v-for="(restaurant, index) in (store.filtered_restaurants.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id"
-                        v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
-                        <Restaurant
-                            :restaurant="restaurant"
-                        />
-                        <hr v-if="index != store.filtered_restaurants.length -1 && index != restaurants.length-1">
-                        {{ console.log(index, restaurants.length-1 ) }}
+                    <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
+                        <div v-for="(restaurant, index) in (store.filtered_restaurants.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
+                            <Restaurant
+                                :restaurant="restaurant"
+                            />
+                            <hr v-if="index != store.filtered_restaurants.length -1 && index != restaurants.length-1">
+                        </div>    
                     </div>
                     <div v-else class="text-center d-flex flex-column gap-4 py-5">
                         <h1 class="fw-bold animate__animated animate__fadeIn">Sfortunatamente al momento non sono stati trovati risultati con le tipologie selezionate</h1>
                         <h2 class="animate__animated animate__fadeIn">Selezione altre tipologie di cucina</h2>
                         <h3 class="animate__animated animate__fadeIn">Siamo sicuri che ci saranno ristoranti buonissi!</h3>
                     </div>
+                    
                 </div>
             </div>
         </div>

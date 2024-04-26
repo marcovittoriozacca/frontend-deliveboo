@@ -109,10 +109,10 @@ export default {
             </div>
         </Slide>    
     </Carousel>
-    <button class="rounded position-absolute carousel-btn" id="prev" @click="prev">
+    <button class="d-none d-md-block rounded position-absolute carousel-btn" id="prev" @click="prev">
         <i class="fas fa-arrow-left-long"></i>
     </button>
-    <button class=" rounded position-absolute carousel-btn" id="next" @click="next">
+    <button class="d-none d-md-block rounded position-absolute carousel-btn" id="next" @click="next">
         <i class="fas fa-arrow-right-long"></i>
     </button>
     
