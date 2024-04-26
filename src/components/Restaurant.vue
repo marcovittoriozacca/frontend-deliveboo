@@ -54,7 +54,6 @@ export default{
                     </div>
 
                 </div>
-                <hr> 
             </div>
         
         </router-link>
@@ -78,10 +77,6 @@ export default{
     }
     .black-bg{
         background-color: rgba(0, 0, 0, 1);
-    }
-    hr{
-        border: 1px solid black;
-        opacity: 1;    
     }
    .restaurant-bg{
     width: 100%;

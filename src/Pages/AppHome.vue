@@ -21,8 +21,6 @@ import Cart from '../components/Cart.vue'
             return{
                 store,
                 restaurants:[],
-                restauran:[],
-                filtered_restaurants:[],
             }
         },
         methods:{
@@ -59,11 +57,9 @@ import Cart from '../components/Cart.vue'
         'store.active_typologies': {
             handler(newVal, oldVal) {
 
-                this.filtered_restaurants = this.restaurants.filter(restaurant => {
-
+                store.filtered_restaurants = this.restaurants.filter(restaurant => {
                 // Controlla se almeno una tipologia del ristorante è presente nelle tipologie attive
-
-                return restaurant.types.some(type => this.store.active_typologies.includes(type.slug));
+                return restaurant.types.some(type => store.active_typologies.includes(type.slug));
 
                 });
             },
@@ -98,7 +94,7 @@ import Cart from '../components/Cart.vue'
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
 
-            <div class="pills-container container d-flex align-items-center column-gap-2">
+            <div class="pills-container container d-flex align-items-center column-gap-2 overflow-y-scroll">
                 <span v-for="(type, index) in store.active_typologies" :key="type.id">
                     <div class="rounded-pill badge bg-danger d-flex align-items-center fit-content py-1 fs-6">
                         <span class="border-end pe-2 text-capitalize">{{ type }}</span>
@@ -109,15 +105,17 @@ import Cart from '../components/Cart.vue'
                 </span>
             </div>
 
-            <div class="">
+            <div class="py-4">
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <div v-for="(restaurant, index) in (filtered_restaurants.length > 0)? filtered_restaurants : restaurants " :key="restaurant.id"
-                        v-if="filtered_restaurants.length > 0 ||  restaurants.length > 0">
+                    <div v-for="(restaurant, index) in (store.filtered_restaurants.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id"
+                        v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
                         <Restaurant
                             :restaurant="restaurant"
                         />
+                        <hr v-if="index != store.filtered_restaurants.length -1 && index != restaurants.length-1">
+                        {{ console.log(index, restaurants.length-1 ) }}
                     </div>
                     <div v-else class="text-center d-flex flex-column gap-4 py-5">
                         <h1 class="fw-bold animate__animated animate__fadeIn">Sfortunatamente al momento non sono stati trovati risultati con le tipologie selezionate</h1>
@@ -168,7 +166,10 @@ color: $orange;
 }
 
 
-
+    hr{
+        border: 1px solid black;
+        opacity: 1;    
+    }
 
 
 
@@ -197,7 +198,7 @@ color: $orange;
     }
 }
 .pills-container{
-    height: 60px;
+    height: 40px;
 }
 .fit-content{
     width: fit-content;

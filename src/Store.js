@@ -7,5 +7,7 @@ export const store = reactive({
 
 
      active_typologies: [],
+
+     filtered_restaurants:[],
     
 });
