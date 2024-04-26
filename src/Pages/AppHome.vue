@@ -24,6 +24,7 @@ import Cart from '../components/Cart.vue'
             return{
                 store,
                 restaurants:[],
+                restauran:[],
                 filtered_restaurants:[],
             }
         },
@@ -74,25 +75,7 @@ import Cart from '../components/Cart.vue'
         <div id="bg-first-section">
             <div class="container">
                 <div class="banner-max-w bg-white rounded-4 p-5">
-                    <div class="row row-gap-5 justify-content-center flex-column align-items-center">
-                        <!-- Banner hamburger -->
-                        <div class="col-12">
-                            <div class="position-relative responsive-margin-bottom">
-                                <figure class=" banner-burger-position position-absolute">
-                                    <img class="burger-img" src="/img/hofame.webp" alt="burger-image">
-                                </figure>
-                            </div>
-                        </div>
-    
-                        <div class="col-12">
-                            <!--Parte con Searchbar e titolo-->
-                            <div class="d-flex flex-column gap-3 hofame-search">
-                                <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
-                                <input class="form-control" type="text" placeholder="Cerca..." aria-label="Search">
-                                <button class="btn btn-orange align-self-center" type="button">Ho Fame!</button>
-                            </div>
-                        </div>
-                    </div>
+                    <h1 class="text-center" id="title">DELIVEBOO</h1>
                 </div>
             </div>
         </div>
@@ -112,10 +95,15 @@ import Cart from '../components/Cart.vue'
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id">
+                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id" v-if="restauran.length > 0">
                         <Restaurant
                             :restaurant="restaurant"
                         />
+                    </div>
+                    <div v-else class="text-center d-flex flex-column gap-4 py-5">
+                        <h1 class="fw-bold animate__animated animate__fadeIn">Sfortunatamente al momento non sono stati trovati risultati con le tipologie selezionate</h1>
+                        <h2 class="animate__animated animate__fadeIn">Selezione altre tipologie di cucina</h2>
+                        <h3 class="animate__animated animate__fadeIn">Siamo sicuri che ci saranno ristoranti buonissi!</h3>
                     </div>
                 </div>
             </div>
@@ -145,6 +133,8 @@ import Cart from '../components/Cart.vue'
 
 <style lang="scss" scoped>
 
+@use '../assets/sass/partials/variables' as *;
+
 // <--------------- inizio stile del banner con l'hamburger --------------->
 #bg-first-section{
     background-image: url('/img/bghome.jpg');
@@ -153,23 +143,15 @@ import Cart from '../components/Cart.vue'
     padding-top: 80px;
     padding-bottom: 80px;
 }
-.banner-max-w{
-    max-width: 936px;
-    margin: 0 auto
+
+#title{
+color: $orange;
 }
 
-.banner-burger-position{
-    top: -100px;
-    left: 50%;
-    transform: translate(-50%);
-}
 
-.responsive-margin-bottom{
-    margin-bottom: 25px;
-}
-.burger-img{
-    width: 300px;
-}
+
+
+
 
 @media screen and (min-width: 768px) {
     #bg-first-section{
