@@ -3,69 +3,22 @@ import axios from 'axios';
 import { store } from '../Store';
 export default{
     name: "Restaurant",
-    props:['activeTypologies'],
+
+    props:['restaurant'],
+    
     data(){
         return{
-            restaurants:[],
             store,
-            maxrestaurant:0,
-            hrCount: 0
         };
     },
-
-
-    methods: {
-
-        countHrTags() {
-            this.hrCount = document.querySelectorAll('hr').length;
-            if(this.hrCount > 0){
-                document.getElementsByTagName('hr')[this.hrCount-1].style.display="none"
-            }
-        },
-
-        getRestaurants(){
-            axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
-                this.restaurants=res.data.restaurant;
-                this.maxrestaurant=this.restaurants.length-1
-            })
-            .catch(error => {
-              console.error('Errore durante la richiesta API:', error);
-            });
-        },
-        arraysContainSameElement(array1, array2) {
-            
-            const toArray = []; 
-            array2.forEach((element,index) => {
-                toArray.push(element.slug);
-            });
-            for (let i = 0; i < array1.length; i++) {
-                for (let j = 0; j < toArray.length; j++) {
-                    if (array1[i] === toArray[j]) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        },        
-    },
-    mounted() {
-        this.getRestaurants();
-        this.countHrTags();
-        // Osserva le modifiche nel DOM
-        const observer = new MutationObserver(() => {
-            this.countHrTags();
-        });
-        observer.observe(document.body, { subtree: true, childList: true });        
-    }
 }
 </script>
 
 <template>
 <!-- componente ristoranti -->
-    <div 
-        v-for="(restaurant, index ) in restaurants" :key="restaurant.id">
+    <div>
         <router-link :to="{name:'Single-Restaurant',params:{slug:restaurant.slug}}">
-            <div class="contenitore text-light" v-if="arraysContainSameElement(store.active_typologies, restaurant.types) || store.active_typologies.length <= 0" >
+            <div class="contenitore text-light">
                 <div class="row justify-content-center justify-content-md-start">
                     <div class="col-9 col-md-4 col-lg-3">
                         <figure class="m-0 position-relative">

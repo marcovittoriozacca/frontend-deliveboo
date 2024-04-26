@@ -71,16 +71,14 @@ export default {
         },
 
         activeTypologies(slug) {
-                //funzione che carica e rimuove una tipologia dall'array al click della corrispettiva card
-                const index = store.active_typologies.indexOf(slug);
-                //quando un elemento NON è presente, l'index restituito dalla funzione indexOf è sempre -1, quindi eseguiamo un controllo su quel parametro
-                if (index !== -1) {
-                    store.active_typologies.splice(index, 1); // Rimuove l'elemento
-                } else {
-                    store.active_typologies.push(slug); // Aggiunge l'elemento
-                }
+            
+            if (store.active_typologies.includes(slug)) {
+                store.active_typologies.splice(store.active_typologies.indexOf(slug), 1);
+            } else {
+                store.active_typologies.push(slug);
+            }
                 //se l'elemento non esiste nel nostro array lo pushiamo, altrimenti lo rimuoviamo
-            },
+        },
     },
 }
 </script>
