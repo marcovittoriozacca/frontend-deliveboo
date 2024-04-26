@@ -17,9 +17,6 @@ import Cart from '../components/Cart.vue'
             Restaurant,
             Cart
         },
-        props: {
-            activateType: String,
-        },
         data(){
             return{
                 store,
@@ -45,6 +42,11 @@ import Cart from '../components/Cart.vue'
                 });
             },
 
+            removeBadge(type){
+                const index = store.active_typologies.indexOf(type);
+                store.active_typologies.splice(index, 1);
+            }
+
         },
         mounted(){
             this.types();
@@ -55,11 +57,15 @@ import Cart from '../components/Cart.vue'
         
         watch: {
         'store.active_typologies': {
-
             handler(newVal, oldVal) {
 
-            //ancora da sistemare
-                
+                this.filtered_restaurants = this.restaurants.filter(restaurant => {
+
+                // Controlla se almeno una tipologia del ristorante è presente nelle tipologie attive
+
+                return restaurant.types.some(type => this.store.active_typologies.includes(type.slug));
+
+                });
             },
             deep: true
         }
@@ -91,11 +97,24 @@ import Cart from '../components/Cart.vue'
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
-            <div class="py-4">
+
+            <div class="pills-container container d-flex align-items-center column-gap-2">
+                <span v-for="(type, index) in store.active_typologies" :key="type.id">
+                    <div class="rounded-pill badge bg-danger d-flex align-items-center fit-content py-1 fs-6">
+                        <span class="border-end pe-2 text-capitalize">{{ type }}</span>
+                        <span class="ps-2 cursor-pointer" @click="removeBadge(type)">
+                            <i class="fas fa-xmark"></i>
+                        </span>
+                    </div>
+                </span>
+            </div>
+
+            <div class="">
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id" v-if="restauran.length > 0">
+                    <div v-for="(restaurant, index) in (filtered_restaurants.length > 0)? filtered_restaurants : restaurants " :key="restaurant.id"
+                        v-if="filtered_restaurants.length > 0 ||  restaurants.length > 0">
                         <Restaurant
                             :restaurant="restaurant"
                         />
@@ -177,6 +196,17 @@ color: $orange;
         width: 550px;
     }
 }
+.pills-container{
+    height: 60px;
+}
+.fit-content{
+    width: fit-content;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
 // <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
         background: #ff9654;
