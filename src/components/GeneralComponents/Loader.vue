@@ -5,8 +5,9 @@ export default {
 </script>
 
 <template>
-    
-    <div class="loader"></div>
+    <div class="text-center">
+        <div class="loader"></div>
+    </div>
 
 
 </template>
