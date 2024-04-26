@@ -15,6 +15,11 @@ export default {
                 store,
                 plates: [],
                 restaurant: [],
+                storedArray:"",
+                arrayString:"",
+                storedArray:"",
+                parsedArray:[],
+                controllo:false,
                 ArrayPrimi: [],
                 ArraySecondi: [],
                 ArrayDessert: [],
@@ -28,6 +33,83 @@ export default {
                     this.restaurant = res.data.restaurant
                     this.dishSorterer();
                 } )
+            },
+
+            addplate(plate){
+                
+                // controllo se esiste la chiave nel local storage, se non c e pusho il piatto
+                if(localStorage.getItem('arrayKey') == null){
+                    this.parsedArray.push(plate)
+                    this.arrayString=JSON.stringify(this.parsedArray)
+                    localStorage.setItem('arrayKey', this.arrayString)
+                    
+                }else{
+                    // se gia esiste un piatto devo controllare se è gia incluso
+
+                     this.storedArray = localStorage.getItem('arrayKey')
+                     this.parsedArray = JSON.parse(this.storedArray)
+
+                    this.controllo=false
+
+                    // ciclo che controlla i singoli id in local con l id del piatto cliccato
+
+                    this.parsedArray.forEach(element => {
+                        
+                        if(element.id == plate.id){
+                            this.controllo=true
+                        }
+                    });
+                     
+                    // se la variabile controllo è false allora quel piatto è gia presente
+
+                    if(!this.controllo){
+                    
+                        this.parsedArray.push(plate)
+                        this.arrayString=JSON.stringify(this.parsedArray)
+                        localStorage.setItem('arrayKey', this.arrayString) 
+
+                    }else{
+                        console.log("piatto gia aggiunto")
+
+                    }}
+
+
+
+
+
+
+
+
+                // if(!this.parsefArray){
+                //     this.parsedArray.push(plate)
+                //     this.arrayString=JSON.stringify(this.parsedArray)
+                //     localStorage.setItem('arrayKey', this.arrayString)
+                // }else{
+                //     if((!this.parsedArray.includes(plate))){
+                //         this.parsedArray.push(plate)
+                //         this.arrayString=JSON.stringify(this.parsedArray)
+                //         localStorage.setItem('arrayKey', this.arrayString)
+
+                // }else{
+                //     console.log("piatto gia aggiunto")
+    
+                // }
+
+                // }
+                
+            
+            },
+            log(){
+                this.storedArray = localStorage.getItem('arrayKey')
+
+                // Convertire la stringa JSON in un array
+                this.parsedArray = JSON.parse(this.storedArray)
+
+                // Utilizzare l'array recuperato
+            
+                    
+                console.log(this.parsedArray)
+
             },
             dishSorterer(){
                 this.plates.forEach(plate => {
@@ -67,6 +149,7 @@ export default {
                 <Plate
                 v-for="(plate, index) in this.ArrayPrimi" :key="plate.id" 
                 class="w-card"
+                @click="addplate(plate)"
                 :plate = plate
                 />
             </div>
@@ -77,6 +160,7 @@ export default {
                 <Plate
                 v-for="(plate, index) in this.ArraySecondi" :key="plate.id" 
                 class="w-card"
+                @click="addplate(plate)"
                 :plate = plate
                 />
             </div>
@@ -87,6 +171,7 @@ export default {
                 <Plate
                 v-for="(plate, index) in this.ArrayDessert" :key="plate.id" 
                 class="w-card"
+                @click="addplate(plate)"
                 :plate = plate
                 />
             </div>
@@ -97,6 +182,7 @@ export default {
                 <Plate
                 v-for="(plate, index) in this.ArrayBevande" :key="plate.id" 
                 class="w-card"
+                @click="addplate(plate)"
                 :plate = plate
                 />
             </div>
