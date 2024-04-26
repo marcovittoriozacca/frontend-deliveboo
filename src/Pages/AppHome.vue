@@ -223,7 +223,10 @@ color: $orange;
 
 // <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
-        background: #ff9654;
+        /* background: #ff9654; */
+        /* background: linear-gradient(145deg, rgba(255,150,84,1) 0%, rgba(255,155,155,1) 50%, rgba(253,145,82,1) 100%); */
+        background: rgb(255,150,84);
+        background: linear-gradient(145deg, rgba(255,150,84,1) 0%, rgba(255,219,108,1) 50%, rgba(253,145,82,1) 100%);
     }
 
     .diagonale-blu-alto-sinistra{
@@ -248,12 +251,16 @@ color: $orange;
 
     .dritto-blu{
         padding-top: 100px;
-        background: #03071e;
+        /* background: #03071e; */
+        background: rgb(3,7,30);
+        background: linear-gradient(0deg, rgba(3,7,30,1) 23%, rgba(51,46,111,1) 100%);
         width: 100%;
         height: 650px;
     }
     .div-arancione{
-        background: #ff9654;
+        background: #fca169;
+        /* background: rgb(255,150,84);
+        background: linear-gradient(145deg, rgba(255,150,84,1) 25%, rgba(255,219,108,1) 50%, rgba(253,145,82,1) 75%); */
         padding: 17em 0 13em 0;
     }
 
@@ -283,7 +290,7 @@ color: $orange;
 
     
     .bg-blu{
-        background-color: #03071E ;
+        background-color: #03071E;
     }
 
     .fs-64{

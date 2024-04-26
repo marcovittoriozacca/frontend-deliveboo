@@ -132,59 +132,62 @@ export default {
 </script>
 
 <template>
-    <div class="bg-restaurant position-relative" :style="{ backgroundImage: 'url(http://127.0.0.1:8000/storage/' + restaurant.image + ')' }">
-        <div class=" position-absolute info-flex d-flex align-items-center">
-            <div class="text-center py-3 info-box rounded">
-                <h1>{{ restaurant.activity_name }}</h1>
-                <p>{{ restaurant.address }}</p>
-                <p>{{ restaurant.piva }}</p>
-            </div>
-            <img src="../assets/img/add-to-cart.png" alt="add-to-cart" class="add-to-cart">
-        </div>
-    </div>
-    <div class="container py-4 bg-container">
-        <div v-if="this.ArrayPrimi.length > 0" class="pb-4">
-            <h2>Primi</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArrayPrimi" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
+    <div class="bg-container">
+
+        <div class="bg-restaurant position-relative" :style="{ backgroundImage: 'url(http://127.0.0.1:8000/storage/' + restaurant.image + ')' }">
+            <div class=" position-absolute info-flex d-flex align-items-center">
+                <div class="text-center py-3 info-box rounded">
+                    <h1>{{ restaurant.activity_name }}</h1>
+                    <p>{{ restaurant.address }}</p>
+                    <p>{{ restaurant.piva }}</p>
+                </div>
+                <img src="../assets/img/add-to-cart.png" alt="add-to-cart" class="add-to-cart">
             </div>
         </div>
-        <div v-if="this.ArraySecondi.length > 0" class="pb-4">
-            <h2>Secondi</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArraySecondi" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
+        <div class="container py-4">
+            <div v-if="this.ArrayPrimi.length > 0" class="pb-4">
+                <h2>Primi</h2>
+                <div class="d-flex justify-content-start flex-wrap gap-4">
+                    <Plate
+                    v-for="(plate, index) in this.ArrayPrimi" :key="plate.id" 
+                    class="w-card"
+                    @click="addplate(plate)"
+                    :plate = plate
+                    />
+                </div>
             </div>
-        </div>
-        <div v-if="this.ArrayDessert.length > 0" class="pb-4">
-            <h2>Dessert</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArrayDessert" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
+            <div v-if="this.ArraySecondi.length > 0" class="pb-4">
+                <h2>Secondi</h2>
+                <div class="d-flex justify-content-start flex-wrap gap-4">
+                    <Plate
+                    v-for="(plate, index) in this.ArraySecondi" :key="plate.id" 
+                    class="w-card"
+                    @click="addplate(plate)"
+                    :plate = plate
+                    />
+                </div>
             </div>
-        </div>
-        <div v-if="this.ArrayBevande.length > 0">
-            <h2>Bevande</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArrayBevande" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
+            <div v-if="this.ArrayDessert.length > 0" class="pb-4">
+                <h2>Dessert</h2>
+                <div class="d-flex justify-content-start flex-wrap gap-4">
+                    <Plate
+                    v-for="(plate, index) in this.ArrayDessert" :key="plate.id" 
+                    class="w-card"
+                    @click="addplate(plate)"
+                    :plate = plate
+                    />
+                </div>
+            </div>
+            <div v-if="this.ArrayBevande.length > 0">
+                <h2>Bevande</h2>
+                <div class="d-flex justify-content-start flex-wrap gap-4">
+                    <Plate
+                    v-for="(plate, index) in this.ArrayBevande" :key="plate.id" 
+                    class="w-card"
+                    @click="addplate(plate)"
+                    :plate = plate
+                    />
+                </div>
             </div>
         </div>
     </div>
@@ -225,5 +228,10 @@ export default {
         --gap: 1.5rem;
     	--columns: 3;
     	flex-basis: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
+    }
+
+    .bg-container{
+        background: rgb(255,150,84);
+        background: linear-gradient(145deg, rgba(255,150,84,1) 0%, rgba(255,219,108,1) 50%, rgba(253,145,82,1) 100%);
     }
 </style>

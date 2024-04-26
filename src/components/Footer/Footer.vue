@@ -97,7 +97,9 @@
 
 <style lang="scss" scoped>
     .bg-blu{
-        background-color: #03071E ;
+        /* background-color: #03071E ; */
+        background: rgb(6,0,74);
+        background: linear-gradient(0deg, rgb(27, 24, 58) 0%, rgba(3,7,30,1) 40%);
     }
     ul{
         list-style-type: none;
