@@ -15,9 +15,6 @@ import Restaurant from '../components/Restaurant.vue'
             WorkWithUsBtn,
             Restaurant,
         },
-        props: {
-            activateType: String,
-        },
         data(){
             return{
                 store,
@@ -52,11 +49,15 @@ import Restaurant from '../components/Restaurant.vue'
         
         watch: {
         'store.active_typologies': {
-
             handler(newVal, oldVal) {
 
-            //ancora da sistemare
-                
+                this.filtered_restaurants = this.restaurants.filter(restaurant => {
+
+                // Controlla se almeno una tipologia del ristorante è presente nelle tipologie attive
+
+                return restaurant.types.some(type => this.store.active_typologies.includes(type.slug));
+
+                });
             },
             deep: true
         }
@@ -110,7 +111,7 @@ import Restaurant from '../components/Restaurant.vue'
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
-                    <div v-for="(restaurant, index) in restaurants" :key="restaurant.id">
+                    <div v-for="(restaurant, index) in (filtered_restaurants.length > 0)? filtered_restaurants : restaurants " :key="restaurant.id">
                         <Restaurant
                             :restaurant="restaurant"
                         />
