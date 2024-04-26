@@ -39,6 +39,11 @@ import Restaurant from '../components/Restaurant.vue'
                 });
             },
 
+            removeBadge(type){
+                const index = store.active_typologies.indexOf(type);
+                store.active_typologies.splice(index, 1);
+            }
+
         },
         mounted(){
             this.types();
@@ -107,7 +112,19 @@ import Restaurant from '../components/Restaurant.vue'
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
-            <div class="py-4">
+
+            <div class="pills-container container d-flex align-items-center column-gap-2">
+                <span v-for="(type, index) in store.active_typologies" :key="type.id">
+                    <div class="rounded-pill badge bg-danger d-flex align-items-center fit-content py-1 fs-6">
+                        <span class="border-end pe-2 text-capitalize">{{ type }}</span>
+                        <span class="ps-2 cursor-pointer" @click="removeBadge(type)">
+                            <i class="fas fa-xmark"></i>
+                        </span>
+                    </div>
+                </span>
+            </div>
+
+            <div class="">
                 <div class="container">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
@@ -248,6 +265,17 @@ import Restaurant from '../components/Restaurant.vue'
         width: 550px;
     }
 }
+.pills-container{
+    height: 60px;
+}
+.fit-content{
+    width: fit-content;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
 // <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
         background: #ff9654;
