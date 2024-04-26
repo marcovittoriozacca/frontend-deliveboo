@@ -128,7 +128,7 @@ export default {
     }
 
     .add-to-cart{
-        width: 24%;
+        width: 23%;
     }
 
     .w-card{
