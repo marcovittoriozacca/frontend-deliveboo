@@ -1,6 +1,22 @@
 <script>
     export default {
-        name:"Cart"
+        name:"Cart",
+    
+        data() {
+            return {
+                quantity:0,
+            }
+        },
+
+        methods:{
+
+            decrement(){
+                if(this.quantity<=0){
+                    return this.quantity=0
+                }
+                this.quantity--
+            }
+        }
     }
 </script>
 
@@ -17,9 +33,9 @@
         <div class="d-flex bg-white rounded-2 p-3 align-items-start">
             <!-- bottoni quantità -->
             <div class="d-flex flex-column m-2 gap-2">
-                <button class="btn border">+</button>
-                <span class="border rounded p-1">Pz</span>
-                <button class="btn border">-</button>
+                <button class="btn border" @click="quantity++" >+</button>
+                <span class="border rounded p-1 text-center">{{quantity}}</span>
+                <button class="btn border" @click="decrement()">-</button>
             </div>
             <!-- immagine prodotto  -->
             <figure class="w-50  m-0 figure_cart">
