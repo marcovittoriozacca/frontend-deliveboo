@@ -58,7 +58,7 @@ export default {
             <img src="../assets/img/add-to-cart.png" alt="add-to-cart" class="add-to-cart">
         </div>
     </div>
-    <div class="container pt-5">
+    <div class="container pt-5 bg-container">
         <div v-if="this.ArrayPrimi.length > 0">
             <h2>Primi</h2>
             <div class="d-flex justify-content-start flex-wrap gap-4">
@@ -128,7 +128,7 @@ export default {
     }
 
     .add-to-cart{
-        width: 23%;
+        width: 24%;
     }
 
     .w-card{
