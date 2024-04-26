@@ -58,8 +58,8 @@ export default {
             <img src="../assets/img/add-to-cart.png" alt="add-to-cart" class="add-to-cart">
         </div>
     </div>
-    <div class="container pt-5 bg-container">
-        <div v-if="this.ArrayPrimi.length > 0">
+    <div class="container py-4 bg-container">
+        <div v-if="this.ArrayPrimi.length > 0" class="pb-4">
             <h2>Primi</h2>
             <div class="d-flex justify-content-start flex-wrap gap-4">
                 <Plate
@@ -69,7 +69,7 @@ export default {
                 />
             </div>
         </div>
-        <div v-if="this.ArraySecondi.length > 0">
+        <div v-if="this.ArraySecondi.length > 0" class="pb-4">
             <h2>Secondi</h2>
             <div class="d-flex justify-content-start flex-wrap gap-4">
                 <Plate
@@ -79,7 +79,7 @@ export default {
                 />
             </div>
         </div>
-        <div v-if="this.ArrayDessert.length > 0">
+        <div v-if="this.ArrayDessert.length > 0" class="pb-4">
             <h2>Dessert</h2>
             <div class="d-flex justify-content-start flex-wrap gap-4">
                 <Plate
@@ -122,13 +122,13 @@ export default {
     }
 
     .info-flex{
-        top: 55%;
+        top: 56%;
         left: 5%;
         gap: 55rem;
     }
 
     .add-to-cart{
-        width: 23%;
+        width: 22%;
     }
 
     .w-card{
