@@ -17,7 +17,7 @@ export default {
 
     <svg class="svg5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#8E8E8E" d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg>
 
-    <span id="Lavora-con-noi">
+    <span id="Lavora-con-noi" class="text-light">
         Lavora con noi 
     </span>
 </a>
@@ -25,6 +25,11 @@ export default {
 
 
 <style lang="scss" scoped>
+
+    span{
+        color: white;
+    }
+    
     .Btn {
         position: relative;
         display: flex;
@@ -47,6 +52,7 @@ export default {
   
     #Lavora-con-noi{
         padding-left: 70px;
+        
     }
 
     .svg2{
@@ -78,7 +84,10 @@ export default {
     }
 
     .Btn:hover {
-        color: transparent;
+        
+        span{
+            color: transparent !important;
+        }
     }
   
     .Btn:hover svg {
