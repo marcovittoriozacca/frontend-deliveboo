@@ -56,7 +56,7 @@ export default {
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
                 store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id));
-                console.log(this.restaurant)
+
                 
             }else{
                 if(store.Sospeso==false){

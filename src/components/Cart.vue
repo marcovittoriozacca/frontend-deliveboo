@@ -9,7 +9,6 @@ import CartCard from "./Header/CartCard.vue"
         data() {
             return {
                 store,
-                store,
                 ContolloRistorante:[],
             }
         },
@@ -17,9 +16,7 @@ import CartCard from "./Header/CartCard.vue"
         methods:{
             clearAll(){
                 localStorage.clear()
-                store.listplatelocalstorage = []
-                console.log(store.listplatelocalstorage.length)
-                
+                store.listplatelocalstorage = []                
             },        
 
         },
@@ -27,15 +24,6 @@ import CartCard from "./Header/CartCard.vue"
 </script>
 
 <template>
-
-<!-- DA ATTENZIONARE - BUG -->
-
-<!-- DA SISTEMARE IL CLEARALL - PRESENTE UN BUG IN CUI QUANDO SI RIMUOVE TUTTO DAL CARRELLO CON IL CLEAR-ALL E SI CLICCA SULL'ULTIMO ELEMENTO CHE ERA PRESENTE NEL CARRELLO, IL LOCAL STORAGE RIPRENDE TUTTI I VECCHI VALORI -->
-
-<!-- DA ATTENZIONARE - BUG -->
-    
-
-
 
     <!-- POI VA CREATA LA LOGICA CHE QUANDO CLICCHI SUL TASTO CHECKOUT VENGA "ASSEMBLATO" UN ARRAY CONTENETE I PIATTI + LE QUANTITA' -->
 

@@ -27,7 +27,6 @@ export default {
                     this.plates = res.data.dishes
                     this.restaurant = res.data.restaurant
                     this.dishSorterer();
-                    console.log(this.plates, this.restaurant)
                 } )
             },
 
