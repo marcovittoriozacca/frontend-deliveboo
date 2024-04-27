@@ -34,6 +34,7 @@ export default {
                     this.plates = res.data.dishes
                     this.restaurant = res.data.restaurant
                     this.dishSorterer();
+                    console.log(this.plates, this.restaurant)
                 } )
             },
 
@@ -119,6 +120,17 @@ export default {
                         this.ArrayBevande.push(plate);
                     }
                 });
+            },
+
+
+            setRestaurantImage(restaurant_image){
+                let image = '';
+                switch (true) {
+                    case restaurant_image == undefined:
+                      return  image = '/img/deliveboo-logo.png';
+                    case restaurant_image.includes('restaurant_images/'):
+                    return image =  `http://127.0.0.1:8000/storage/${restaurant_image}`;
+                }
             }
         },
         mounted(){
@@ -128,98 +140,135 @@ export default {
 </script>
 
 <template>
-    <div class="bg-restaurant position-relative" :style="{ backgroundImage: 'url(http://127.0.0.1:8000/storage/' + restaurant.image + ')' }">
-        <div class=" position-absolute info-flex d-flex align-items-center">
-            <div class="text-center py-3 info-box rounded">
-                <h1>{{ restaurant.activity_name }}</h1>
-                <p>{{ restaurant.address }}</p>
-                <p>{{ restaurant.piva }}</p>
+    <div class="main-bg-color">
+        <!-- top restaurant banner -->
+        <div class="bg-restaurant-template">
+            <div class="container h-100">
+                <div class="row justify-content-center align-items-end h-100">
+                    <div class="col-12">
+                        <div class="translate-middle-min-y">
+                            <div class="restaurant-banner-info p-4 rounded-3 text-center position-relative">
+                                <figure class="position-absolute restaurant-figure-position">
+                                    <img class="border-image rounded-3" :class="(!restaurant.image? 'restaurant-image-template' : 'restaurant-image' )" :src="setRestaurantImage(restaurant.image)" alt="restaurant-image">
+                                </figure>                                
+                                <div class="mt-5">
+                                    <h1>{{ restaurant.activity_name }}</h1>
+                                    <p>{{ restaurant.address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <img src="../assets/img/add-to-cart.png" alt="add-to-cart" class="add-to-cart">
         </div>
+     <!-- <img src="../assets/img/add-to-cart.png" alt="add-to-cart" class="add-to-cart"> -->
+        <div class="container pb-5 custom-top-padding">
+            <!-- Primi piatti -->
+            <div v-if="this.ArrayPrimi.length > 0" class="mb-4">
+                <h2>Primi</h2>
+                <div class="container">
+                    <div class="row row-gap-3">
+                        <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArrayPrimi" :key="plate.id">
+                            <Plate @click="addplate(plate)" :plate = plate />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secondi piatti -->
+            <div v-if="this.ArraySecondi.length > 0" class="mb-4">
+                <h2>Secondi</h2>
+                <div class="container">
+                    <div class="row row-gap-3 ">
+                        <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArraySecondi" :key="plate.id">
+                            <Plate @click="addplate(plate)" :plate = plate />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Dessert -->
+            <div v-if="this.ArrayDessert.length > 0" class="mb-4">
+                <h2>Dessert</h2>
+                <div class="container">
+                    <div class="row row-gap-3">
+                        <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArrayDessert" :key="plate.id">
+                            <Plate @click="addplate(plate)" :plate = plate />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- bevande -->
+            <div v-if="this.ArrayBevande.length > 0">
+                <h2>Bevande</h2>
+                <div class="container">
+                    <div class="row row-gap-3">
+                        <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArrayBevande" :key="plate.id">
+                            <Plate @click="addplate(plate)" :plate = plate />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
-    <div class="container py-4 bg-container">
-        <div v-if="this.ArrayPrimi.length > 0" class="pb-4">
-            <h2>Primi</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArrayPrimi" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
-            </div>
-        </div>
-        <div v-if="this.ArraySecondi.length > 0" class="pb-4">
-            <h2>Secondi</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArraySecondi" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
-            </div>
-        </div>
-        <div v-if="this.ArrayDessert.length > 0" class="pb-4">
-            <h2>Dessert</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArrayDessert" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
-            </div>
-        </div>
-        <div v-if="this.ArrayBevande.length > 0">
-            <h2>Bevande</h2>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
-                <Plate
-                v-for="(plate, index) in this.ArrayBevande" :key="plate.id" 
-                class="w-card"
-                @click="addplate(plate)"
-                :plate = plate
-                />
-            </div>
-        </div>
-    </div>
-
+    
 <Cart/>
-
 </template>
 
 
 <style lang="scss" scoped>
-    .bg-restaurant{
-        width: 100%;
-        height: 400px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        box-shadow: 0px 8px 25px 5px rgb(0, 0, 0, 0.5);
-        margin-bottom: 100px;
-    }
-
-    .info-box{
-        background-color: rgba(0, 0, 0, 0.7);
-        width: 30%;
+@use '../assets/sass/partials/variables' as *;
+    h2{
         color: white;
     }
-
-    .info-flex{
-        top: 56%;
-        left: 5%;
-        gap: 55rem;
+    .bg-restaurant-template{
+        background-image: url('/img/template-img.png');
+        height: 200px;
+        background-size: 140px;
+    }
+    .translate-middle-min-y{
+        transform: translateY(40%)
+    }
+    .custom-top-padding{
+        padding-top: 6em;
     }
 
-    .add-to-cart{
-        width: 22%;
+    .restaurant-banner-info{
+        background-color: #03071e;
+        color: white;
+        h1{
+            color: $dark-yellow;
+        }
+        p{
+            color: $orange;
+        }
+    }
+    .restaurant-image{
+        width: 200px;
+        height: 130px;
+        
+        object-fit: cover;
+        object-position: center
+    }
+    .restaurant-image-template{
+        width: 200px;
+        height: 130px;
+        
+        object-fit: contain;
+        background-color:black;
     }
 
-    .w-card{
-        --gap: 1.5rem;
-    	--columns: 3;
-    	flex-basis: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
+    .restaurant-figure-position{
+        top: 0;
+        left: 50%;
+        transform: translate(-50%,-50%);
     }
+    .border-image{
+        border: 5px solid #e47400;
+        box-shadow: 0px 10px 50px 25px #e4760036;
+    }
+
+    .main-bg-color{
+        background-color: $peacoat;
+    }
+
 </style>
