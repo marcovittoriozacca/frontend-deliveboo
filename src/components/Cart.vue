@@ -1,12 +1,14 @@
 <script>
 import {store} from "../Store"
+import CartCard from "./Header/CartCard.vue"
     export default {
         name:"Cart",
-    
+        components:{
+            CartCard,
+        },
         data() {
             return {
                 store,
-                quantity:1,
                 store,
                 ContolloRistorante:[],
             }
@@ -14,45 +16,27 @@ import {store} from "../Store"
 
         methods:{
             clearAll(){
-                store.listplatelocalstorage=[]
-                this.ContolloRistorante=Object.keys(localStorage)
-                this.ContolloRistorante.forEach(element => {
-
-                    if(element.includes("restaurant")){
-                        //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
-                    
-                        localStorage.removeItem(element)
-                    }
-
-                });
-            },
-        
-
-            decrement(){
-                if(this.quantity<=1){
-                    console.log(store.listplatelocalstorage,"a")
-                    return this.quantity=1
-                }
-                this.quantity--
-                
-            },
-            a(){
+                localStorage.clear()
+                store.listplatelocalstorage = []
                 console.log(store.listplatelocalstorage.length)
-            }
-            
+                
+            },        
 
         },
-        created(){
-            
-           
-        }
     }
 </script>
 
 <template>
 
-    <!-- VA CREATO UN COMPONENTE CHE CICLI LA CARTA IN BASE A QUANTI PIATTI SONO PRESENTI NELLA VARIABILE store.listplatelocalstorage -->
-    <!-- LOGICA DI RIMOZIONE SINGOLO PIATTO DAL LOCAL STORAGE -->
+<!-- DA ATTENZIONARE - BUG -->
+
+<!-- DA SISTEMARE IL CLEARALL - PRESENTE UN BUG IN CUI QUANDO SI RIMUOVE TUTTO DAL CARRELLO CON IL CLEAR-ALL E SI CLICCA SULL'ULTIMO ELEMENTO CHE ERA PRESENTE NEL CARRELLO, IL LOCAL STORAGE RIPRENDE TUTTI I VECCHI VALORI -->
+
+<!-- DA ATTENZIONARE - BUG -->
+    
+
+
+
     <!-- POI VA CREATA LA LOGICA CHE QUANDO CLICCHI SUL TASTO CHECKOUT VENGA "ASSEMBLATO" UN ARRAY CONTENETE I PIATTI + LE QUANTITA' -->
 
 <!-- offcanvas -->
@@ -61,57 +45,43 @@ import {store} from "../Store"
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
     <div class="offcanvas-body">
-    <h1 class="text-light mb-3">Riassunto Carrello</h1>
-        <!-- card prodotto -->
-        <div class="d-flex bg-white rounded-2 p-3 align-items-start" @click="a()" v-if="store.listplatelocalstorage.length > 0">
-            <!-- bottoni quantità -->
-            <div class="d-flex flex-column m-2 gap-2">
-                <button class="btn border" @click="quantity++" >+</button>
-                <span class="border rounded p-1 text-center">{{quantity}}</span>
-                <button class="btn border" @click="decrement()">-</button>
-            </div>
-            <!-- immagine prodotto  -->
-            <figure class="w-50  m-0 figure_cart">
-                <img class="img-fluid" src="" alt="immagine">
-            </figure>
-            <!-- descrizione prodotto  -->
-            <div class="m-0 w-100 d-flex justify-content-between align-items-center px-2">
-                <div class="d-flex flex-column">
-                    <h3>nomepiatto</h3>
-                    <p>Descrizione</p>
+        <div v-if="store.listplatelocalstorage.length > 0">
+            <h1 class="text-light mb-3">Riassunto Carrello</h1>
+                <!-- card prodotto -->
+                <div class="row row-gap-3">
+                    <div class="col-12" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
+                        <CartCard :plate="plate" />
+                    </div>
                 </div>
-                <div class="d-flex flex-column ">
-                    <span class="text-end">23€</span>
-                    <button class="btn p-0 p-lg-1 bg-danger">rimuovi</button>
+            
+            <!-- card prezzo totale  -->
+            <div class="bg-light rounded my-3 p-3">
+                <div class="d-flex justify-content-between">
+                    <span>Subtotale</span>
+                    <span>€</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Consegna</span>
+                    <span>€</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Prezzo totale</span>
+                    <span>€</span>
                 </div>
             </div>
-        </div>
-        <div v-else>Non hai ancora aggiunto piatti al carrello</div>
-
-        <!-- card prezzo totale  -->
-        <div class="bg-light rounded my-3 p-3">
-            <div class="d-flex justify-content-between">
-                <span>Subtotale</span>
-                <span>€</span>
+    
+            <!-- bottone checkout  -->
+            <div class="d-grid">
+                <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
             </div>
-            <div class="d-flex justify-content-between">
-                <span>Consegna</span>
-                <span>€</span>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-                <span>Prezzo totale</span>
-                <span>€</span>
+            <!-- bottone remove all  -->
+            <div class="d-grid" @click="clearAll()">
+                <button class="my-3 btn btn-lg bg-danger ">Svuota Carrello</button>
             </div>
         </div>
-
-        <!-- bottone checkout  -->
-        <div class="d-grid">
-            <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
-        </div>
-        <!-- bottone remove all  -->
-        <div class="d-grid" @click="clearAll()">
-            <button class="my-3 btn btn-lg bg-danger ">Svuota Carrello</button>
+        <div v-else>
+            <h2 class="text-center text-white">Nessun piatto presente nel tuo carrello</h2>
         </div>
   </div>
 </div>

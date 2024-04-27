@@ -15,7 +15,7 @@ export default {
         }
     },
     methods: {
-        setDishetImage(dish_image){
+        setDishImage(dish_image){
             let image = '';
             switch (true) {
                 case dish_image == null:
@@ -107,7 +107,7 @@ export default {
             <div class="row">
                 <div class="col-6">
                     <figure>
-                        <img class="plate-img rounded" :src="setDishetImage(plate.image)" :alt="plate.name">
+                        <img class="plate-img rounded" :src="setDishImage(plate.image)" :alt="plate.name">
                     </figure>
                 </div>
                 <div class="col-6">
