@@ -1,10 +1,15 @@
 <script>
+import {store} from "../Store"
     export default {
         name:"Cart",
     
         data() {
             return {
+                store,
                 quantity:0,
+                idrestaurant:"",
+                exactlocalkey:"",
+                arraypiattiristorante:[]
             }
         },
 
@@ -15,12 +20,21 @@
                     return this.quantity=0
                 }
                 this.quantity--
-            }
+            },
+            
+
+        },
+        created(){
+            
+           
         }
     }
 </script>
 
 <template>
+
+    <!-- VA CREATO UN COMPONENTE CHE CICLI LA CARTA IN BASE A QUANTI PIATTI SONO PRESENTI NELLA VARIABILE store.listplatelocalstorage -->
+
 
 <!-- offcanvas -->
 <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -30,7 +44,7 @@
     <div class="offcanvas-body">
     <h1 class="text-light mb-3">Riassunto Carrello</h1>
         <!-- card prodotto -->
-        <div class="d-flex bg-white rounded-2 p-3 align-items-start">
+        <div class="d-flex bg-white rounded-2 p-3 align-items-start" v-if="this.arraypiattiristorante!=null">
             <!-- bottoni quantità -->
             <div class="d-flex flex-column m-2 gap-2">
                 <button class="btn border" @click="quantity++" >+</button>
