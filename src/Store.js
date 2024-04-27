@@ -12,4 +12,6 @@ export const store = reactive({
      filtered_restaurants:[],
      restaurantLoading: false,
      typesLoading: false,
+
+     subtotal_price: 0,
 });
