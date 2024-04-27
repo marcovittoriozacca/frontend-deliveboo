@@ -8,7 +8,7 @@ export default {
             store,
             quant: 0,
             ContolloRistorante:[],
-            Sospeso:"false",
+            
             storedArray:"",
             parsedArray:[],
             controllo:false,
@@ -37,29 +37,29 @@ export default {
 
 
         addplate(plate){
-                
+            this.parsedArray = []
             // controllo se esiste la chiave nel local storage, se non c e pusho il piatto
             this.ContolloRistorante=Object.keys(localStorage)
-            this.Sospeso = false
+            store.Sospeso = false
             this.ContolloRistorante.forEach(element => {
                 if(element.includes("restaurant") && (element != "restaurant"+this.restaurant.id)){
                     //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
-                this.Sospeso = true
+                store.Sospeso = true
                 }
             });
 
             
 
-            if(localStorage.getItem("restaurant"+this.restaurant.id) == null && this.Sospeso!=true){
+            if(localStorage.getItem("restaurant"+this.restaurant.id) == null && store.Sospeso!=true){
                 // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere il piatto
                 this.parsedArray.push(plate)
                 this.arrayString=JSON.stringify(this.parsedArray)
-                localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString)
-                store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id))
+                localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
+                store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id));
                 console.log(this.restaurant)
                 
             }else{
-                if(this.Sospeso==false){
+                if(store.Sospeso==false){
 
                     // se gia esiste un ristorante devo controllare se è gia incluso il piatto
 

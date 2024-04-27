@@ -6,6 +6,8 @@ export const store = reactive({
      showfooter:true,
      // in listplatelocalstorage c'è la lista di piatti che si aggiorna con i dati presenti nel local storage al momento del click sull'icona del carrello
      listplatelocalstorage:[],
+     onlyIndexAccepted: '',
+     Sospeso: false,
      active_typologies: [],
      filtered_restaurants:[],
      restaurantLoading: false,
