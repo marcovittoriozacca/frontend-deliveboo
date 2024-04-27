@@ -23,6 +23,7 @@ import Cart from '../components/Cart.vue'
             return{
                 store,
                 restaurants:[],
+                ContolloRistorante:[],
             }
         },
         methods:{
@@ -52,12 +53,18 @@ import Cart from '../components/Cart.vue'
             removeBadge(type){
                 const index = store.active_typologies.indexOf(type);
                 store.active_typologies.splice(index, 1);
-            }
+            },
+            // al caricamento della pagina va aggiornato l'array degli ordini presenti nello store con gli ordini presenti nel local storage
+
+            
+        
 
         },
+
         mounted(){
             this.types();
             this.getRestaurants();
+          
             
         },
         

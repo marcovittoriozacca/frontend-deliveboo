@@ -6,7 +6,7 @@ import {store} from "../Store"
         data() {
             return {
                 store,
-                quantity:0,
+                quantity:1,
                 idrestaurant:"",
                 exactlocalkey:"",
                 arraypiattiristorante:[]
@@ -16,11 +16,16 @@ import {store} from "../Store"
         methods:{
 
             decrement(){
-                if(this.quantity<=0){
-                    return this.quantity=0
+                if(this.quantity<=1){
+                    console.log(store.listplatelocalstorage,"a")
+                    return this.quantity=1
                 }
                 this.quantity--
+                
             },
+            a(){
+                console.log(store.listplatelocalstorage.length)
+            }
             
 
         },
@@ -34,17 +39,18 @@ import {store} from "../Store"
 <template>
 
     <!-- VA CREATO UN COMPONENTE CHE CICLI LA CARTA IN BASE A QUANTI PIATTI SONO PRESENTI NELLA VARIABILE store.listplatelocalstorage -->
-
+    <!-- LOGICA DI RIMOZIONE SINGOLO PIATTO DAL LOCAL STORAGE -->
+    <!-- POI VA CREATA LA LOGICA CHE QUANDO CLICCHI SUL TASTO CHECKOUT VENGA "ASSEMBLATO" UN ARRAY CONTENETE I PIATTI + LE QUANTITA' -->
 
 <!-- offcanvas -->
-<div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
         <div class="offcanvas-header">
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
     <div class="offcanvas-body">
     <h1 class="text-light mb-3">Riassunto Carrello</h1>
         <!-- card prodotto -->
-        <div class="d-flex bg-white rounded-2 p-3 align-items-start" v-if="this.arraypiattiristorante!=null">
+        <div class="d-flex bg-white rounded-2 p-3 align-items-start" @click="a()" v-if="store.listplatelocalstorage.length > 0">
             <!-- bottoni quantità -->
             <div class="d-flex flex-column m-2 gap-2">
                 <button class="btn border" @click="quantity++" >+</button>
@@ -67,6 +73,7 @@ import {store} from "../Store"
                 </div>
             </div>
         </div>
+        <div v-else>Non hai ancora aggiunto piatti al carrello</div>
 
         <!-- card prezzo totale  -->
         <div class="bg-light rounded my-3 p-3">

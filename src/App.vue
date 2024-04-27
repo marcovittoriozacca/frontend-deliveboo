@@ -13,6 +13,23 @@
             store
         }
     },
+    methods: {
+        findorder(){
+                this.ContolloRistorante=Object.keys(localStorage)
+                console.log(this.ContolloRistorante)
+            
+            this.ContolloRistorante.forEach(element => {
+                if(element.includes("restaurant")){
+                    //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
+                store.listplatelocalstorage=JSON.parse(localStorage.getItem(element))
+                    
+                }
+            });
+            }
+    },
+    created() {
+        this.findorder();
+    },
   }
 </script>
 

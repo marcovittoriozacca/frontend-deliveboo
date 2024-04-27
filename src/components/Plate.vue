@@ -1,10 +1,11 @@
 <script>
-
+import {store} from '../Store';
 export default {
     name: 'Plate',
     props:['plate','restaurant'],
     data() {
         return {
+            store,
             quant: 0,
             ContolloRistorante:[],
             Sospeso:"false",
@@ -54,6 +55,7 @@ export default {
                 this.parsedArray.push(plate)
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString)
+                store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id))
                 console.log(this.restaurant)
                 
             }else{
@@ -82,6 +84,7 @@ export default {
                         this.parsedArray.push(plate)
                         this.arrayString=JSON.stringify(this.parsedArray)
                         localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString) 
+                        store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id)) 
 
                     }else{
                         console.log("piatto gia aggiunto")
