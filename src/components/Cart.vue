@@ -9,7 +9,7 @@ import CartCard from "./Header/CartCard.vue"
         data() {
             return {
                 store,
-                ContolloRistorante:[],
+                platesArray:[],
             }
         },
 
@@ -17,9 +17,20 @@ import CartCard from "./Header/CartCard.vue"
             clearAll(){
                 localStorage.clear()
                 store.listplatelocalstorage = []                
-            },        
-
+            },                    
         },
+        computed:{
+            totalSubPrice() {
+                let subtotal = 0;
+                if (store.listplatelocalstorage.length > 0) {
+                    store.listplatelocalstorage.forEach((plate)=>{
+                        subtotal += +plate.price
+                    })
+                }
+                store.subtotal_price = subtotal;
+                return subtotal;
+            }
+        }
     }
 </script>
 
@@ -46,16 +57,16 @@ import CartCard from "./Header/CartCard.vue"
             <div class="bg-light rounded my-3 p-3">
                 <div class="d-flex justify-content-between">
                     <span>Subtotale</span>
-                    <span>€</span>
+                    <span> {{ totalSubPrice }}<span class="ps-1">€</span></span>
                 </div>
                 <div class="d-flex justify-content-between">
                     <span>Consegna</span>
-                    <span>€</span>
+                    <span>Gratuita</span>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
-                    <span>Prezzo totale</span>
-                    <span>€</span>
+                    <span>Totale</span>
+                    <span> {{ totalSubPrice }}<span class="ps-1">€</span></span>
                 </div>
             </div>
     
