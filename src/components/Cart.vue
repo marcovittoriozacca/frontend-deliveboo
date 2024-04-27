@@ -16,17 +16,10 @@ import CartCard from "./Header/CartCard.vue"
 
         methods:{
             clearAll(){
-                store.listplatelocalstorage=[]
-                this.ContolloRistorante=Object.keys(localStorage)
-                this.ContolloRistorante.forEach(element => {
-
-                    if(element.includes("restaurant")){
-                        //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
-                    
-                        localStorage.removeItem(element)
-                    }
-
-                });
+                localStorage.clear()
+                store.listplatelocalstorage = []
+                console.log(store.listplatelocalstorage.length)
+                
             },        
 
         },
@@ -35,8 +28,15 @@ import CartCard from "./Header/CartCard.vue"
 
 <template>
 
-    <!-- VA CREATO UN COMPONENTE CHE CICLI LA CARTA IN BASE A QUANTI PIATTI SONO PRESENTI NELLA VARIABILE store.listplatelocalstorage -->
-    <!-- LOGICA DI RIMOZIONE SINGOLO PIATTO DAL LOCAL STORAGE -->
+<!-- DA ATTENZIONARE - BUG -->
+
+<!-- DA SISTEMARE IL CLEARALL - PRESENTE UN BUG IN CUI QUANDO SI RIMUOVE TUTTO DAL CARRELLO CON IL CLEAR-ALL E SI CLICCA SULL'ULTIMO ELEMENTO CHE ERA PRESENTE NEL CARRELLO, IL LOCAL STORAGE RIPRENDE TUTTI I VECCHI VALORI -->
+
+<!-- DA ATTENZIONARE - BUG -->
+    
+
+
+
     <!-- POI VA CREATA LA LOGICA CHE QUANDO CLICCHI SUL TASTO CHECKOUT VENGA "ASSEMBLATO" UN ARRAY CONTENETE I PIATTI + LE QUANTITA' -->
 
 <!-- offcanvas -->
@@ -45,39 +45,43 @@ import CartCard from "./Header/CartCard.vue"
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
     <div class="offcanvas-body">
-        <h1 class="text-light mb-3">Riassunto Carrello</h1>
         <div v-if="store.listplatelocalstorage.length > 0">
-            <!-- card prodotto -->
-            <div class="row row-gap-3">
-                <div class="col-12" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
-                    <CartCard :plate="plate" />
+            <h1 class="text-light mb-3">Riassunto Carrello</h1>
+                <!-- card prodotto -->
+                <div class="row row-gap-3">
+                    <div class="col-12" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
+                        <CartCard :plate="plate" />
+                    </div>
+                </div>
+            
+            <!-- card prezzo totale  -->
+            <div class="bg-light rounded my-3 p-3">
+                <div class="d-flex justify-content-between">
+                    <span>Subtotale</span>
+                    <span>€</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Consegna</span>
+                    <span>€</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Prezzo totale</span>
+                    <span>€</span>
                 </div>
             </div>
-        </div>
-        <!-- card prezzo totale  -->
-        <div class="bg-light rounded my-3 p-3">
-            <div class="d-flex justify-content-between">
-                <span>Subtotale</span>
-                <span>€</span>
+    
+            <!-- bottone checkout  -->
+            <div class="d-grid">
+                <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
             </div>
-            <div class="d-flex justify-content-between">
-                <span>Consegna</span>
-                <span>€</span>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-                <span>Prezzo totale</span>
-                <span>€</span>
+            <!-- bottone remove all  -->
+            <div class="d-grid" @click="clearAll()">
+                <button class="my-3 btn btn-lg bg-danger ">Svuota Carrello</button>
             </div>
         </div>
-
-        <!-- bottone checkout  -->
-        <div class="d-grid">
-            <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
-        </div>
-        <!-- bottone remove all  -->
-        <div class="d-grid" @click="clearAll()">
-            <button class="my-3 btn btn-lg bg-danger ">Svuota Carrello</button>
+        <div v-else>
+            <h2 class="text-center text-white">Nessun piatto presente nel tuo carrello</h2>
         </div>
   </div>
 </div>

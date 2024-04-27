@@ -7,7 +7,6 @@ import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 import Restaurant from '../components/Restaurant.vue'
 import Loader from '../components/GeneralComponents/Loader.vue'
-import Cart from '../components/Cart.vue'
 
     export default {
         name: "AppHome",
@@ -16,7 +15,6 @@ import Cart from '../components/Cart.vue'
             InfoCard,
             WorkWithUsBtn,
             Restaurant,
-            Cart,
             Loader,
         },
         data(){
@@ -178,9 +176,6 @@ import Cart from '../components/Cart.vue'
         <div class="diagonale-blu-alto-destra"></div>
         
     </div>
-
-    <Cart/>
-
 </template>
 
 <style lang="scss" scoped>

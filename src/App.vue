@@ -2,11 +2,13 @@
 // commentato perche non sono stati definiti i componenti
     import Header from './components/Header/Header.vue'
     import Footer from './components//Footer/Footer.vue'
+    import Cart from './components/Cart.vue';
     import { store } from './Store';
     export default{
     components: {
         Header,
         Footer,
+        Cart,
     },
     data() {
         return {
@@ -37,6 +39,7 @@
 
     <header>
         <Header/>
+        <Cart/>
     </header>
 
     <main>

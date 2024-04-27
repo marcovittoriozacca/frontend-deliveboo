@@ -23,7 +23,16 @@ import {store} from '../../Store';
 
 <template>
    
-<button class="bt" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" @click="check()"><i class="fa-solid fa-cart-shopping" style="color: #f58115;"></i></button>
+<button class="bt" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" @click="check()">
+
+    <i class="fa-solid fa-cart-shopping d-flex align-items-center" style="color: #f58115;">
+    
+        
+            <span v-if="store.listplatelocalstorage.length > 0 "  class="bg-white rounded-circle  custom-font-size">{{ store.listplatelocalstorage.length }}</span>
+        
+    </i>
+
+</button>
 
 
 
@@ -40,6 +49,13 @@ import {store} from '../../Store';
       border: none;
     }
 
+    .custom-font-size{
+        font-size: .7rem;
+    }
+
+    span{
+        padding: 2px 5px;
+    }
 
 
 </style>

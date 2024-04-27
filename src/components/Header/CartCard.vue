@@ -22,7 +22,7 @@ export default {
         },
         decrement(plate){
             if(this.quantity == 0){
-                this.removeElement(plate)
+                this.removeSinglePlate(plate)
             }else{
                 this.quantity--  
             }
@@ -30,7 +30,7 @@ export default {
         // a(){
         //         console.log(store.listplatelocalstorage.length)
         // },
-        removeElement(plate){
+        removeSinglePlate(plate){
             const indexToRemove = store.listplatelocalstorage.indexOf(plate);
 
             
@@ -72,9 +72,10 @@ export default {
             <div class="d-flex flex-column">
                 <h3>{{ plate.name }}</h3>
             </div>
+            <!-- Prezzo prodotto -->
             <div class="d-flex flex-column ">
-                <span class="text-end">23€</span>
-                <button @click="removeElement(plate)" class="btn btn-danger text-capitalize">rimuovi</button>
+                <span class="text-end">{{ plate.price }}€</span>
+                <button @click="removeSinglePlate(plate)" class="btn btn-danger text-capitalize">rimuovi</button>
             </div>
         </div>
     </div>
