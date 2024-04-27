@@ -1,9 +1,9 @@
 <script>
-import Cart from './Cart.vue'
+import CartButton from './CartButton.vue'
     export default {
         name: "Header",
         components: {
-        Cart
+        CartButton
     }
     }
 </script>
@@ -42,7 +42,7 @@ import Cart from './Cart.vue'
                             <a class="link-orange" href="http://127.0.0.1:8000">Register</a>
                         </li>
                         
-                            <Cart/>
+                            <CartButton/>
                         
                     </ul>
                 </div>

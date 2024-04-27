@@ -1,36 +1,69 @@
 <script>
+import {store} from "../Store"
     export default {
         name:"Cart",
     
         data() {
             return {
-                quantity:0,
+                store,
+                quantity:1,
+                store,
+                ContolloRistorante:[],
             }
         },
 
         methods:{
+            clearAll(){
+                store.listplatelocalstorage=[]
+                this.ContolloRistorante=Object.keys(localStorage)
+                this.ContolloRistorante.forEach(element => {
+
+                    if(element.includes("restaurant")){
+                        //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
+                    
+                        localStorage.removeItem(element)
+                    }
+
+                });
+            },
+        
 
             decrement(){
-                if(this.quantity<=0){
-                    return this.quantity=0
+                if(this.quantity<=1){
+                    console.log(store.listplatelocalstorage,"a")
+                    return this.quantity=1
                 }
                 this.quantity--
+                
+            },
+            a(){
+                console.log(store.listplatelocalstorage.length)
             }
+            
+
+        },
+        created(){
+            
+           
         }
     }
 </script>
 
 <template>
 
+    <!-- VA CREATO UN COMPONENTE CHE CICLI LA CARTA IN BASE A QUANTI PIATTI SONO PRESENTI NELLA VARIABILE store.listplatelocalstorage -->
+    <!-- LOGICA DI RIMOZIONE SINGOLO PIATTO DAL LOCAL STORAGE -->
+    <!-- POI VA CREATA LA LOGICA CHE QUANDO CLICCHI SUL TASTO CHECKOUT VENGA "ASSEMBLATO" UN ARRAY CONTENETE I PIATTI + LE QUANTITA' -->
+
 <!-- offcanvas -->
-<div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
         <div class="offcanvas-header">
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
     <div class="offcanvas-body">
     <h1 class="text-light mb-3">Riassunto Carrello</h1>
         <!-- card prodotto -->
-        <div class="d-flex bg-white rounded-2 p-3 align-items-start">
+        <div class="d-flex bg-white rounded-2 p-3 align-items-start" @click="a()" v-if="store.listplatelocalstorage.length > 0">
             <!-- bottoni quantità -->
             <div class="d-flex flex-column m-2 gap-2">
                 <button class="btn border" @click="quantity++" >+</button>
@@ -53,6 +86,7 @@
                 </div>
             </div>
         </div>
+        <div v-else>Non hai ancora aggiunto piatti al carrello</div>
 
         <!-- card prezzo totale  -->
         <div class="bg-light rounded my-3 p-3">
@@ -74,6 +108,10 @@
         <!-- bottone checkout  -->
         <div class="d-grid">
             <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
+        </div>
+        <!-- bottone remove all  -->
+        <div class="d-grid" @click="clearAll()">
+            <button class="my-3 btn btn-lg bg-danger ">Svuota Carrello</button>
         </div>
   </div>
 </div>

@@ -1,10 +1,17 @@
 <script>
+import {store} from '../Store';
 export default {
     name: 'Plate',
-    props:['plate'],
+    props:['plate','restaurant'],
     data() {
         return {
+            store,
             quant: 0,
+            ContolloRistorante:[],
+            Sospeso:"false",
+            storedArray:"",
+            parsedArray:[],
+            controllo:false,
         }
     },
     methods: {
@@ -26,13 +33,76 @@ export default {
             }else{
                 this.quant--
             }
-        }
+        },
+
+
+        addplate(plate){
+                
+            // controllo se esiste la chiave nel local storage, se non c e pusho il piatto
+            this.ContolloRistorante=Object.keys(localStorage)
+            this.Sospeso = false
+            this.ContolloRistorante.forEach(element => {
+                if(element.includes("restaurant") && (element != "restaurant"+this.restaurant.id)){
+                    //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
+                this.Sospeso = true
+                }
+            });
+
+            
+
+            if(localStorage.getItem("restaurant"+this.restaurant.id) == null && this.Sospeso!=true){
+                // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere il piatto
+                this.parsedArray.push(plate)
+                this.arrayString=JSON.stringify(this.parsedArray)
+                localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString)
+                store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id))
+                console.log(this.restaurant)
+                
+            }else{
+                if(this.Sospeso==false){
+
+                    // se gia esiste un ristorante devo controllare se è gia incluso il piatto
+
+                    this.storedArray = localStorage.getItem("restaurant" + this.restaurant.id)
+                    this.parsedArray = JSON.parse(this.storedArray)
+
+                    this.controllo=false
+
+                    // ciclo che controlla i singoli id in local con l id del piatto cliccato
+
+                    this.parsedArray.forEach(element => {
+                        
+                        if(element.id == plate.id){
+                            this.controllo=true
+                        }
+                    });
+                    
+                    // se la variabile controllo è false allora quel piatto è gia presente
+
+                    if(!this.controllo){
+                    
+                        this.parsedArray.push(plate)
+                        this.arrayString=JSON.stringify(this.parsedArray)
+                        localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString) 
+                        store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id)) 
+
+                    }else{
+                        console.log("piatto gia aggiunto")
+
+                    }
+                }else{
+                    console.log("hai gia un ordine in sospeso")
+                }
+            }
+
+   
+        },
     },
 }
 </script>
 
 <template>
-    <div class="card-dark-bg text-white rounded-3 p-3">
+    <div class="card-dark-bg text-white rounded-3 p-3" @click="addplate(plate)">
         <div class="container">
             <div class="row">
                 <div class="col-6">
