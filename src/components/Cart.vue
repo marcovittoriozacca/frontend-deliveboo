@@ -7,13 +7,26 @@ import {store} from "../Store"
             return {
                 store,
                 quantity:1,
-                idrestaurant:"",
-                exactlocalkey:"",
-                arraypiattiristorante:[]
+                store,
+                ContolloRistorante:[],
             }
         },
 
         methods:{
+            clearAll(){
+                store.listplatelocalstorage=[]
+                this.ContolloRistorante=Object.keys(localStorage)
+                this.ContolloRistorante.forEach(element => {
+
+                    if(element.includes("restaurant")){
+                        //se è presente una chiave che contiene la parola restaurant e non corrisponde con la chiave del ristorante attuale 
+                    
+                        localStorage.removeItem(element)
+                    }
+
+                });
+            },
+        
 
             decrement(){
                 if(this.quantity<=1){
@@ -95,6 +108,10 @@ import {store} from "../Store"
         <!-- bottone checkout  -->
         <div class="d-grid">
             <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
+        </div>
+        <!-- bottone remove all  -->
+        <div class="d-grid" @click="clearAll()">
+            <button class="my-3 btn btn-lg bg-danger ">Svuota Carrello</button>
         </div>
   </div>
 </div>
