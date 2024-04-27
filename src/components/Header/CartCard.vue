@@ -31,23 +31,26 @@ export default {
         //         console.log(store.listplatelocalstorage.length)
         // },
         removeSinglePlate(plate){
-            const indexToRemove = store.listplatelocalstorage.indexOf(plate);
-
             
-            const temporaryArray = JSON.parse(localStorage.getItem(`restaurant${plate.restaurant_id}`))
-            console.log(temporaryArray);
-            let storageIndexToRemove;
-            temporaryArray.forEach((element,index) => {
-                if(element.id == plate.id){
-                    storageIndexToRemove = index;
+                const indexToRemove = store.listplatelocalstorage.indexOf(plate);
+    
+                
+                const temporaryArray = JSON.parse(localStorage.getItem(`restaurant${plate.restaurant_id}`))
+    
+                let storageIndexToRemove;
+                temporaryArray.forEach((element,index) => {
+                    if(element.id == plate.id){
+                        storageIndexToRemove = index;
+                    }
+                });
+                store.listplatelocalstorage.splice(indexToRemove, 1);
+                temporaryArray.splice(storageIndexToRemove, 1);
+    
+                localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(temporaryArray));
+
+                if(store.listplatelocalstorage.length === 0){
+                    localStorage.clear();
                 }
-            });
-            store.listplatelocalstorage.splice(indexToRemove, 1);
-            temporaryArray.splice(storageIndexToRemove, 1);
-
-            localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
-
-
         },
     },
     
