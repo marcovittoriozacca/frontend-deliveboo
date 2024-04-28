@@ -1,8 +1,12 @@
 <script>
 import {store} from '../Store';
+import AddToCartBtn from './GeneralComponents/AddToCartBtn.vue';
 export default {
     name: 'Plate',
     props:['plate','restaurant'],
+    components:{
+        AddToCartBtn,
+    },
     data() {
         return {
             store,
@@ -87,8 +91,31 @@ export default {
                         store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id)) 
 
                     }else{
-                        console.log("piatto gia aggiunto")
+                        // Trova l'indice dell'elemento nell'array principale basato sull'ID del piatto
+                        const indexToRemove = store.listplatelocalstorage.findIndex(item => item.id === plate.id);
+                        const temporaryArray = JSON.parse(localStorage.getItem(`restaurant${plate.restaurant_id}`));
+                        let storageIndexToRemove;
 
+                        // Trova l'indice dell'elemento nell'array temporaneo basato sull'ID del piatto
+                        temporaryArray.forEach((element, index) => {
+                            if (element.id === plate.id) {
+                                storageIndexToRemove = index;
+                            }
+                        });
+
+                        // Rimuovi l'elemento dalle due liste
+                        if (indexToRemove !== -1 && storageIndexToRemove !== -1) {
+                            store.listplatelocalstorage.splice(indexToRemove, 1);
+                            temporaryArray.splice(storageIndexToRemove, 1);
+                            if(temporaryArray.length == 0){
+                                localStorage.clear();
+                            }else{
+                                // Aggiorna il local storage
+                                localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(temporaryArray));
+                            }
+                        } else {
+                            console.log("Errore: Impossibile trovare l'elemento da rimuovere.");
+                        }
                     }
                 }else{
                     console.log("hai gia un ordine in sospeso")
@@ -97,12 +124,15 @@ export default {
 
    
         },
+        isInCart(plate){
+            return store.listplatelocalstorage.some(element => element.id === plate.id)? true : false 
+        }
     },
 }
 </script>
 
 <template>
-    <div class="card-dark-bg text-white rounded-3 p-3" @click="addplate(plate)">
+    <div class="card-dark-bg text-white rounded-3 p-3" >
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -127,16 +157,23 @@ export default {
                             <span class="left">{{ plate.price }}</span>
                             <span class="right">€</span>
                         </div>
-                        <div class="bottoni d-flex mx-2  gap-2">
+                        <div>
+                            <!-- Bottone aggiungi al carrello -->
+                            <AddToCartBtn  @click="addplate(plate)"
+                            :in-cart="isInCart(plate)"
+                            />
+                        </div>
+                        <!-- <div class="bottoni d-flex mx-2  gap-2">
                             <button @click="quantityDown" class="btn border">-</button>
                             <span class="border rounded text-center bg-light text-dark pt-2">{{ quant }}</span>
                             <button @click="quantityUp"  class="btn border">+</button>
-                        </div> 
+                        </div>  -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {{ console.log(store.listplatelocalstorage) }}
 </template>
 
 <style lang="scss" scoped>
