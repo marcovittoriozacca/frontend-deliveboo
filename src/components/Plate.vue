@@ -10,7 +10,6 @@ export default {
     data() {
         return {
             store,
-            quant: 0,
             ContolloRistorante:[],
             
             storedArray:"",
@@ -28,18 +27,6 @@ export default {
                 return image =  `http://127.0.0.1:8000/storage/${dish_image}`;
             }
         },
-        quantityUp(){
-            this.quant++;
-        },
-        quantityDown(){
-            if(this.quant <= 0){
-                this.quant = 0
-            }else{
-                this.quant--
-            }
-        },
-
-
         addplate(plate){
             this.parsedArray = []
             // controllo se esiste la chiave nel local storage, se non c e pusho il piatto
@@ -56,6 +43,7 @@ export default {
 
             if(localStorage.getItem("restaurant"+this.restaurant.id) == null && store.Sospeso!=true){
                 // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere il piatto
+                plate.quantity = 1;
                 this.parsedArray.push(plate)
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
@@ -81,16 +69,17 @@ export default {
                         }
                     });
                     
-                    // se la variabile controllo è false allora quel piatto è gia presente
+                    // se la variabile controllo è true allora quel piatto è gia presente, quindi lo rimuoviamo
 
                     if(!this.controllo){
-                    
+                        plate.quantity = 1;
                         this.parsedArray.push(plate)
                         this.arrayString=JSON.stringify(this.parsedArray)
                         localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString) 
-                        store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id)) 
+                        store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id))
 
                     }else{
+                        console.log('evento 2')
                         // Trova l'indice dell'elemento nell'array principale basato sull'ID del piatto
                         const indexToRemove = store.listplatelocalstorage.findIndex(item => item.id === plate.id);
                         const temporaryArray = JSON.parse(localStorage.getItem(`restaurant${plate.restaurant_id}`));
@@ -163,17 +152,11 @@ export default {
                             :in-cart="isInCart(plate)"
                             />
                         </div>
-                        <!-- <div class="bottoni d-flex mx-2  gap-2">
-                            <button @click="quantityDown" class="btn border">-</button>
-                            <span class="border rounded text-center bg-light text-dark pt-2">{{ quant }}</span>
-                            <button @click="quantityUp"  class="btn border">+</button>
-                        </div>  -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{ console.log(store.listplatelocalstorage) }}
 </template>
 
 <style lang="scss" scoped>

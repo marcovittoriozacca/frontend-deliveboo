@@ -23,8 +23,8 @@ import CartCard from "./Header/CartCard.vue"
             totalSubPrice() {
                 let subtotal = 0;
                 if (store.listplatelocalstorage.length > 0) {
-                    store.listplatelocalstorage.forEach((plate)=>{
-                        subtotal += +plate.price
+                    store.listplatelocalstorage.forEach((element)=>{
+                        subtotal += +element.price * element.quantity
                     })
                 }
                 store.subtotal_price = subtotal;
