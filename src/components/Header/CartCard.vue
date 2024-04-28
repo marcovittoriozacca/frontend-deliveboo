@@ -21,7 +21,7 @@ export default {
             }
         },
         decrement(plate){
-            if(this.quantity == 0){
+            if(this.quantity <= 1){
                 this.removeSinglePlate(plate)
             }else{
                 this.quantity--  
