@@ -21,12 +21,15 @@ export default {
         },
         increment(plate){
             plate.quantity++;
+            localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
         },
+
         decrement(plate){
             if(plate.quantity <= 1){
                 this.removeSinglePlate(plate)
             }else{
                 plate.quantity--  
+                localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
             }
         },
         removeSinglePlate(plate){
