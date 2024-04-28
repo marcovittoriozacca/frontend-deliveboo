@@ -7,7 +7,6 @@ export default {
     data() {
         return {
             store,
-            quantity:1,
         }
     },
     methods: {
@@ -20,16 +19,19 @@ export default {
                 return image =  `http://127.0.0.1:8000/storage/${dish_image}`;
             }
         },
+        increment(plate){
+            plate.quantity++;
+            localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
+        },
+
         decrement(plate){
-            if(this.quantity <= 1){
+            if(plate.quantity <= 1){
                 this.removeSinglePlate(plate)
             }else{
-                this.quantity--  
+                plate.quantity--  
+                localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
             }
         },
-        // a(){
-        //         console.log(store.listplatelocalstorage.length)
-        // },
         removeSinglePlate(plate){
             
                 const indexToRemove = store.listplatelocalstorage.indexOf(plate);
@@ -58,12 +60,11 @@ export default {
 </script>
 
 <template>
-     <!-- @click="a()" -->
     <div class="d-flex bg-white rounded-2 p-3 align-items-start">
         <!-- bottoni quantità -->
         <div class="d-flex flex-column m-2 gap-2">
-            <button class="btn border" @click="quantity++" >+</button>
-            <span class="border rounded p-1 text-center">{{quantity}}</span>
+            <button class="btn border" @click="increment(plate)" >+</button>
+            <span class="border rounded p-1 text-center">{{plate.quantity}}</span>
             <button class="btn border" @click="decrement(plate)">-</button>
         </div>
         <!-- immagine prodotto  -->
