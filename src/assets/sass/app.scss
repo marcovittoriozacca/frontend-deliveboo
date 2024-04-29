@@ -8,6 +8,7 @@
 
 a{
     text-decoration: none;
+    color: $orange;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -18,3 +19,35 @@ h1,h2,h3,h4,h5,h6{
 main{
     padding-top: 85.4px;
 }
+
+.offcanvas{
+    background-color: #3f3d56!important;
+}
+
+
+
+
+.figure_cart{
+    border-radius: 0 10px 10px 0;
+}
+
+a{
+    text-decoration: none!important;
+    color: $orange!important;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+*::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 20px;
+  }
+  
+*::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+    
+

@@ -10,7 +10,7 @@
 <!--Inizio Ul Footer -->
 <div class="bg-blu">
     <div class="container pb-5">
-        <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between">
+        <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between pt-5">
             <div>
                 <ul>
                     <li class="titleLi">
@@ -20,10 +20,10 @@
                         <a href="#">domande frequenti</a>
                     </li>
                     <li class="text-capitalize">
-                        <a href="#">accedi</a>
+                        <a href="http://127.0.0.1:8000/login">accedi</a>
                     </li>
                     <li class="text-capitalize">
-                        <a href="#">registrati</a>
+                        <a href="http://127.0.0.1:8000">registrati</a>
                     </li>
                     <li class="text-capitalize">
                         <a href="#">scarica l'app</a>
@@ -46,31 +46,6 @@
                     </li>
                     <li class="text-capitalize">
                         <a href="#">i nostri valori</a>
-                    </li>
-                    <li class="text-capitalize">
-                        <a href="#">unisciti al nostro team</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li class="titleLi">
-                        <span>Cucine</span>
-                    </li>
-                    <li class="text-capitalize">
-                        <a href="#">pizza</a>
-                    </li>
-                    <li class="text-capitalize">
-                        <a href="#">giapponese</a>
-                    </li>
-                    <li class="text-capitalize">
-                        <a href="#">messicano</a>
-                    </li>
-                    <li class="text-capitalize">
-                        <a href="#">brasiliano</a>
-                    </li>
-                    <li class="text-capitalize">
-                        <a href="#">cinese</a>
                     </li>
                 </ul>
             </div>

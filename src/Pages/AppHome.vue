@@ -5,6 +5,9 @@ import {store} from '../Store';
 import Typologies from '../components/HomeComponents/Typologies.vue';
 import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
+import Restaurant from '../components/Restaurant.vue'
+import Loader from '../components/GeneralComponents/Loader.vue'
+import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
 
     export default {
         name: "AppHome",
@@ -12,81 +15,152 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
             Typologies,
             InfoCard,
             WorkWithUsBtn,
+            Restaurant,
+            Loader,
+            AnimationComp,
         },
         data(){
             return{
                 store,
-                restaurant:[],
+                restaurants:[],
+                ContolloRistorante:[],
             }
         },
         methods:{
-            types(){
-                axios.get('http://127.0.0.1:8000/api/type').then(res=>{
-                    store.type=res.data.type
-                })
+            async types(){
+                store.typesLoading = true;
+                await axios.get('http://127.0.0.1:8000/api/type').then(res=>{
+                    store.type=res.data.type;
+                    store.typesLoading = false;
+                }).catch(error => {
+                console.error('Errore durante la richiesta API:', error);
+                store.typesLoading = false;
+                });
             },
-            restaurants(){
-                axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
-                    this.restaurant=res.data.restaurant
+
+            async getRestaurants(){
+                store.restaurantLoading = true;
+                await axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
+                    this.restaurants = res.data.restaurant;
+                    store.restaurantLoading = false;
                 })
-            }
+                .catch(error => {
+                console.error('Errore durante la richiesta API:', error);
+                store.restaurantLoading = false;
+                });
+            },
+
+            removeBadge(type){
+                const index = store.active_typologies.indexOf(type);
+                store.active_typologies.splice(index, 1);
+            },
+            // al caricamento della pagina va aggiornato l'array degli ordini presenti nello store con gli ordini presenti nel local storage
+
+            
+        
+
         },
 
         mounted(){
             this.types();
-            this.restaurants();
+            this.getRestaurants();
+          
+            
         },
+        
+        
+        watch: {
+        'store.active_typologies': {
+            handler(newVal, oldVal) {
+
+                store.filtered_restaurants = this.restaurants.filter(restaurant => {
+                // Controlla se almeno una tipologia del ristorante è presente nelle tipologie attive
+                return restaurant.types.some(type => store.active_typologies.includes(type.slug));
+
+                });
+            },
+            deep: true
+        }
     }
+}
+
     
 </script>
 
 
 <template>
-    <div class="reset-header-height">
-        <div id="bg-first-section">
-            <div class="container">
-                <div class="banner-max-w bg-white rounded-4 p-5">
-                    <div class="row row-gap-5 justify-content-center flex-column align-items-center">
-                        <!-- Banner hamburger -->
-                        <div class="col-12">
-                            <div class="position-relative responsive-margin-bottom">
-                                <figure class=" banner-burger-position position-absolute">
-                                    <img class="burger-img" src="/img/hofame.webp" alt="burger-image">
-                                </figure>
-                            </div>
-                        </div>
-    
-                        <div class="col-12">
-                            <!--Parte con Searchbar e titolo-->
-                            <div class="d-flex flex-column gap-3 hofame-search">
-                                <h2 class="m-0 text-center search-title">Cerca il tuo ristorante preferito!</h2>
-                                <input class="form-control" type="text" placeholder="Cerca..." aria-label="Search">
-                                <button class="btn btn-orange align-self-center" type="button">Ho Fame!</button>
-                            </div>
-                        </div>
-                    </div>
+<!--Slogan Deliveboo -->
+<div class="reset-header-height">
+    <div id="bg-first-section">
+        <div class="container">
+            <div class="banner-max-w bg-box rounded-4 p-5">
+                <div class="row align-items-center">
+                    
+                        
+                        <AnimationComp/>
+                    
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
+</div>
+
+     
+
+
 
     <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
         <!--Prima sezione blu con carosello-->
         <div>
-            <Typologies/>
+            <Typologies
+            />
         </div>
 
         <!--Prima sezione arancione con risultati ricerca?-->
         <div class="ristoranti-arancione">
-            <h1 class="text-light">Prima sezione arancione con risultati ricerca?</h1>
+
+            <div class="pills-container container d-flex align-items-center column-gap-2 overflow-y-scroll">
+                <span v-for="(type, index) in store.active_typologies" :key="type.id">
+                    <div class="rounded-pill badge bg-danger d-flex align-items-center fit-content py-1 fs-6">
+                        <span class="border-end pe-2 text-capitalize">{{ type }}</span>
+                        <span class="ps-2 cursor-pointer" @click="removeBadge(type)">
+                            <i class="fas fa-xmark"></i>
+                        </span>
+                    </div>
+                </span>
+            </div>
+
+            <div class="py-4">
+                <div class="container">
+                    <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
+                    <!-- con la corretta tipologia -->
+                    <Loader v-if="store.restaurantLoading"/>
+                    <div v-else>
+                        <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
+                            <div v-for="(restaurant, index) in (store.filtered_restaurants.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
+                                <Restaurant
+                                    :restaurant="restaurant"
+                                />
+                                <hr v-if="index != store.filtered_restaurants.length -1 && index != restaurants.length-1">
+                            </div>    
+                        </div>
+                        <div v-else class="text-center d-flex flex-column gap-4 py-5">
+                            <h1 class="fw-bold animate__animated animate__fadeIn">Sfortunatamente al momento non sono stati trovati risultati con le tipologie selezionate</h1>
+                            <h2 class="animate__animated animate__fadeIn">Selezione altre tipologie di cucina</h2>
+                            <h3 class="animate__animated animate__fadeIn">Siamo sicuri che ci saranno ristoranti buonissi!</h3>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
 
         <!--Sezione blu con pulsante di registrazione ristoratori-->
         <div class="dritto-blu">
             <div class="d-flex flex-column align-items-center gap-5 container text-center">
                     <h1 class="text-light fs-64">Hai una attività di ristorazione e vuoi crescere insieme a noi?</h1>
-                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività</h2>
+                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività!</h2>
                     <WorkWithUsBtn/>
                 </div>
             <div class="diagonale-blu-alto-sinistra"></div>
@@ -99,21 +173,11 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         <div class="diagonale-blu-alto-destra"></div>
         
     </div>
-
-    <!-- offcanvas -->
-    <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    ...
-  </div>
-</div>
-
 </template>
 
 <style lang="scss" scoped>
+
+@use '../assets/sass/partials/variables' as *;
 
 // <--------------- inizio stile del banner con l'hamburger --------------->
 #bg-first-section{
@@ -123,23 +187,20 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
     padding-top: 80px;
     padding-bottom: 80px;
 }
-.banner-max-w{
-    max-width: 936px;
-    margin: 0 auto
+
+#title{
+color: $orange;
 }
 
-.banner-burger-position{
-    top: -100px;
-    left: 50%;
-    transform: translate(-50%);
-}
 
-.responsive-margin-bottom{
-    margin-bottom: 25px;
-}
-.burger-img{
-    width: 300px;
-}
+    hr{
+        border: 0.5px solid gray;
+        opacity: 1;
+        width: 90%;
+        margin: 20px auto
+    }
+
+
 
 @media screen and (min-width: 768px) {
     #bg-first-section{
@@ -165,11 +226,20 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         width: 550px;
     }
 }
+.pills-container{
+    height: 40px;
+}
+.fit-content{
+    width: fit-content;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
 // <--------------- fine stile del banner con l'hamburger --------------->
     .ristoranti-arancione{
         background: #ff9654;
-        width: 100%;
-        height: 700px;
     }
 
     .diagonale-blu-alto-sinistra{
@@ -185,7 +255,7 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
     .diagonale-blu-alto-destra{
         position: relative;
         width: 100%;
-        height: 100px;
+        height: 200px;
         background: #03071e;
         transform: skewY(-3deg);
         transform-origin: top left;
@@ -273,6 +343,11 @@ import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
         .search-title{
             font-size: 24px;
         } 
+    }
+
+
+    .bg-box {
+        background-color: #03071E
     }
 
 </style>
