@@ -7,6 +7,7 @@ import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 import Restaurant from '../components/Restaurant.vue'
 import Loader from '../components/GeneralComponents/Loader.vue'
+import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
 
     export default {
         name: "AppHome",
@@ -16,6 +17,7 @@ import Loader from '../components/GeneralComponents/Loader.vue'
             WorkWithUsBtn,
             Restaurant,
             Loader,
+            AnimationComp,
         },
         data(){
             return{
@@ -87,10 +89,7 @@ import Loader from '../components/GeneralComponents/Loader.vue'
 
 
 <template>
-<!--Slogan Deliveboo-->
-
-
-<div class="reset-header-height">
+<!--Slogan Deliveboo lascio commento solo per tentativo animazione  <div class="reset-header-height">
     <div id="bg-first-section">
         <div class="container">
             <div class="banner-max-w bg-white rounded-4 p-5">
@@ -108,7 +107,9 @@ import Loader from '../components/GeneralComponents/Loader.vue'
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+     <AnimationComp/>
 
 
 
