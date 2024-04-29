@@ -125,12 +125,11 @@ export default {
 </script>
 
 <template>
-    
-    <div :class="plate.visible==0 ? 'opacity-75 bg-secondary' : '' " class="card-dark-bg text-white rounded-3 p-3 h-100" >
-        <div class="container">
-            <div class="row food-card">
-                <div class="col-12 text-center">
-                    <figure class="position-relative">
+    <div :class="plate.visible==0 ? 'opacity-50 pe-none user-select-none' : '' " class="card-dark-bg text-white rounded-3 p-3 h-100" >
+        <div class="container h-100">
+            <div class="row flex-column row-gap-1 h-100">
+                <div class="col-12 p-0">
+                    <figure class="position-relative mb-0 px-0">
                         <img class="plate-img rounded" :src="setDishImage(plate.image)" :alt="plate.name" @error="handleImageError">
                         <span class="badge rounded-pill position-absolute visible-position" :class="(plate.visible? 'text-bg-success' : 'text-bg-danger')">{{ (plate.visible)? 'Disponibile' : 'Non Disponibile' }}</span>
                     </figure>
@@ -170,7 +169,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="col-12" :class="plate.visible==0 ? 'd-none' : '' ">
+                <div class="col-12 mt-auto" :class="plate.visible==0 ? 'd-none' : '' ">
                     <div class="d-flex align-items-center justify-content-between ">
                         <div class="border-pill rounded-5">
                             <div class="split-pill">
@@ -199,8 +198,9 @@ export default {
 }
 .plate-img{
     width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: contain;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+    object-position: center;
 }
 .bottoni{
     button,
@@ -245,10 +245,6 @@ export default {
 .h-description{
     max-height: 100px;
     overflow-y: auto;
-}
-
-.food-card{
-    height: 650px;
 }
 
 .visible-position{

@@ -2,20 +2,17 @@
 export default {
     name: 'AddToCartBtn',
     props:['inCart'],
-    mounted() {
-        console.log(this.inCart)
-    },
 }
 
 </script>
 
 <template>
 
-<div v-if="inCart" class="non-in-cart-div">
+<div v-if="inCart" class="in-cart-div">
     <button class="noselect"><span class="text">Rimuovi</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
 </div>
 
-<div v-else class="in-cart-div">
+<div v-else class="non-in-cart-div">
     <button class="CartBtn">
       <span class="IconContainer"> 
         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
@@ -29,10 +26,13 @@ export default {
 
 
 <style lang="scss" scoped>
-.in-cart-div{
+//bottone aggiungi al carrello
+.non-in-cart-div{
+  // width: 150px;
+  // height: 50px;
     .CartBtn {
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
   border-radius: 12px;
   border: none;
   background-color: #f58115;
@@ -48,7 +48,7 @@ export default {
 
 .IconContainer {
   position: absolute;
-  left: -50px;
+  left: -60px;
   width: 30px;
   height: 30px;
   background-color: transparent;
@@ -95,19 +95,20 @@ export default {
 }
 }
 
-.non-in-cart-div{
-    button {
- width: 150px;
- height: 50px;
+//bottone rimuovi dal carrello
+.in-cart-div{
+  button {
+    width: 100px;
+    height: 40px;
  
- cursor: pointer;
- display: flex;
- align-items: center;
- background: red;
- border: none;
- border-radius: 5px;
- box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
- background: #e62222;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
 }
 
 button, button span {
@@ -115,7 +116,7 @@ button, button span {
 }
 
 button .text {
- transform: translateX(35px);
+ 
  color: white;
  font-weight: bold;
 }
@@ -123,7 +124,7 @@ button .text {
 button .icon {
  position: absolute;
  border-left: 1px solid #c41b1b;
- transform: translateX(110px);
+ transform: translateX(62px);
  height: 40px;
  width: 40px;
  display: flex;
@@ -147,7 +148,7 @@ button:hover .text {
 button:hover .icon {
  width: 150px;
  border-left: none;
- transform: translateX(0);
+ transform: translateX(-18.5%);
 }
 
 button:focus {
