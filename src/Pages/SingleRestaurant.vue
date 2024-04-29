@@ -2,6 +2,7 @@
 import axios from 'axios';
 import {store} from '../Store';
 import Plate from '../components/Plate.vue';
+import { handleError } from 'vue';
 
 export default {
         name: "SingleRestaurant",
@@ -56,15 +57,41 @@ export default {
                     case restaurant_image.includes('restaurant_images/'):
                     return image =  `http://127.0.0.1:8000/storage/${restaurant_image}`;
                 }
+            },},
+
+        watch: {
+            'store.alertbox':{
+                handler(newVal, oldVal) {
+      if (newVal) {
+        document.getElementById('alertbox').innerHTML = `
+          <div class="alert alert-warning alert-dismissible fade show position-fixed w-100 z-2 d-flex justify-content-center" role="alert" >
+            <strong>You should check in on some of those fields below.</strong> 
+            <button id="closeAlert" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+          </div>
+        `;
+        
+        document.getElementById('closeAlert').addEventListener('click',()=>{
+            this.store.alertbox=false
+        })
+      }
+    },
+    immediate:true
             }
         },
+        
         mounted(){
             this.getPlates();
+            
+        },
+
+        beforeUnmount() {
+            this.store.alertbox=false;
         },
     }
 </script>
 
 <template>
+    <div id="alertbox"></div>
     <div class="main-bg-color">
         <!-- top restaurant banner -->
         <div class="bg-restaurant-template">
