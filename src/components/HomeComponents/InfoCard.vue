@@ -35,6 +35,7 @@ export default {
 <template>
 <div class="container">
     <div class="row row-gap-3">
+        <h1 class="display-4 mb-5"><b>Ma come funziona <i class="fa-solid fa-circle-question"></i></b></h1>
         <div class="col-12 col-md-6 col-lg-3" v-for="(card, index) in cards" :key="index">
             <div class="bg-white rounded-4 p-3 h-100">
                 <div class="h-100">

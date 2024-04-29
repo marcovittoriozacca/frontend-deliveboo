@@ -160,7 +160,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
         <div class="dritto-blu">
             <div class="d-flex flex-column align-items-center gap-5 container text-center">
                     <h1 class="text-light fs-64">Hai una attività di ristorazione e vuoi crescere insieme a noi?</h1>
-                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività</h2>
+                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività!</h2>
                     <WorkWithUsBtn/>
                 </div>
             <div class="diagonale-blu-alto-sinistra"></div>
@@ -194,8 +194,10 @@ color: $orange;
 
 
     hr{
-        border: 1px solid black;
-        opacity: 1;    
+        border: 0.5px solid gray;
+        opacity: 1;
+        width: 90%;
+        margin: 20px auto
     }
 
 
