@@ -1,9 +1,12 @@
 <script>
+import CartSingleRemoveBtn from '../GeneralComponents/CartSingleRemoveBtn.vue';
 import { store } from '../../Store';
 export default {
     name:'CartCard',
     props:['plate'],
-
+    components:{
+        CartSingleRemoveBtn,
+    },
     data() {
         return {
             store,
@@ -60,31 +63,61 @@ export default {
 </script>
 
 <template>
-    <div class="d-flex bg-white rounded-2 p-3 align-items-start">
-        <!-- bottoni quantità -->
-        <div class="d-flex flex-column m-2 gap-2">
-            <button class="btn border" @click="increment(plate)" >+</button>
-            <span class="border rounded p-1 text-center">{{plate.quantity}}</span>
-            <button class="btn border" @click="decrement(plate)">-</button>
-        </div>
-        <!-- immagine prodotto  -->
-        <figure class="w-50  m-0 figure_cart">
-            <img class="img-fluid" :src="setDishImage(plate.image)" alt="immagine">
-        </figure>
-        <!-- Nome prodotto  -->
-        <div class="m-0 w-100 d-flex justify-content-between align-items-center px-2">
-            <div class="d-flex flex-column">
-                <h3>{{ plate.name }}</h3>
+    <div class="bg-white rounded-2 p-4">
+        <div class="row">
+            <!-- bottoni quantità -->
+            <div class="col-2">
+                <div class="d-flex flex-column row-gap-2">
+                    <button class="btn text-dark orange-button" @click="increment(plate)" >+</button>
+                    <span class="border rounded p-1 text-center">{{plate.quantity}}</span>
+                    <button class="btn bg-body-tertiary border" @click="decrement(plate)">-</button>
+                    <!-- bottone rimozione del singolo prodotto -->
+                    <CartSingleRemoveBtn
+                    @click="removeSinglePlate(plate)"/>
+                </div>
             </div>
-            <!-- Prezzo prodotto -->
-            <div class="d-flex flex-column ">
-                <span class="text-end">{{ plate.price }}€</span>
-                <button @click="removeSinglePlate(plate)" class="btn btn-danger text-capitalize">rimuovi</button>
+
+            <div class="col-10">
+                <div class="d-flex flex-column">
+                    <!-- immagine prodotto  -->
+                    <figure>
+                        <img class="img-fluid rounded black-background" :src="setDishImage(plate.image)" alt="immagine">
+                    </figure>                    
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">{{ plate.name }}</h3> 
+                            </div>
+                            <div class="col-4">
+                                <span class="fw-bold bg-body-tertiary border rounded p-1">{{ plate.price }}<span class="orange-text"> €</span></span>
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    
+    @use '../../assets/sass/partials/variables' as *;
+
+    .orange-button{
+        background-color: $orange;
+    }
+    .orange-text{
+        color: $orange;
+    }
+    .black-background{
+        background-color: #15182d;
+    }
+
+    figure{
+        width: 100%;
+        aspect-ratio: 2/1;
+        
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 </style>
