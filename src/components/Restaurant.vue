@@ -27,7 +27,7 @@ export default{
                             <img v-else class="restaurant-bg rounded-4" src="https://codyhouse.co/demo/squeezebox-portfolio-template/img/img.png" alt="image-missing">
 
                             <!-- invisibile da in poi -->
-                            <div class="w-100 p-3 position-absolute text-center top-50 start-50 translate-middle opacity-black-bg d-flex flex-column row-gap-2 d-md-none">
+                            <div class="overlayrestaurant w-100  p-3 position-absolute text-center top-50 start-50 translate-middle opacity-black-bg d-flex flex-column row-gap-2 d-md-none">
                                 <h2 class="mb-0">{{ restaurant.activity_name  }}</h2>
                                 <span>{{ restaurant.address }}</span>
                                 <div>
@@ -42,7 +42,7 @@ export default{
 
                     <!-- invisibile da in poi -->
                     <div class="col-8 d-none d-md-block p-4 ms-3">
-                        <div class="d-flex flex-column row-gap-2">
+                        <div class="d-flex flex-column  row-gap-2">
                             <h2 class="mb-0 text-dark">{{ restaurant.activity_name  }}</h2>
                             <span>{{ restaurant.address }} <i class="fa-solid fa-location-dot" style="color:#002452;" st></i></span>
                             <div class="d-flex column-gap-2">
@@ -100,5 +100,18 @@ export default{
     width: 102%;
     // transition: all 0.8s ease-in-out;
     margin-left: 0%;
+}
+
+
+@media screen and (max-width:372px) {
+   
+        .overlayrestaurant{
+            height: 100%;
+            border-radius:1em;
+            padding: 0px!important;
+            justify-content: space-evenly;
+            
+        }
+    
 }
 </style>
