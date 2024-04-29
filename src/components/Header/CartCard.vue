@@ -29,7 +29,7 @@ export default {
 
         decrement(plate){
             if(plate.quantity <= 1){
-                this.removeSinglePlate(plate)
+                plate.quantity = 1
             }else{
                 plate.quantity--  
                 localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
@@ -68,9 +68,17 @@ export default {
             <!-- bottoni quantità -->
             <div class="col-2">
                 <div class="d-flex flex-column row-gap-2">
-                    <button class="btn text-dark orange-button" @click="increment(plate)" >+</button>
+                    <button class="btn text-dark orange-button" @click="increment(plate)">
+                        <div class="d-flex align-items-center justify-content-center">
+                            +
+                        </div>
+                    </button>
                     <span class="border rounded p-1 text-center">{{plate.quantity}}</span>
-                    <button class="btn bg-body-tertiary border" @click="decrement(plate)">-</button>
+                    <button class="btn gray-btn border" @click="decrement(plate)">
+                        <div class="d-flex align-items-center justify-content-center">
+                            -
+                        </div>
+                    </button>
                     <!-- bottone rimozione del singolo prodotto -->
                     <CartSingleRemoveBtn
                     @click="removeSinglePlate(plate)"/>
@@ -117,7 +125,24 @@ export default {
         img{
             width: 100%;
             height: 100%;
+            aspect-ratio: 2/1;
             object-fit: cover;
         }
+    }
+
+    button.orange-button{
+        &:hover{
+            background-color: #ff6600;
+        }
+        &:focus{
+            border: 1px solid #ff6600;
+        }
+    }
+    button.gray-btn{
+        &:hover{
+            background-color: #e2e2e2;
+        }
+        
+        
     }
 </style>

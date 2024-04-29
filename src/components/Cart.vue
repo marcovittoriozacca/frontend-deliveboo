@@ -37,18 +37,20 @@ import CartCard from "./Header/CartCard.vue"
 <template>
 <!-- offcanvas -->
 <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
-        <div class="offcanvas-header">
-            <h1 class="text-light mb-0">Riassunto Carrello</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
+    <!-- Intestazione dell'offcanvas -->
+    <div class="offcanvas-header">
+        <h1 class="text-light mb-0">Riassunto Carrello</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!-- corpo offcanvas, deve andare in overflow-y scroll -->
     <div class="offcanvas-body">
-        <div class="overflow-offcanvas-body" v-if="store.listplatelocalstorage.length > 0">
-                <!-- card prodotto -->
-                <div class="row row-gap-3">
-                    <div class="col-12" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
-                        <CartCard :plate="plate" />
-                    </div>
+        <div v-if="store.listplatelocalstorage.length > 0" class="overflow-offcanvas-body">
+            <!-- card prodotto -->
+            <div class="row row-gap-3 m-0">
+                <div class="col-12 p-0" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
+                    <CartCard :plate="plate" />
                 </div>
+            </div>
         </div>
         <div v-else>
             <h2 class="text-center text-white">Nessun piatto presente nel tuo carrello</h2>
@@ -128,8 +130,8 @@ import CartCard from "./Header/CartCard.vue"
 
 <style lang="scss" scoped>
 .overflow-offcanvas-body{
-    max-height: 380px;
-    overflow: auto;
+    height: calc(100vh - 410px);
+    overflow-y: scroll;
 
 }
 </style>
