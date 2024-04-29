@@ -28,7 +28,7 @@ import CartCard from "./Header/CartCard.vue"
                     })
                 }
                 store.subtotal_price = subtotal;
-                return subtotal;
+                return subtotal.toFixed(2);
             }
         }
     }
