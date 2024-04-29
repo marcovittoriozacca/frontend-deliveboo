@@ -28,7 +28,7 @@ export default {
             }
         },
         handleImageError(event) {
-            event.target.src = '/img/deliveboo-logo.png'; // Immagine di fallback in caso di l'immagine fornita dalla funzione qui sopra restituisca qualche tipo di problema e venga visualizzato l'alt=""
+            event.target.src = '/img/deliveboo-logo.png'; // Immagine di fallback nel caso in cui l'immagine fornita dalla funzione setDishImage(dish_image) restituisca qualche tipo di problema e venga visualizzato l'alt=""
         },
         addplate(plate){
             this.parsedArray = []
