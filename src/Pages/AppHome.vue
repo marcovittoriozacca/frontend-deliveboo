@@ -255,7 +255,7 @@ color: $orange;
     .diagonale-blu-alto-destra{
         position: relative;
         width: 100%;
-        height: 100px;
+        height: 200px;
         background: #03071e;
         transform: skewY(-3deg);
         transform-origin: top left;
