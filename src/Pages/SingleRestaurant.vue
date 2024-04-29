@@ -65,7 +65,7 @@ export default {
       if (newVal) {
         document.getElementById('alertbox').innerHTML = `
           <div class="alert alert-warning alert-dismissible fade show position-fixed w-100 z-2 d-flex justify-content-center" role="alert" >
-            <strong>You should check in on some of those fields below.</strong> 
+            <strong>Non puoi ordinare da due ristoranti contemporaneamente.</strong> 
             <button id="closeAlert" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
           </div>
         `;

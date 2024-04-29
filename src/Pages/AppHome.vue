@@ -55,32 +55,30 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 store.active_typologies.splice(index, 1);
             },
             // al caricamento della pagina va aggiornato l'array degli ordini presenti nello store con gli ordini presenti nel local storage
-
-            
-        
-
+            isLastVisibleRestaurant(index) {
+               return index === (this.store.active_typologies.length > 0 ? this.store.filtered_restaurants.length : this.restaurants.length) - 1;
+            }
         },
 
         mounted(){
             this.types();
             this.getRestaurants();
-          
-            
         },
-        
-        
         watch: {
         'store.active_typologies': {
-            handler(newVal, oldVal) {
-
-                store.filtered_restaurants = this.restaurants.filter(restaurant => {
+            async handler(newVal, oldVal) {
                 // Controlla se almeno una tipologia del ristorante è presente nelle tipologie attive
-                return restaurant.types.some(type => store.active_typologies.includes(type.slug));
-
-                });
+                // store.filtered_restaurants = this.restaurants.filter(restaurant => {
+                // return restaurant.types.some(type => store.active_typologies.includes(type.slug));
+                // });
+                 if(store.active_typologies.length != 0){
+                     //questa funzione compone l'endpoint con una sintassi di array chiave => valore da mandare a laravel. con Map, iteriamo ogni elemento e aggiungiamo type[indexElemento]=slug in modo da farlo capire a laravel
+                     const url = `http://localhost:8000/api/filtertypologies?${store.active_typologies.map((slug, index) => `type[${index}]=${slug}`).join('&')}`;
+                    await axios.get(url).then((res) => store.filtered_restaurants = res.data.restaurants);
+                }
             },
             deep: true
-        }
+        },
     }
 }
 
@@ -95,10 +93,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
         <div class="container">
             <div class="banner-max-w bg-box rounded-4 p-5">
                 <div class="row align-items-center">
-                    
-                        
                         <AnimationComp/>
-                    
                 </div>
             </div> 
         </div>
@@ -138,11 +133,11 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                     <Loader v-if="store.restaurantLoading"/>
                     <div v-else>
                         <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
-                            <div v-for="(restaurant, index) in (store.filtered_restaurants.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
+                            <div v-for="(restaurant, index) in (store.active_typologies.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
                                 <Restaurant
                                     :restaurant="restaurant"
                                 />
-                                <hr v-if="index != store.filtered_restaurants.length -1 && index != restaurants.length-1">
+                                <hr v-if="!isLastVisibleRestaurant(index)">
                             </div>    
                         </div>
                         <div v-else class="text-center d-flex flex-column gap-4 py-5">
