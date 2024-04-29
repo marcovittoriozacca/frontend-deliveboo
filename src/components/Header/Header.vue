@@ -33,13 +33,13 @@ import CartButton from './CartButton.vue'
                     <ul class="navbar-nav align-items-center ms-md-auto gap-4 py-3 py-md-0">
                         <li class="nav-item">
                             <!-- porta a laravel -->
-                            <a class="link-orange" href="http://127.0.0.1:8000/login">Login</a>
+                            <a class="link-orange" href="http://127.0.0.1:8000/login">Accedi</a>
                             
                         </li>
                         
                         <li class="nav-item">
                             <!-- porta a laravel -->
-                            <a class="link-orange" href="http://127.0.0.1:8000">Register</a>
+                            <a class="link-orange" href="http://127.0.0.1:8000">Registrati</a>
                         </li>
                         
                             <CartButton/>
