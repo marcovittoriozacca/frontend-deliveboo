@@ -95,14 +95,16 @@ import Loader from '../components/GeneralComponents/Loader.vue'
         <div class="container">
             <div class="banner-max-w bg-white rounded-4 p-5">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h1 class="text-center" id="title">DELIVEBOO</h1>
+                    <div class="col-md-6 px-3">
+                        <h1 class="" id="title">DELIVEBOO</h1>
+                        <p class="col-md-8 fs-5 my-4">Scopri il gusto a domicilio: ordina il meglio della cucina direttamente a casa tua. Esperienze culinarie uniche, comodamente servite sulla tua tavola. Semplice, veloce, delizioso!
+                        </p>
                         <p class="text-center">
                             Cena con gli amici? Cosa mangio oggi? Nessun Problema c'è Deliveboo
                         </p>
                     </div>
                     <div class="col-md-6 text-center">
-                        <img src="/public/cena con amici.jpg" alt="Immagine Deliveboo" class="img-fluid">
+                        <img src="/public/cena con amici.jpg" alt="Immagine Deliveboo" class="img-fluid rounded">
                     </div>
                 </div>
             </div>
@@ -163,7 +165,7 @@ import Loader from '../components/GeneralComponents/Loader.vue'
         <div class="dritto-blu">
             <div class="d-flex flex-column align-items-center gap-5 container text-center">
                     <h1 class="text-light fs-64">Hai una attività di ristorazione e vuoi crescere insieme a noi?</h1>
-                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività</h2>
+                    <h2 class="text-light fs-52 w-75">Clicca il Pulsante in basso e registra subito la tua attività!</h2>
                     <WorkWithUsBtn/>
                 </div>
             <div class="diagonale-blu-alto-sinistra"></div>
@@ -197,8 +199,10 @@ color: $orange;
 
 
     hr{
-        border: 1px solid black;
-        opacity: 1;    
+        border: 0.5px solid gray;
+        opacity: 1;
+        width: 90%;
+        margin: 20px auto
     }
 
 
