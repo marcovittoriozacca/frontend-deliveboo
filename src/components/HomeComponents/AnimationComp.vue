@@ -1,4 +1,5 @@
 <script>
+import AOS from 'aos';
 export default {
   data() {
     return {
