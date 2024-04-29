@@ -27,6 +27,9 @@ export default {
                 return image =  `http://127.0.0.1:8000/storage/${dish_image}`;
             }
         },
+        handleImageError(event) {
+            event.target.src = '/img/deliveboo-logo.png'; // Immagine di fallback nel caso in cui l'immagine fornita dalla funzione setDishImage(dish_image) restituisca qualche tipo di problema e venga visualizzato l'alt=""
+        },
         addplate(plate){
             this.parsedArray = []
             // controllo se esiste la chiave nel local storage, se non c e pusho il piatto
@@ -125,28 +128,55 @@ export default {
     
     <div :class="plate.visible==0 ? 'opacity-75 bg-secondary' : '' " class="card-dark-bg text-white rounded-3 p-3 h-100" >
         <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <figure>
-                        <img class="plate-img rounded" :src="setDishImage(plate.image)" :alt="plate.name">
+            <div class="row food-card">
+                <div class="col-12 text-center">
+                    <figure class="position-relative">
+                        <img class="plate-img rounded" :src="setDishImage(plate.image)" :alt="plate.name" @error="handleImageError">
+                        <span class="badge rounded-pill position-absolute visible-position" :class="(plate.visible? 'text-bg-success' : 'text-bg-danger')">{{ (plate.visible)? 'Disponibile' : 'Non Disponibile' }}</span>
                     </figure>
                 </div>
-                <div class="col-6">
+                <div class="col-12">
                     <div class="d-flex flex-column align-items-center">
                         <h2 class="mb-0 text-center mb-2">{{ plate.name }}</h2>
-                        <span class="badge rounded-pill" :class="(plate.visible? 'text-bg-success' : 'text-bg-danger')">{{ (plate.visible)? 'Disponibile' : 'Non Disponibile' }}</span>
                     </div>
                 </div>
 
+                <div class="col-12 h-description">
+                    <p>
+                        {{ plate.description }}
+                    </p>
+                </div>
+
                 <div class="col-12">
-                    <p class="my-2">{{ plate.description }}</p>
+                    <button type="button" class="ingredienti" data-bs-toggle="modal" data-bs-target="#ingredients">
+                        Lista ingredienti
+                    </button>
+
+                    <!-- Modale ingredienti -->
+                    <div class="modal fade" id="ingredients" tabindex="-1" aria-labelledby="ingredientsLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-dark" id="ingredientsLabel">Ingredienti:</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="my-2 text-dark">{{ plate.ingredient }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="close-btn" data-bs-dismiss="modal">Chiudi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-12" :class="plate.visible==0 ? 'd-none' : '' ">
-                    <div class="d-flex align-items-center justify-content-around ">
-                        <div class="split-pill">
-                            <span class="left">{{ plate.price }}</span>
-                            <span class="right">€</span>
+                    <div class="d-flex align-items-center justify-content-between ">
+                        <div class="border-pill rounded-5">
+                            <div class="split-pill">
+                                <span class="left ps-2 pe-2">{{ plate.price }}</span>
+                                <span class="right ps-2 pe-2">€</span>
+                            </div>
                         </div>
                         <div>
                             <!-- Bottone aggiungi al carrello -->
@@ -168,11 +198,9 @@ export default {
     background-color:$dark-navy-blue ;
 }
 .plate-img{
-    width: 170px;
-    aspect-ratio: 2/1;
-    object-fit: cover;
-
-    border: 2px solid $dark-yellow;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
 }
 .bottoni{
     button,
@@ -189,7 +217,7 @@ export default {
   padding: 5px;
   display: inline-flex;
   justify-content:space-evenly;
-  background: linear-gradient(-90deg, #f58115 32%, black 35%, black 33%, #CED2D9 22%);
+  background: linear-gradient(-90deg, #f58115 32%, black 35%, black 33%, #ffffff 22%);
 }
 
 .left {
@@ -200,5 +228,50 @@ export default {
 .right {
   padding-left: 5px;
   color: black;
+}
+
+.border-pill{
+    background-image: linear-gradient(-90deg, #ffffff 32%, black 35.5%, black 33%, #f58115 22%);
+    padding: 2px;
+}
+
+.ingredienti{
+    background-color: transparent;
+    border: none;
+    color: #f58115;
+    text-decoration: underline;
+}
+
+.h-description{
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.food-card{
+    height: 650px;
+}
+
+.visible-position{
+    top: 10px;
+    left: 0px;
+}
+
+.close-btn{
+    background-color: #f58115;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    padding-block: 5px;
+    padding-inline: 15px;
+}
+
+.close-btn:hover{
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.close-btn:not(:hover){
+    transition-duration: 0.5s;
+    color: black;
 }
 </style>
