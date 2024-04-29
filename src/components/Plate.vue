@@ -125,10 +125,9 @@ export default {
 </script>
 
 <template>
-    
-    <div :class="plate.visible==0 ? 'opacity-75 bg-secondary pe-none ' : '' " class="card-dark-bg text-white rounded-3 p-3 h-100" >
-        <div class="container">
-            <div class="row">
+    <div :class="plate.visible==0 ? 'opacity-50 pe-none user-select-none' : '' " class="card-dark-bg text-white rounded-3 p-3 h-100" >
+        <div class="container h-100">
+            <div class="row flex-column row-gap-1 h-100">
                 <div class="col-12 p-0">
                     <figure class="position-relative mb-0 px-0">
                         <img class="plate-img rounded" :src="setDishImage(plate.image)" :alt="plate.name" @error="handleImageError">
@@ -170,7 +169,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="col-12" :class="plate.visible==0 ? 'd-none' : '' ">
+                <div class="col-12 mt-auto" :class="plate.visible==0 ? 'd-none' : '' ">
                     <div class="d-flex align-items-center justify-content-between ">
                         <div class="border-pill rounded-5">
                             <div class="split-pill">
