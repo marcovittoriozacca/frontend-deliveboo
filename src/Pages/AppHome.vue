@@ -89,27 +89,23 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
 
 
 <template>
-<!--Slogan Deliveboo lascio commento solo per tentativo animazione  <div class="reset-header-height">
+<!--Slogan Deliveboo -->
+<div class="reset-header-height">
     <div id="bg-first-section">
         <div class="container">
-            <div class="banner-max-w bg-white rounded-4 p-5">
+            <div class="banner-max-w bg-box rounded-4 p-5">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h1 class="text-center" id="title">DELIVEBOO</h1>
-                        <p class="text-center">
-                            Cena con gli amici? Cosa mangio oggi? Nessun Problema c'è Deliveboo
-                        </p>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <img src="/public/cena con amici.jpg" alt="Immagine Deliveboo" class="img-fluid">
-                    </div>
+                    
+                        
+                        <AnimationComp/>
+                    
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
-</div> -->
+</div>
 
-     <AnimationComp/>
+     
 
 
 
@@ -345,6 +341,11 @@ color: $orange;
         .search-title{
             font-size: 24px;
         } 
+    }
+
+
+    .bg-box {
+        background-color: #03071E
     }
 
 </style>
