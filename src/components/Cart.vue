@@ -35,25 +35,26 @@ import CartCard from "./Header/CartCard.vue"
 </script>
 
 <template>
-
-    <!-- POI VA CREATA LA LOGICA CHE QUANDO CLICCHI SUL TASTO CHECKOUT VENGA "ASSEMBLATO" UN ARRAY CONTENETE I PIATTI + LE QUANTITA' -->
-
 <!-- offcanvas -->
 <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
         <div class="offcanvas-header">
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h1 class="text-light mb-0">Riassunto Carrello</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
     <div class="offcanvas-body">
-        <div v-if="store.listplatelocalstorage.length > 0">
-            <h1 class="text-light mb-3">Riassunto Carrello</h1>
+        <div class="overflow-offcanvas-body" v-if="store.listplatelocalstorage.length > 0">
                 <!-- card prodotto -->
                 <div class="row row-gap-3">
                     <div class="col-12" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
                         <CartCard :plate="plate" />
                     </div>
                 </div>
-            
-            <!-- card prezzo totale  -->
+        </div>
+        <div v-else>
+            <h2 class="text-center text-white">Nessun piatto presente nel tuo carrello</h2>
+        </div>
+        <div v-if="store.listplatelocalstorage.length > 0">
+        <!-- card prezzo totale  -->
             <div class="bg-light rounded my-3 p-3">
                 <div class="d-flex justify-content-between">
                     <span>Subtotale</span>
@@ -69,7 +70,7 @@ import CartCard from "./Header/CartCard.vue"
                     <span> {{ totalSubPrice }}<span class="ps-1">€</span></span>
                 </div>
             </div>
-    
+
             <!-- bottone checkout  -->
             <div class="d-grid">
                 <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
@@ -84,12 +85,8 @@ import CartCard from "./Header/CartCard.vue"
             >
                 Svuota Carrello
             </button>
-
         </div>
-        <div v-else>
-            <h2 class="text-center text-white">Nessun piatto presente nel tuo carrello</h2>
-        </div>
-  </div>
+    </div>
 </div>
 
 <div
@@ -129,4 +126,10 @@ import CartCard from "./Header/CartCard.vue"
 </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.overflow-offcanvas-body{
+    max-height: 380px;
+    overflow: auto;
+
+}
+</style>

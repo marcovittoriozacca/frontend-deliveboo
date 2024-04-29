@@ -81,11 +81,15 @@ export default {
                 <div class="d-flex flex-column">
                     <!-- immagine prodotto  -->
                     <figure>
-                        <img class="img-fluid rounded" :src="setDishImage(plate.image)" alt="immagine">
-                    </figure>
-                    <div class="d-flex align-items-center column-gap-2">
-                        <h3 class="mb-0">{{ plate.name }}</h3> 
-                        <span class="fw-bold bg-body-tertiary border rounded p-1">{{ plate.price }}<span class="orange-text"> €</span></span>
+                        <img class="img-fluid rounded black-background" :src="setDishImage(plate.image)" alt="immagine">
+                    </figure>                    
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">{{ plate.name }}</h3> 
+                            </div>
+                            <div class="col-4">
+                                <span class="fw-bold bg-body-tertiary border rounded p-1">{{ plate.price }}<span class="orange-text"> €</span></span>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -101,6 +105,9 @@ export default {
     }
     .orange-text{
         color: $orange;
+    }
+    .black-background{
+        background-color: #15182d;
     }
 
     figure{
