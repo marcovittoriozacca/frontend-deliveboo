@@ -108,6 +108,7 @@ export default {
                     }
                 }else{
                     console.log("hai gia un ordine in sospeso")
+                    store.alertbox=true
                 }
             }
 
@@ -121,6 +122,7 @@ export default {
 </script>
 
 <template>
+    
     <div class="card-dark-bg text-white rounded-3 p-3" >
         <div class="container">
             <div class="row">
