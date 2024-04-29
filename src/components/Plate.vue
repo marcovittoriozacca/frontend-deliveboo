@@ -123,7 +123,7 @@ export default {
 
 <template>
     
-    <div class="card-dark-bg text-white rounded-3 p-3" >
+    <div :class="plate.visible==0 ? 'opacity-75 bg-secondary' : '' " class="card-dark-bg text-white rounded-3 p-3 h-100" >
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -142,7 +142,7 @@ export default {
                     <p class="my-2">{{ plate.description }}</p>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12" :class="plate.visible==0 ? 'd-none' : '' ">
                     <div class="d-flex align-items-center justify-content-around ">
                         <div class="split-pill">
                             <span class="left">{{ plate.price }}</span>
