@@ -27,7 +27,7 @@ export default{
                             <img v-else class="restaurant-bg rounded-4" src="https://codyhouse.co/demo/squeezebox-portfolio-template/img/img.png" alt="image-missing">
 
                             <!-- invisibile da in poi -->
-                            <div class="overlayrestaurant w-100  p-3 position-absolute text-center top-50 start-50 translate-middle opacity-black-bg d-flex flex-column row-gap-2 d-md-none">
+                            <div class="w-100 p-3 position-absolute text-center top-50 start-50 translate-middle opacity-black-bg d-flex flex-column row-gap-2 d-md-none text-light">
                                 <h2 class="mb-0">{{ restaurant.activity_name  }}</h2>
                                 <span>{{ restaurant.address }}</span>
                                 <div>
@@ -41,9 +41,9 @@ export default{
                     </div>
 
                     <!-- invisibile da in poi -->
-                    <div class="col-8 d-none d-md-block p-4 ms-3">
-                        <div class="d-flex flex-column  row-gap-2">
-                            <h2 class="mb-0 text-dark">{{ restaurant.activity_name  }}</h2>
+                    <div class=" col-8 d-none d-md-block p-4 ms-3">
+                        <div class="d-flex flex-column row-gap-2">
+                            <h2 class="mb-0">{{ restaurant.activity_name  }}</h2>
                             <span>{{ restaurant.address }} <i class="fa-solid fa-location-dot" style="color:#002452;" st></i></span>
                             <div class="d-flex column-gap-2">
                                 <span class="black-bg badge rounded-pill mb-0" v-for="(types, index) in restaurant.types" :key="index">
@@ -74,7 +74,14 @@ export default{
     -o-box-shadow: 5px 5px 10px 0px #525252;
     box-shadow: 5px 5px 10px 0px #525252;
 
-    background-color: whitesmoke;
+    background-color: white;
+    background-image: url('src/assets/img/card_restaurant-bg.jpg'); 
+    background-size: cover;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    border-radius: 10px;
+    padding: 20px;
     border-radius: 20px;
     .opacity-black-bg{
         background-color: rgba(0, 0, 0, 0.7);
@@ -98,7 +105,6 @@ export default{
 
 .contenitore:hover{
     width: 102%;
-    // transition: all 0.8s ease-in-out;
     margin-left: 0%;
 }
 
@@ -114,4 +120,23 @@ export default{
         }
     
 }
+
+@media (max-width: 768px) {
+    .contenitore{
+       background-color: $base-orange;
+       -webkit-box-shadow: 0px 0px 0px 0px #525252;
+       -moz-box-shadow: 0px 0px 0px 0px #525252;
+       -o-box-shadow: 0px 0px 0px 0px #525252;
+       box-shadow: 0px 0px 0px 0px #525252;
+
+       background-image: none;
+    }
+}
+
+@media (max-width: 992px){
+.contenitore{
+    background-size: 100%;
+} 
+}
+
 </style>
