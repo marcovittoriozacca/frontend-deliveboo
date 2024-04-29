@@ -7,6 +7,7 @@ import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
 import Restaurant from '../components/Restaurant.vue'
 import Loader from '../components/GeneralComponents/Loader.vue'
+import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
 
     export default {
         name: "AppHome",
@@ -16,6 +17,7 @@ import Loader from '../components/GeneralComponents/Loader.vue'
             WorkWithUsBtn,
             Restaurant,
             Loader,
+            AnimationComp,
         },
         data(){
             return{
@@ -87,28 +89,23 @@ import Loader from '../components/GeneralComponents/Loader.vue'
 
 
 <template>
-<!--Slogan Deliveboo-->
-
-
+<!--Slogan Deliveboo -->
 <div class="reset-header-height">
     <div id="bg-first-section">
         <div class="container">
-            <div class="banner-max-w bg-white rounded-4 p-5">
+            <div class="banner-max-w bg-box rounded-4 p-5">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h1 class="text-center" id="title">DELIVEBOO</h1>
-                        <p class="text-center">
-                            Cena con gli amici? Cosa mangio oggi? Nessun Problema c'è Deliveboo
-                        </p>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <img src="/public/cena con amici.jpg" alt="Immagine Deliveboo" class="img-fluid">
-                    </div>
+                    
+                        
+                        <AnimationComp/>
+                    
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </div>
+
+     
 
 
 
@@ -344,6 +341,11 @@ color: $orange;
         .search-title{
             font-size: 24px;
         } 
+    }
+
+
+    .bg-box {
+        background-color: #03071E
     }
 
 </style>
