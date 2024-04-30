@@ -101,6 +101,7 @@ export default {
                             temporaryArray.splice(storageIndexToRemove, 1);
                             if(temporaryArray.length == 0){
                                 localStorage.clear();
+                                store.actualrestaurant="";
                             }else{
                                 // Aggiorna il local storage
                                 localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(temporaryArray));

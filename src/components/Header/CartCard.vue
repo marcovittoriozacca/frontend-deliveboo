@@ -57,6 +57,7 @@ export default {
 
                 if(store.listplatelocalstorage.length === 0){
                     localStorage.clear();
+                    store.actualrestaurant="";
                 }
         },
         takerestaurant(){
