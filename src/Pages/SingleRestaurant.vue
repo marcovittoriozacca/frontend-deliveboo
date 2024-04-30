@@ -73,7 +73,7 @@ export default {
             <div class="alert alert-warning alert-dismissible fade show position-fixed w-100 z-2 d-flex justify-content-center py-1" role="alert" >
                 <strong class="align-self-center">Non puoi ordinare da due ristoranti contemporaneamente.</strong> 
                 <div class="text-center ps-3">
-                    <button id="clearCartBtn" class="my-3 btn btn-sm text-white bg-danger">Svuota Carrello</button>
+                    <button id="clearCartBtn" class="my-3 btn btn-sm text-white bg-danger" data-bs-dismiss="alert">Svuota Carrello</button>
                 </div>
                 <button id="closeAlert" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
