@@ -45,9 +45,10 @@ export default {
             
 
             if(localStorage.getItem("restaurant"+this.restaurant.id) == null && store.Sospeso!=true){
-                // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere il piatto
+                // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere le informazioni del ristorante e poi del piatto
+
                 plate.quantity = 1;
-                this.parsedArray.push(plate)
+                this.parsedArray.push(this.restaurant,plate)
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
                 store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id));
@@ -120,6 +121,9 @@ export default {
         isInCart(plate){
             return store.listplatelocalstorage.some(element => element.id === plate.id)? true : false 
         }
+    },
+    mounted() {
+        console.log(this.restaurant)
     },
 }
 </script>
