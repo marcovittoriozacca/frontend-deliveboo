@@ -113,5 +113,11 @@
         font-weight: bold;
     }
 
+    @media screen and (min-width: 1921px) {
+        .bg-blu{
+            height: 60vh;
+        }
+    }
+
     
 </style>
