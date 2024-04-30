@@ -132,7 +132,9 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                     <!-- con la corretta tipologia -->
                     <Loader v-if="store.restaurantLoading"/>
                     <div v-else>
-                        <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
+                        <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">    
+                            <h2 v-if="store.active_typologies.length > 0">Ristoranti trovati: {{ store.filtered_restaurants.length }}</h2>
+                            <h2 v-else>Ristoranti trovati: {{ restaurants.length }}</h2>                           
                             <div v-for="(restaurant, index) in (store.active_typologies.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
                                 <Restaurant
                                     :restaurant="restaurant"
