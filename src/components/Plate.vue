@@ -153,8 +153,8 @@ export default {
                             Ingredienti
                         </a>
                     </p>
-                    <div class="collapse" :id="'ingredienti' + plate.id">
-                        <div class="card card-body text-dark">
+                    <div class="collapse position-absolute dropdown-ingredienti" :id="'ingredienti' + plate.id">
+                        <div class="card card-body p-3 text-dark">
                             {{ plate.ingredient }}
                         </div>
                     </div>
@@ -260,5 +260,10 @@ export default {
 .close-btn:not(:hover){
     transition-duration: 0.5s;
     color: black;
+}
+
+.dropdown-ingredienti{
+    width: 350px;
+    z-index: 2;
 }
 </style>
