@@ -160,7 +160,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="col-12 mt-auto" :class="plate.visible==0 ? 'd-none' : '' ">
+                <div class="col-12 mt-auto pt-3" :class="plate.visible==0 ? 'd-none' : '' ">
                     <div class="d-flex align-items-center justify-content-between ">
                         <div class="border-pill rounded-5">
                             <div class="split-pill">
