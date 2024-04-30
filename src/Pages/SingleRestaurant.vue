@@ -25,7 +25,7 @@ export default {
         methods:{
             getPlates(){
                 axios.get(`http://127.0.0.1:8000/api/restaurant/${this.$route.params.slug}`).then((res)=> { 
-                    this.plates = res.data.dishes
+                    this.plates = res.data.dishes.filter(plate => plate.visible)
                     this.restaurant = res.data.restaurant
                     this.dishSorterer();
                 } )
