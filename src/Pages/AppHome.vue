@@ -82,11 +82,25 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
     }
 }
 
+window.addEventListener('scroll', function() {
+  var scrollToTop = document.getElementById('scrollToTop');
+
+  // dopo quanto scroll appare il link
+  if (window.scrollY > 400) {                 
+    scrollToTop.style.display = 'block';
+  } else {
+    scrollToTop.style.display = 'none';
+  }
+});
+
     
 </script>
 
 
 <template>
+<a href="#top" id="scrollToTop">
+    <i class="fa-solid fa-arrow-up" style="color: #000000;"></i>
+</a>
 <!--Slogan Deliveboo -->
 <div class="reset-header-height">
     <div id="bg-first-section">
@@ -347,4 +361,25 @@ color: $orange;
         background-color: #03071E
     }
 
+    #scrollToTop {
+        display: none; 
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: white;
+        color: white; 
+        padding: 5px 15px; 
+        border-radius: 50%; 
+        text-decoration: none; 
+        transition: opacity 0.4s;
+        z-index: 5;
+    }
+
+    #scrollToTop:hover {
+        scale: 120%;
+    }
+
+    .fa-arrow-up{
+        padding-block: 8px;
+    }
 </style>
