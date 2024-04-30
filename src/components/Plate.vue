@@ -151,29 +151,20 @@ export default {
                 </div>
 
                 <div class="col-12">
-                    <button type="button" class="ingredienti" data-bs-toggle="modal" data-bs-target="#ingredients">
-                        Lista ingredienti
-                    </button>
-
                     <!-- Modale ingredienti -->
-                    <div class="modal fade" id="ingredients" tabindex="-1" aria-labelledby="ingredientsLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-dark" id="ingredientsLabel">Ingredienti:</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="my-2 text-dark">{{ plate.ingredient }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="close-btn" data-bs-dismiss="modal">Chiudi</button>
-                                </div>
-                            </div>
+                    <p class="d-inline-flex gap-1">
+                        <a class="ingredienti" data-bs-toggle="collapse" :href="'#ingredienti' + plate.id" role="button" aria-expanded="false" :aria-controls="'ingredienti' + plate.id">
+                            Ingredienti
+                        </a>
+                    </p>
+                    <div class="collapse position-absolute dropdown-ingredienti" :id="'ingredienti' + plate.id">
+                        <div class="card card-body p-3 text-dark">
+                            {{ plate.ingredient }}
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12 mt-auto" :class="plate.visible==0 ? 'd-none' : '' ">
+                <div class="col-12 mt-auto pt-3" :class="plate.visible==0 ? 'd-none' : '' ">
                     <div class="d-flex align-items-center justify-content-between ">
                         <div class="border-pill rounded-5">
                             <div class="split-pill">
@@ -243,7 +234,7 @@ export default {
     background-color: transparent;
     border: none;
     color: #f58115;
-    text-decoration: underline;
+    text-decoration: underline !important; 
 }
 
 .h-description{
@@ -273,5 +264,10 @@ export default {
 .close-btn:not(:hover){
     transition-duration: 0.5s;
     color: black;
+}
+
+.dropdown-ingredienti{
+    width: 350px;
+    z-index: 2;
 }
 </style>

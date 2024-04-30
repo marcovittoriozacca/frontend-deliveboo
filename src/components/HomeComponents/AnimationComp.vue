@@ -42,7 +42,7 @@ export default {
   }
   
   .gladiola-font {
-    font-family: 'Gladiola', cursive; 
+    font-family: "Signika", sans-serif;
   }
   </style>
   
