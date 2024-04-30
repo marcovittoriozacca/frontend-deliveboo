@@ -46,6 +46,9 @@ import CartCard from "./Header/CartCard.vue"
     </div>
     <!-- corpo offcanvas, deve andare in overflow-y scroll -->
     <div class="offcanvas-body">
+        
+        <h1 class="text-white">{{ store.actualrestaurant.restaurant.activity_name }}</h1>
+        
         <div v-if="store.listplatelocalstorage.length > 0" class="overflow-offcanvas-body">
             <!-- card prodotto -->
             <div class="row row-gap-3 m-0">
