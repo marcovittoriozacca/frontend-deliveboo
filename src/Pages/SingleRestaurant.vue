@@ -23,6 +23,12 @@ export default {
             }
         },
         methods:{
+            clearAll(){
+                localStorage.clear()
+                store.listplatelocalstorage = []                
+            },   
+            
+
             getPlates(){
                 axios.get(`http://127.0.0.1:8000/api/restaurant/${this.$route.params.slug}`).then((res)=> { 
                     this.plates = res.data.dishes
@@ -64,11 +70,15 @@ export default {
                 handler(newVal, oldVal) {
       if (newVal) {
         document.getElementById('alertbox').innerHTML = `
-          <div class="alert alert-warning alert-dismissible fade show position-fixed w-100 z-2 d-flex justify-content-center" role="alert" >
-            <strong>Non puoi ordinare da due ristoranti contemporaneamente.</strong> 
-            <button id="closeAlert" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-          </div>
+            <div class="alert alert-warning alert-dismissible fade show position-fixed w-100 z-2 d-flex justify-content-center" role="alert" >
+                <strong class="align-self-center">Non puoi ordinare da due ristoranti contemporaneamente.</strong> 
+                <div class="text-center ps-3">
+                    <button id="clearCartBtn" class="my-3 btn btn-sm text-white bg-danger">Svuota Carrello</button>
+                </div>
+                <button id="closeAlert" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         `;
+        document.getElementById('clearCartBtn').addEventListener('click', this.clearAll);
         
         document.getElementById('closeAlert').addEventListener('click',()=>{
             this.store.alertbox=false
