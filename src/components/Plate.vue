@@ -230,7 +230,7 @@ export default {
     background-color: transparent;
     border: none;
     color: #f58115;
-    text-decoration: underline;
+    text-decoration: underline !important; 
 }
 
 .h-description{
