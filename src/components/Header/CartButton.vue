@@ -28,7 +28,7 @@ import {store} from '../../Store';
     <i class="fa-solid fa-cart-shopping d-flex align-items-center" style="color: #f58115;">
     
         
-            <span v-if="store.listplatelocalstorage.length > 0 "  class="bg-white rounded-circle  custom-font-size">{{ store.listplatelocalstorage.length }}</span>
+            <span v-if="store.listplatelocalstorage.length > 0 "  class="bg-white rounded-circle  custom-font-size">{{ store.listplatelocalstorage.length-1 }}</span>
         
     </i>
 

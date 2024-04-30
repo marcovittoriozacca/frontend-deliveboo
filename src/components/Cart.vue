@@ -24,7 +24,9 @@ import CartCard from "./Header/CartCard.vue"
                 let subtotal = 0;
                 if (store.listplatelocalstorage.length > 0) {
                     store.listplatelocalstorage.forEach((element)=>{
+                        if(!element.activity_name){
                         subtotal += +element.price * element.quantity
+                        }
                     })
                 }
                 store.subtotal_price = subtotal;
@@ -48,7 +50,7 @@ import CartCard from "./Header/CartCard.vue"
             <!-- card prodotto -->
             <div class="row row-gap-3 m-0">
                 <div class="col-12 p-0" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
-                    <CartCard :plate="plate" />
+                    <CartCard :plate="plate" v-if="!plate.activity_name"/>
                 </div>
             </div>
         </div>
