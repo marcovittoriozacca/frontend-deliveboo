@@ -147,24 +147,15 @@ export default {
                 </div>
 
                 <div class="col-12">
-                    <button type="button" class="ingredienti" data-bs-toggle="modal" data-bs-target="#ingredients">
-                        Lista ingredienti
-                    </button>
-
                     <!-- Modale ingredienti -->
-                    <div class="modal fade" id="ingredients" tabindex="-1" aria-labelledby="ingredientsLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-dark" id="ingredientsLabel">Ingredienti:</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="my-2 text-dark">{{ plate.ingredient }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="close-btn" data-bs-dismiss="modal">Chiudi</button>
-                                </div>
-                            </div>
+                    <p class="d-inline-flex gap-1">
+                        <a class="ingredienti" data-bs-toggle="collapse" :href="'#ingredienti' + plate.id" role="button" aria-expanded="false" :aria-controls="'ingredienti' + plate.id">
+                            Ingredienti
+                        </a>
+                    </p>
+                    <div class="collapse" :id="'ingredienti' + plate.id">
+                        <div class="card card-body text-dark">
+                            {{ plate.ingredient }}
                         </div>
                     </div>
                 </div>
