@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 
 import 'vue3-carousel/dist/carousel.css'
-
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Importa i file CSS di AOS
 
