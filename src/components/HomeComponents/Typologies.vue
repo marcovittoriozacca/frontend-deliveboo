@@ -1,7 +1,11 @@
 <script>
+import Loader from '../GeneralComponents/Loader.vue';
 import { store } from '../../Store';
 export default {
     name: 'Typologies',
+    components:{
+        Loader,
+    },
     data() {
         return {
             store,
