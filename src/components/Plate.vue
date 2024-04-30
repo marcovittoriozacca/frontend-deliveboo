@@ -11,7 +11,6 @@ export default {
         return {
             store,
             ContolloRistorante:[],
-            
             storedArray:"",
             parsedArray:[],
             controllo:false,
@@ -48,7 +47,7 @@ export default {
                 // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere le informazioni del ristorante e poi del piatto
 
                 plate.quantity = 1;
-                this.parsedArray.push(this.restaurant,plate)
+                this.parsedArray.push(plate)
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
                 store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id));

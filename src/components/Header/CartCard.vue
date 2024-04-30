@@ -1,5 +1,6 @@
 <script>
 import CartSingleRemoveBtn from '../GeneralComponents/CartSingleRemoveBtn.vue';
+import axios from 'axios';
 import { store } from '../../Store';
 export default {
     name:'CartCard',
@@ -23,6 +24,7 @@ export default {
             }
         },
         increment(plate){
+            this.takerestaurant();
             plate.quantity++;
             localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
         },
@@ -57,6 +59,24 @@ export default {
                     localStorage.clear();
                 }
         },
+        takerestaurant(){
+            let id="";
+        this.ContolloRistorante=Object.keys(localStorage)
+        this.ContolloRistorante.forEach(element => {
+                if(element.includes("restaurant")){
+                    console.log(element.substring(10))
+                    return id=element.substring(10)
+                }
+            });
+            
+        axios.get(`http://127.0.0.1:8000/api/restaurantsid/${id}`).then((res)=>{
+            store.actualrestaurant=res.data
+        })
+        }
+    },
+    mounted() {
+        this.takerestaurant();
+
     },
     
 }
