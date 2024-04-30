@@ -1,77 +1,14 @@
 <script>
-import { Carousel, Slide } from 'vue3-carousel'
 import { store } from '../../Store';
-import Loader from '../GeneralComponents/Loader.vue';
 export default {
     name: 'Typologies',
-
-    components: {
-        Carousel,
-        Slide,
-        Loader,
-    },
-
     data() {
         return {
             store,
-            currentSlide: 0,
-            breakpoints: {
-                0:{
-                    itemsToShow: 1,
-                    snapAlign: "center",
-                    itemsToScroll: 1,
-                },
-                350:{
-                    itemsToShow: 1.8,
-                    snapAlign: "center",
-                    itemsToScroll: 1,
-                },
-                500:{
-                    itemsToShow: 3,
-                    snapAlign: "center",
-                    itemsToScroll: 1,
-                },
-				// 700px and up
-				700: {
-					itemsToShow: 3.5,
-					snapAlign: "center",
-                    itemsToScroll: 3.5,
-				},
-				800: {
-					itemsToShow: 4,
-					snapAlign: "center",
-                    itemsToScroll: 3.5,
-				},
-				900: {
-					itemsToShow: 5,
-					snapAlign: "center",
-                    itemsToScroll: 4,
-				},
-				// 1024 and up
-				1024: {
-					itemsToShow: 5,
-					snapAlign: "start"
-				},
-				// 1024 and up
-				1200: {
-					itemsToShow: 7,
-					snapAlign: "center",
-                    itemsToScroll: 6,
-				}
-			}
-
         }
-
     },
 
     methods: {
-        next() {
-            this.$refs.carousel.next()
-        },
-        prev() {
-            this.$refs.carousel.prev()
-        },
-
         activeTypologies(slug) {
             
             if (store.active_typologies.includes(slug)) {
