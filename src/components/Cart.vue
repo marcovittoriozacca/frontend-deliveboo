@@ -17,7 +17,12 @@ import CartCard from "./Header/CartCard.vue"
             clearAll(){
                 localStorage.clear()
                 store.listplatelocalstorage = []   
-                store.actualrestaurant=""             
+                store.actualrestaurant=""   
+                store.full_name="";
+                store.email="";
+                store.address="";
+                store.tel="";
+                store.description="";          
             },                    
         },
         computed:{

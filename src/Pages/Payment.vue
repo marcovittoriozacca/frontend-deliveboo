@@ -16,6 +16,7 @@ export default {
             clientToken: '',
             gotToken: false,
             restaurant:"",
+            valid:false,
         }
     },
     mounted() {
@@ -24,9 +25,101 @@ export default {
         store.email="";
         store.address="";
         store.tel="";
+        store.description="";
+        this.valid=false;
        
     },
     methods: {
+        validation(){
+            let controllo=true
+
+
+            if(store.full_name){
+
+                let validRegex = /^[a-zA-Z\s]+$/;
+                if( !validRegex.test(store.full_name)){
+                    document.getElementById('nameerror').innerHTML="Inserisci solo caratteri o spazi"
+                    controllo=false
+                }else{
+                    document.getElementById('nameerror').innerHTML=""
+                }
+
+            }else{
+            document.getElementById('nameerror').innerHTML="Inserisci le informazioni"
+            controllo=false
+            }
+
+
+
+
+            if(store.email){
+
+
+                
+                let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                if( !validRegex.test(store.email)){
+                    document.getElementById('emailerror').innerHTML="Inserisci solo lettere maiuscole, minuscole, numeri e solo @ e . come caratteri speciali"
+                    controllo=false
+                }else{
+                    document.getElementById('emailerror').innerHTML=""
+                }
+                
+            }else{
+                document.getElementById('emailerror').innerHTML="Inserisci le informazioni"
+                controllo=false
+             }
+
+
+             if(store.address){
+                let validRegex = /^[0-9a-zA-Z.,\s]+$/;
+                if( !validRegex.test(store.address)){
+                    document.getElementById('addresserror').innerHTML="Inserisci solo caratteri alfabetici,numeri,virgole o punti"
+                    controllo=false
+                }else{
+                    document.getElementById('addresserror').innerHTML=""
+                }
+
+             }else{
+                document.getElementById('addresserror').innerHTML="Inserisci le informazioni"
+                controllo=false
+             }
+
+
+             if(store.tel){
+                let validRegex = /^[0-9]{6,14}$/;
+                if( !validRegex.test(store.tel)){
+                    document.getElementById('telerror').innerHTML="Inserisci un numero di telefono compreso tra 6 e 14 numeri"
+                    controllo=false
+                }else{
+                    document.getElementById('telerror').innerHTML=""
+                }
+
+
+             }else{
+                document.getElementById('telerror').innerHTML="Inserisci le informazioni"
+                controllo=false
+             }
+
+             if(store.description){
+                let validRegex = /^[0-9a-zA-Z.,\s]+$/;
+                if( !validRegex.test(store.description)){
+                    document.getElementById('descriptionerror').innerHTML="Non inserire caratteri speciali eccetto il punto o la virgola"
+                    controllo=false
+                }else{
+                    document.getElementById('descriptionerror').innerHTML=""
+                }
+             }else{
+                document.getElementById('descriptionerror').innerHTML=""
+             }
+
+             if(controllo === true){
+                this.valid=true
+             }else{
+                this.valid=false
+             }
+
+        },
+        
         async getToken(){
             this.gotToken = false;
             await axios.get('http://127.0.0.1:8000/api/braintree/get-token')
@@ -96,29 +189,40 @@ export default {
                 <div class="col-6">
                     <h1>Dettagli di fatturazione</h1>
                     <!-- Input per il nome completo -->
-                    <div class="input-group">
-                        <input type="text" v-model="store.full_name" id="fullname" class="form-control" placeholder="Inserisci il tuo nome completo" aria-describedby="fullname-help">
+                    <div class="d-flex flex-column">
+                        <label for="name">Nome e Cognome*</label>
+                        <input name="name" type="text" v-model="store.full_name"  id="fullname" class="form-control" placeholder="Nome completo" aria-describedby="fullname-help">
+                        <small id="nameerror"></small>
                     </div>
-                    <small id="fullname-help" class="form-text text-muted p-3">Il tuo nome completo deve includere il nome e il cognome.</small>
                     
                     <!-- Input per l'email -->
-                    <div class="input-group my-3">
-                        <input type="email" id="email" v-model="store.email" class="form-control" placeholder="Inserisci il tuo indirizzo email" aria-describedby="email-help">
+                    <div class="d-flex flex-column my-3">
+                        <label for="email">Inserisci la tua Email*</label>
+                        <input name="email" type="text" id="email" v-model="store.email" class="form-control" placeholder="Email" aria-describedby="email-help">
+                        <small id="emailerror"></small>
                     </div>
+
                     
                     <!-- Input per l'indirizzo di casa -->
-                    <div class="input-group mb-3">
-                        <input type="text" id="address" v-model="store.address" class="form-control" placeholder="Inserisci il tuo indirizzo di casa" aria-describedby="address-help">
+                    <div class="d-flex flex-column my-3">
+                        <label for="address">Inserisci il tuo indirizzo di casa*</label>
+                        <input name="address" type="text" id="address" v-model="store.address" class="form-control" placeholder="Indirizzo" aria-describedby="address-help">
+                        <small id="addresserror"></small>
                     </div>
+
                     
                     
                     <!-- Input per il numero di telefono -->
-                    <div class="input-group mb-3">
-                        <input type="tel" id="phone" v-model="store.tel" class="form-control" placeholder="Inserisci il tuo numero di telefono" aria-describedby="phone-help">
+                    <div class="d-flex flex-column my-3">
+                        <label for="tel">Numero di telefono*</label>
+                        <input name="tel" type="tel" id="phone" v-model="store.tel" class="form-control" placeholder="telefono" aria-describedby="phone-help">
+                        <small id="telerror"></small>
                     </div>
 
-                    <div class="input-group mb-3">
-                        <textarea id="description" cols="50" rows="10" v-model="store.description"></textarea>
+                    <div class="d-flex flex-column my-3">
+                        <label for="description">Inserisci più dettagli sulla consegna</label>
+                        <textarea name="description" id="description" cols="50" rows="10" v-model="store.description"></textarea>
+                        <small id="descriptionerror"></small>
                     </div>
 
 
@@ -137,7 +241,9 @@ export default {
                 </div>
             </div>
 
-            <div class="col-12">
+            <button @click="validation()">Clicca per validare i dati</button>
+
+            <div class="col-12 mb-5" :class="valid==true ? 'd-bock':'d-none'">
                     <div style="height: 300px;" class="d-flex flex-column align-items-center">
                             <div id="dropin-container"></div>
                             <button class="btn btn-warning"  id="submit-button" @click="payBtn">Purchase</button>
@@ -167,7 +273,8 @@ export default {
     background-color: $dark-navy-blue;
 }
 
-#description{
-    resize: none;
+small{
+    color: red;
+    height: 2em;
 }
 </style>
