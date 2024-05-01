@@ -1,9 +1,18 @@
 <script>
+import {store} from '../Store'
 export default {
-    name:'',
-    methods:{
+    name:'Success',
+    data() {
+        return {
+            store,
+                
+        }
     },
     mounted(){
+        localStorage.clear();
+        store.listplatelocalstorage=[""];
+        store.actualrestaurant="";
+
     },
 }
 </script>
