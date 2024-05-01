@@ -96,29 +96,35 @@ export default {
                 <div class="col-6">
                     <h1>Dettagli di fatturazione</h1>
                     <!-- Input per il nome completo -->
-                    <div class="input-group">
-                        <input type="text" v-model="store.full_name"  id="fullname" class="form-control" placeholder="Inserisci il tuo nome completo" aria-describedby="fullname-help">
+                    <div class="d-flex flex-column">
+                        <label for="name">Nome e Cognome</label>
+                        <input name="name" type="text" v-model="store.full_name"  id="fullname" class="form-control" placeholder="Nome completo" aria-describedby="fullname-help">
                     </div>
-                    <small id="fullname-help" class="form-text text-muted p-3">Il tuo nome completo deve includere il nome e il cognome.</small>
                     
                     <!-- Input per l'email -->
-                    <div class="input-group my-3">
-                        <input type="email" id="email" v-model="store.email" class="form-control" placeholder="Inserisci il tuo indirizzo email" aria-describedby="email-help">
+                    <div class="d-flex flex-column my-3">
+                        <label for="email">Inserisci la tua Email</label>
+                        <input name="email" type="email" id="email" v-model="store.email" class="form-control" placeholder="Email" aria-describedby="email-help">
                     </div>
+
                     
                     <!-- Input per l'indirizzo di casa -->
-                    <div class="input-group mb-3">
-                        <input type="text" id="address" v-model="store.address" class="form-control" placeholder="Inserisci il tuo indirizzo di casa" aria-describedby="address-help">
+                    <div class="d-flex flex-column my-3">
+                        <label for="address">Inserisci il tuo indirizzo di casa</label>
+                        <input name="address" type="text" id="address" v-model="store.address" class="form-control" placeholder="Indirizzo" aria-describedby="address-help">
                     </div>
+
                     
                     
                     <!-- Input per il numero di telefono -->
-                    <div class="input-group mb-3">
-                        <input type="tel" id="phone" v-model="store.tel" class="form-control" placeholder="Inserisci il tuo numero di telefono" aria-describedby="phone-help">
+                    <div class="d-flex flex-column my-3">
+                        <label for="tel">Numero di telefono</label>
+                        <input name="tel" type="tel" id="phone" v-model="store.tel" class="form-control" placeholder="telefono" aria-describedby="phone-help">
                     </div>
 
-                    <div class="input-group mb-3">
-                        <textarea id="description" cols="50" rows="10" v-model="store.description"></textarea>
+                    <div class="d-flex flex-column my-3">
+                        <label for="description">Inserisci più dettagli sulla consegna</label>
+                        <textarea name="description" id="description" cols="50" rows="10" v-model="store.description"></textarea>
                     </div>
 
 
