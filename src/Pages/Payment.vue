@@ -18,10 +18,10 @@ export default {
     },
     mounted() {
         this.getToken();
-        store.full_name;
-        store.email;
-        store.address;
-        store.tel;
+        store.full_name="";
+        store.email="";
+        store.address="";
+        store.tel="";
        
     },
     methods: {
