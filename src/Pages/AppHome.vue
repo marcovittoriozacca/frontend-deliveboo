@@ -140,11 +140,15 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                         <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">    
                             <h2 v-if="store.active_typologies.length > 0">Ristoranti trovati: {{ store.filtered_restaurants.length }}</h2>
                             <h2 v-else>Ristoranti trovati: {{ restaurants.length }}</h2>                           
-                            <div v-for="(restaurant, index) in (store.active_typologies.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
-                                <Restaurant
-                                    :restaurant="restaurant"
-                                />
-                                <hr v-if="!isLastVisibleRestaurant(index)">
+                            <div class="container">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 ">
+                                    <div v-for="(restaurant, index) in (store.active_typologies.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id" class="mb-4">
+                                        <Restaurant
+                                            :restaurant="restaurant"
+                                        />
+                                    </div>
+                                </div>
+                                <!-- <hr v-if="!isLastVisibleRestaurant(index)"> -->
                             </div>    
                         </div>
                         <div v-else class="text-center d-flex flex-column gap-4 py-5">
