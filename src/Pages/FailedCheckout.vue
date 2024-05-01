@@ -16,7 +16,7 @@ export default {
             <div id="top-portion" class="p-5 rounded-top-5 d-flex justify-content-center align-items-center">
                 <div class="d-flex flex-column align-items-center justify-content-center gap-3">
                     <img id="failed-img" src="../../public/img/pagamento-rifiutato.svg" alt="pagamento-rifiutato">
-                    <h1 id="titolo-richiesta">Pagamento Rifiutato</h1>
+                    <h1 id="titolo-richiesta" class="text-center">Pagamento Rifiutato</h1>
                     <h5 id="sotto-titolo-richiesta" class="text-center">C'è stato un problema con il tuo metodo di pagamento, per favore controlla il metodo di pagamento e riprova</h5>
                 </div>
             </div>
@@ -74,5 +74,22 @@ export default {
 
     #bg-pagina{
         background-color: #E0E2E6;
+    }
+
+    @media screen and (max-width: 1199px) {
+        #container-output{
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        #titolo-richiesta{
+            font-size: 20px;
+        }
+
+        #sotto-titolo-richiesta{
+            font-size: 14px;
+        }
     }
 </style>
