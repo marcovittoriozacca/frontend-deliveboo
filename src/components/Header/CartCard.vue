@@ -11,6 +11,7 @@ export default {
     data() {
         return {
             store,
+            debounceTimer: "",
         }
     },
     methods: {
@@ -24,7 +25,17 @@ export default {
             }
         },
         increment(plate){
-            this.takerestaurant();
+            
+            // Annulla il timer debounce precedente se esiste
+            clearTimeout(this.debounceTimer);
+
+            console.log("Pulsante premuto");
+
+            // Avvia il timer debounce
+            this.debounceTimer = setTimeout(() => {
+                console.log("Timer scaduto. Eseguo la richiesta Axios.");
+                this.takerestaurant();
+            }, 1000); //timer di debounce in ms
             plate.quantity++;
             localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
         },
