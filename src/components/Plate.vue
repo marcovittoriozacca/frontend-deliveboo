@@ -51,7 +51,13 @@ export default {
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
                 store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id));
+                document.getElementById("testicon").classList.toggle("animate__animated")
+                document.getElementById("testicon").classList.toggle("animate__bounce")
 
+                setTimeout(() => {
+                    document.getElementById("testicon").classList.toggle("animate__animated")
+                    document.getElementById("testicon").classList.toggle("animate__bounce") 
+                }, 1000);
                 
             }else{
                 if(store.Sospeso==false){
@@ -80,6 +86,14 @@ export default {
                         this.arrayString=JSON.stringify(this.parsedArray)
                         localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString) 
                         store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id))
+
+                        document.getElementById("testicon").classList.toggle("animate__animated")
+                        document.getElementById("testicon").classList.toggle("animate__bounce")
+
+                        setTimeout(() => {
+                            document.getElementById("testicon").classList.toggle("animate__animated")
+                            document.getElementById("testicon").classList.toggle("animate__bounce") 
+                        }, 1000);
 
                     }else{
                         console.log('evento 2')
@@ -125,7 +139,7 @@ export default {
         },
         isInCart(plate){
             return store.listplatelocalstorage.some(element => element.id === plate.id)? true : false 
-        }
+        },
     },
     mounted() {
         console.log(this.restaurant)
@@ -179,9 +193,12 @@ export default {
                         </div>
                         <div>
                             <!-- Bottone aggiungi al carrello -->
-                            <AddToCartBtn  @click="addplate(plate)"
+                           
+                            
+                            <AddToCartBtn   @click="addplate(plate)"
                             :in-cart="isInCart(plate)"
                             />
+                            
                         </div>
                     </div>
                 </div>
