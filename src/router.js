@@ -4,8 +4,8 @@ import AppHome from './Pages/AppHome.vue'
 import NotFound from './Pages/NotFound.vue'
 import SingleRestaurant from './Pages/SingleRestaurant.vue'
 import FailedCheckout from './Pages/FailedCheckout.vue'
-
 import Payment from './Pages/Payment.vue'
+import Success from './Pages/Success.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -25,6 +25,11 @@ const router = createRouter({
              name: 'checkout',
              component: Payment,
          },
+         {
+            path: '/success',
+            name: 'Success',
+            component: Success,
+        },
          {
              path: '/:patchMatch(.*)*',
              name: 'not-found',

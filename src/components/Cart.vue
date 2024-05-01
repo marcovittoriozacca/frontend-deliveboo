@@ -16,7 +16,8 @@ import CartCard from "./Header/CartCard.vue"
         methods:{
             clearAll(){
                 localStorage.clear()
-                store.listplatelocalstorage = []                
+                store.listplatelocalstorage = []   
+                store.actualrestaurant=""             
             },                    
         },
         computed:{
@@ -41,7 +42,11 @@ import CartCard from "./Header/CartCard.vue"
 <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
     <!-- Intestazione dell'offcanvas -->
     <div class="offcanvas-header">
-        <h1 class="text-light mb-0">Riassunto Carrello</h1>
+        <div class="d-flex flex-column">
+        
+            <h1 class="text-light mb-0">Carrello</h1>
+            <h2 class="text-light mb-0">{{store.actualrestaurant.restaurant?.activity_name}}</h2>
+        </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <!-- corpo offcanvas, deve andare in overflow-y scroll -->
@@ -80,7 +85,9 @@ import CartCard from "./Header/CartCard.vue"
 
             <!-- bottone checkout  -->
             <div class="d-grid">
-                <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
+                <router-link :to="{name:'checkout'}">
+                    <button class="w-100 my-3 btn btn-lg bg-warning ">Checkout</button>
+                </router-link>
             </div>
 
             <!-- Modale rimozione tutti i piatti -->
@@ -89,6 +96,7 @@ import CartCard from "./Header/CartCard.vue"
                 class="btn btn-danger btn-lg w-100"
                 data-bs-toggle="modal"
                 data-bs-target="#modalId"
+                
             >
                 Svuota Carrello
             </button>
