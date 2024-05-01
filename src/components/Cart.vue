@@ -80,7 +80,9 @@ import CartCard from "./Header/CartCard.vue"
 
             <!-- bottone checkout  -->
             <div class="d-grid">
-                <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
+                <router-link to="checkout">
+                    <button class="w-100 my-3 btn btn-lg bg-warning ">Checkout</button>
+                </router-link>
             </div>
 
             <!-- Modale rimozione tutti i piatti -->
