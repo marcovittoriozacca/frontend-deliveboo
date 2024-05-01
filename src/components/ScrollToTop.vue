@@ -27,7 +27,7 @@ export default {
 <template>
     
     <a href="#top" id="scrollToTop">
-        <i class="fa-solid fa-arrow-up" style="color: #000000;"></i>
+        <i class="fa-solid fa-arrow-up" ></i>
     </a>
 
 </template>
@@ -40,12 +40,14 @@ export default {
         bottom: 20px;
         right: 20px;
         background-color: white;
-        color: white; 
         padding: 5px 15px; 
         border-radius: 50%; 
         text-decoration: none; 
         transition: opacity 0.4s;
         z-index: 5;
+        i{
+            color: black;
+        }
     }
 
     #scrollToTop:hover {
