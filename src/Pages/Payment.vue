@@ -143,7 +143,7 @@ export default {
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mb-5">
                     <div style="height: 300px;" class="d-flex flex-column align-items-center">
                             <div id="dropin-container"></div>
                             <button class="btn btn-warning"  id="submit-button" @click="payBtn">Purchase</button>
