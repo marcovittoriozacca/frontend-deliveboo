@@ -1,11 +1,7 @@
 <script>
 export default {
     name:'FailedCheckout',
-    methods:{
-        
-    },
 }
-
 </script>
 
 
@@ -28,7 +24,6 @@ export default {
             </div>
         </div>
     </div>
-
 </template>
 
 
