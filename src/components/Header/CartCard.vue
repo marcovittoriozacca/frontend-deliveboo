@@ -57,6 +57,12 @@ export default {
 
                 if(store.listplatelocalstorage.length === 0){
                     localStorage.clear();
+                    store.actualrestaurant=""
+                    store.full_name="";
+                    store.email="";
+                    store.address="";
+                    store.tel="";
+                    store.description="";
                 }
         },
         takerestaurant(){

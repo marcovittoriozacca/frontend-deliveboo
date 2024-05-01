@@ -25,7 +25,13 @@ export default {
         methods:{
             clearAll(){
                 localStorage.clear()
-                store.listplatelocalstorage = []                
+                store.listplatelocalstorage = [] 
+                store.actualrestaurant=""
+                store.full_name="";
+                store.email="";
+                store.address="";
+                store.tel="";
+                store.description="";               
             },   
             
 

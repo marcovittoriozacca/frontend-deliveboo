@@ -24,6 +24,7 @@ export default {
         store.email="";
         store.address="";
         store.tel="";
+        store.description="";
        
     },
     methods: {

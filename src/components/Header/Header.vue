@@ -42,7 +42,7 @@ import CartButton from './CartButton.vue'
                             <a class="link-orange" href="http://127.0.0.1:8000">Registrati</a>
                         </li>
                         
-                            <CartButton/>
+                            <CartButton v-if="$route.path !== '/checkout'"/>
                         
                     </ul>
                 </div>
