@@ -86,7 +86,7 @@ import CartCard from "./Header/CartCard.vue"
             <!-- bottone checkout  -->
             <div class="d-grid">
                 <router-link :to="{name:'checkout'}">
-                    <button class="w-100 my-3 btn btn-lg bg-warning ">Checkout</button>
+                    <button class="w-100 my-3 btn btn-lg bg-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">Checkout</button>
                 </router-link>
             </div>
 

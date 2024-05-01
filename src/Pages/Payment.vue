@@ -97,7 +97,7 @@ export default {
                     <h1>Dettagli di fatturazione</h1>
                     <!-- Input per il nome completo -->
                     <div class="input-group">
-                        <input type="text" v-model="store.full_name"  id="fullname" class="form-control" placeholder="Inserisci il tuo nome completo" aria-describedby="fullname-help">
+                        <input type="text" v-model="store.full_name" id="fullname" class="form-control" placeholder="Inserisci il tuo nome completo" aria-describedby="fullname-help">
                     </div>
                     <small id="fullname-help" class="form-text text-muted p-3">Il tuo nome completo deve includere il nome e il cognome.</small>
                     
@@ -165,5 +165,9 @@ export default {
 }
 .page-bg{
     background-color: $dark-navy-blue;
+}
+
+#description{
+    resize: none;
 }
 </style>
