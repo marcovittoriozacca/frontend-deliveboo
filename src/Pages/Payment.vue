@@ -1,6 +1,8 @@
 <script>
 import axios from 'axios';
 import { store } from '../Store';
+import {router} from '../router';
+
 import CartCard from '../components/Header/CartCard.vue';
 
 export default {
@@ -61,9 +63,8 @@ export default {
                             idrestaurant:store.actualrestaurant.restaurant.id,
                             nonce: payload.nonce,
                         }).then((res) => {
-                            if(res.data.success==true){
-
-                                router.push({ name: 'success' });
+                            if(res.data.success){
+                                router.push({ name: 'Success' })
                             }else{
                                 router.push({ name: 'FailedCheckout' });
                             }
