@@ -87,7 +87,7 @@ export default {
         <div class="row">
             <!-- bottoni quantità -->
             <div class="col-2">
-                <div class="d-flex flex-column row-gap-2">
+                <div class="d-flex flex-column row-gap-2 align-items-center">
                     <button class="btn text-dark orange-button" @click="increment(plate)">
                         <div class="d-flex align-items-center justify-content-center">
                             +
@@ -128,6 +128,8 @@ export default {
 <style lang="scss" scoped>
     @use '../../assets/sass/partials/variables' as *;
 
+    
+
     .orange-button{
         background-color: $orange;
     }
@@ -165,4 +167,8 @@ export default {
         
         
     }
+
+
+
+    
 </style>

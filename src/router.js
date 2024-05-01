@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AppHome from './Pages/AppHome.vue'
 import NotFound from './Pages/NotFound.vue'
 import SingleRestaurant from './Pages/SingleRestaurant.vue'
-
 import Payment from './Pages/Payment.vue'
 
 const router = createRouter({
