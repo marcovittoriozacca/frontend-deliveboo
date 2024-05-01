@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AppHome from './Pages/AppHome.vue'
 import NotFound from './Pages/NotFound.vue'
 import SingleRestaurant from './Pages/SingleRestaurant.vue'
+import FailedCheckout from './Pages/FailedCheckout.vue'
 
 import Payment from './Pages/Payment.vue'
 
@@ -29,6 +30,11 @@ const router = createRouter({
              name: 'not-found',
              component: NotFound,
          },
+         {
+            path: '/failed-checkout',
+            name: 'FailedCheckout',
+            component: FailedCheckout,
+        },
     ]
 })
 
