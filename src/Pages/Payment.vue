@@ -36,7 +36,7 @@ export default {
 
             if(store.full_name){
 
-                let validRegex = /^[a-zA-Z\s]+$/;
+                let validRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\-']+(\s[A-Za-zÀ-ÖØ-öø-ÿ\-']+)*$/;
                 if( !validRegex.test(store.full_name)){
                     document.getElementById('nameerror').innerHTML="Inserisci solo caratteri o spazi"
                     controllo=false
