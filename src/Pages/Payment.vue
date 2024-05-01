@@ -18,6 +18,10 @@ export default {
     },
     mounted() {
         this.getToken();
+        store.full_name;
+        store.email;
+        store.address;
+        store.tel;
        
     },
     methods: {
@@ -29,7 +33,9 @@ export default {
                 this.gotToken = true;
             })
         },
+
         braintreeInit(){
+            
             const button = document.querySelector('#submit-button');
             braintree.dropin.create({
             authorization: this.clientToken,
@@ -41,8 +47,16 @@ export default {
                             console.error('Error requesting payment method:', requestPaymentMethodErr);
                             return;
                         }
+                        
+
                         await axios.post('http://127.0.0.1:8000/api/braintree/payment', {
                             //qui ci va il local storage con l'intero ordine, tipo:
+
+                            full_name:store.full_name,
+                            email:store.email,
+                            address:store.address,
+                            tel:store.tel,
+                            description:store.description,
                             cart: store.listplatelocalstorage,
                             idrestaurant:store.actualrestaurant.restaurant.id,
                             nonce: payload.nonce,
@@ -75,26 +89,29 @@ export default {
                     <h1>Dettagli di fatturazione</h1>
                     <!-- Input per il nome completo -->
                     <div class="input-group">
-                        <input type="text"  id="fullname" class="form-control" placeholder="Inserisci il tuo nome completo" aria-describedby="fullname-help">
+                        <input type="text" v-model="store.full_name"  id="fullname" class="form-control" placeholder="Inserisci il tuo nome completo" aria-describedby="fullname-help">
                     </div>
                     <small id="fullname-help" class="form-text text-muted p-3">Il tuo nome completo deve includere il nome e il cognome.</small>
                     
                     <!-- Input per l'email -->
-                    <div class="input-group my-3 ">
-                        <input type="email" id="email" class="form-control" placeholder="Inserisci il tuo indirizzo email" aria-describedby="email-help">
+                    <div class="input-group my-3">
+                        <input type="email" id="email" v-model="store.email" class="form-control" placeholder="Inserisci il tuo indirizzo email" aria-describedby="email-help">
                     </div>
                     
                     <!-- Input per l'indirizzo di casa -->
                     <div class="input-group mb-3">
-                        <input type="text" id="address" class="form-control" placeholder="Inserisci il tuo indirizzo di casa" aria-describedby="address-help">
+                        <input type="text" id="address" v-model="store.address" class="form-control" placeholder="Inserisci il tuo indirizzo di casa" aria-describedby="address-help">
                     </div>
                     
                     
                     <!-- Input per il numero di telefono -->
                     <div class="input-group mb-3">
-                        <input type="tel" id="phone" class="form-control" placeholder="Inserisci il tuo numero di telefono" aria-describedby="phone-help">
+                        <input type="tel" id="phone" v-model="store.tel" class="form-control" placeholder="Inserisci il tuo numero di telefono" aria-describedby="phone-help">
                     </div>
-                    <!-- input pagamento -->
+
+                    <div class="input-group mb-3">
+                        <textarea id="description" cols="50" rows="10" v-model="store.description"></textarea>
+                    </div>
 
 
                 </div>

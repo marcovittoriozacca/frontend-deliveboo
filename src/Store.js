@@ -15,4 +15,10 @@ export const store = reactive({
      alertbox:false,
      subtotal_price: 0,
      actualrestaurant:"",
+     // dati necessari nel form checkout
+     full_name:"",
+     email:"",
+     address:"",
+     tel:"",
+     description:"",
 });
