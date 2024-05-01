@@ -60,7 +60,14 @@ export default {
                             cart: store.listplatelocalstorage,
                             idrestaurant:store.actualrestaurant.restaurant.id,
                             nonce: payload.nonce,
-                        }).then((res) => console.log(res))
+                        }).then((res) => {
+                            if(res.data.success==true){
+
+                                router.push({ name: 'success' });
+                            }else{
+                                router.push({ name: 'FailedCheckout' });
+                            }
+                     } )
                     })
                 })
             }) 
