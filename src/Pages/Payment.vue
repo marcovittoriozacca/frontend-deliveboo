@@ -241,7 +241,7 @@ export default {
                 </div>
             </div>
 
-            <button @click="validation()">Clicca per validare i dati</button>
+            <button class="btn-validazione" @click="validation()">Clicca per validare i dati</button>
 
             <div class="col-12 mb-5" :class="valid==true ? 'd-bock':'d-none'">
                     <div style="height: 300px;" class="d-flex flex-column align-items-center">
@@ -276,5 +276,26 @@ export default {
 small{
     color: red;
     height: 2em;
+}
+
+.btn-validazione{
+    border: none;
+    background-color: $orange;
+    border-radius: 5px;
+    width: 25%;
+    margin: 0 auto;
+    padding-inline: 15px;
+    padding-block: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-validazione:hover{
+    color: white;
+    transition-duration: 0.4s;
+}
+
+#description{
+    resize: none;
 }
 </style>
