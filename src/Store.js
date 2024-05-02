@@ -21,4 +21,5 @@ export const store = reactive({
      address:"",
      tel:"",
      description:"",
+     cartTracker: null,
 });
