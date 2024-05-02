@@ -20,3 +20,6 @@ AOS.init({
     easing: 'ease-in-out', // Tipo di easing da utilizzare
     once: true // Esegui l'animazione solo la prima volta che l'elemento entra nel viewport
 });
+
+
+

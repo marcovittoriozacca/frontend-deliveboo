@@ -1,9 +1,28 @@
 <script>
+import {store} from '../Store';
 export default {
-    name:'',
-    methods:{
+    name:'Success',
+    data() {
+        return {
+            store,
+                
+        }
     },
     mounted(){
+        this.reset();
+
+    },
+    methods: {
+        reset(){
+
+            store.listplatelocalstorage=[];
+            setTimeout(() => {
+                store.actualrestaurant="";    
+            }, 150);
+            
+            console.log(store.actualrestaurant)
+            localStorage.clear();
+        }
     },
 }
 </script>
@@ -21,8 +40,10 @@ export default {
             </p>
         </div>
         <!-- parte arancione con bottone ok  -->
-        <div class="orange-banner rounded-bottom-5 d-flex justify-content-center p-4">
-            <a href="#" class="btn btn-lg">Ok</a>
+        <div class="orange-banner rounded-bottom-5 d-flex justify-content-center p-4 ">
+            <router-link :to="{name:'home'}" class="border rounded-4">
+                <span class="btn btn-lg text-light">Ok</span>
+            </router-link>
         </div>
     </div>
 </template>
