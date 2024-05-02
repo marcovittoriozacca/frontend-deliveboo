@@ -5,17 +5,32 @@ import {store} from '../../Store';
         data() {
             return {
                 store,
-                 
 
             }
         },
         methods: {
             check(){
                 console.log(store.listplatelocalstorage)
+            },
+            cartNumber(){
+                store.cartTracker = 0,
+                store.listplatelocalstorage.forEach(element => {
+                    store.cartTracker += element.quantity;
+                });
             }
         },
-       
-    }
+        created() {
+            this.cartNumber();
+        },
+        watch:{
+            'store.listplatelocalstorage':{
+                handler(newVal,oldVal){
+                    this.cartNumber();
+                },
+                deep: true,
+            },
+        }
+}
 </script>
 
 
@@ -28,7 +43,7 @@ import {store} from '../../Store';
     <i class="fa-solid fa-cart-shopping d-flex align-items-center " id="testicon" style="color: #f58115;">
     
         
-            <span v-if="store.listplatelocalstorage.length > 0 " id="numbercart"  class="bg-white rounded-circle  custom-font-size">{{ store.listplatelocalstorage.length }}</span>
+            <span v-if="store.listplatelocalstorage.length > 0 " id="numbercart"  class="bg-white rounded-circle  custom-font-size">{{ store.cartTracker }}</span>
         
     </i>
 
