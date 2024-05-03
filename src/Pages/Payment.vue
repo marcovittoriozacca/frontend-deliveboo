@@ -134,6 +134,7 @@ export default {
             const button = document.querySelector('#submit-button');
             braintree.dropin.create({
             authorization: this.clientToken,
+            locale: 'it_IT',
             container: '#dropin-container',
             }, function (createErr, instance){
                 button.addEventListener('click', function () {
