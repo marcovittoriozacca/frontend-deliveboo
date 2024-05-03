@@ -192,14 +192,14 @@ export default {
                     <!-- Input per il nome completo -->
                     <div class="d-flex flex-column">
                         <label for="name">Nome e Cognome*</label>
-                        <input name="name" type="text" v-model="store.full_name"  id="fullname" class="form-control" placeholder="Nome completo" aria-describedby="fullname-help">
+                        <input name="name" type="text" v-model="store.full_name"  :class="{'pe-none opacity-50' : valid}" id="fullname" class="form-control" placeholder="Nome completo" aria-describedby="fullname-help">
                         <small id="nameerror"></small>
                     </div>
                     
                     <!-- Input per l'email -->
                     <div class="d-flex flex-column my-3">
                         <label for="email">Inserisci la tua Email*</label>
-                        <input name="email" type="text" id="email" v-model="store.email" class="form-control" placeholder="Email" aria-describedby="email-help">
+                        <input name="email" type="text" id="email" v-model="store.email" :class="{'pe-none opacity-50' : valid}" class="form-control" placeholder="Email" aria-describedby="email-help">
                         <small id="emailerror"></small>
                     </div>
 
@@ -207,7 +207,7 @@ export default {
                     <!-- Input per l'indirizzo di casa -->
                     <div class="d-flex flex-column my-3">
                         <label for="address">Inserisci il tuo indirizzo di casa*</label>
-                        <input name="address" type="text" id="address" v-model="store.address" class="form-control" placeholder="Indirizzo" aria-describedby="address-help">
+                        <input name="address" type="text" id="address" v-model="store.address" :class="{'pe-none opacity-50' : valid}" class="form-control" placeholder="Indirizzo" aria-describedby="address-help">
                         <small id="addresserror"></small>
                     </div>
 
@@ -216,13 +216,13 @@ export default {
                     <!-- Input per il numero di telefono -->
                     <div class="d-flex flex-column my-3">
                         <label for="tel">Numero di telefono*</label>
-                        <input name="tel" type="tel" id="phone" v-model="store.tel" class="form-control" placeholder="telefono" aria-describedby="phone-help">
+                        <input name="tel" type="tel" id="phone" v-model="store.tel" :class="{'pe-none opacity-50' : valid}" class="form-control" placeholder="telefono" aria-describedby="phone-help">
                         <small id="telerror"></small>
                     </div>
 
                     <div class="d-flex flex-column my-3">
                         <label for="description">Inserisci più dettagli sulla consegna</label>
-                        <textarea name="description" id="description" cols="50" rows="10" v-model="store.description"></textarea>
+                        <textarea name="description" id="description" cols="50" rows="10" v-model="store.description" :class="{'pe-none opacity-50' : valid}"></textarea>
                         <small id="descriptionerror"></small>
                     </div>
 
@@ -298,5 +298,8 @@ small{
 
 #description{
     resize: none;
+}
+.validated-inputs{
+    background-color: lightgray;
 }
 </style>
