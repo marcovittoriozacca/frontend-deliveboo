@@ -289,7 +289,7 @@ export default {
 }
 
 .dropdown-ingredienti{
-    width: 350px;
+    max-width: 350px;
     z-index: 2;
 }
 
