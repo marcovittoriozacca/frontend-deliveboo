@@ -177,87 +177,92 @@ export default {
 </script>
 
 <template>
-  <div class="page-bg pt-5">
-    <div class="container-fluid container-lg p-0 p-lg-5 rounded-2">
+  <div class="page-bg py-5">
+    <div class="container-fluid py-3 container-lg p-lg-5 rounded-2">
       <div class="row">
         <div class="col-12 d-flex flex-column flex-lg-row gap-lg-3">
-          <div class="col-12 col-lg-6">
+          <div class="col-12 col-lg-6 pb-4">
             <h1>Dettagli di fatturazione</h1>
             <!-- Input per il nome completo -->
-            <div class="d-flex flex-column">
-              <label for="name">Nome e Cognome*</label>
-              <input
-                name="name"
-                type="text"
-                v-model="store.full_name"
-                :class="{ 'pe-none opacity-50': valid }"
-                id="fullname"
-                class="form-control"
-                placeholder="Nome completo"
-                aria-describedby="fullname-help"
-              />
-              <small id="nameerror"></small>
-            </div>
+            <div class="row row-gap-3 row-gap-lg-4">
 
-            <!-- Input per l'email -->
-            <div class="d-flex flex-column my-3">
-              <label for="email">Inserisci la tua Email*</label>
-              <input
-                name="email"
-                type="text"
-                id="email"
-                v-model="store.email"
-                :class="{ 'pe-none opacity-50': valid }"
-                class="form-control"
-                placeholder="Email"
-                aria-describedby="email-help"
-              />
-              <small id="emailerror"></small>
-            </div>
+              <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
+                <label class="form-label"for="name">Nome e Cognome<span class="text-danger">*</span></label>
+                <input
+                  name="name"
+                  type="text"
+                  v-model="store.full_name"
+                  :class="{ 'pe-none opacity-50': valid }"
+                  id="fullname"
+                  class="form-control"
+                  placeholder="Nome completo"
+                  aria-describedby="fullname-help"
+                />
+                <small id="nameerror"></small>
+              </div>
 
-            <!-- Input per l'indirizzo di casa -->
-            <div class="d-flex flex-column my-3">
-              <label for="address">Inserisci il tuo indirizzo di casa*</label>
-              <input
-                name="address"
-                type="text"
-                id="address"
-                v-model="store.address"
-                :class="{ 'pe-none opacity-50': valid }"
-                class="form-control"
-                placeholder="Indirizzo"
-                aria-describedby="address-help"
-              />
-              <small id="addresserror"></small>
-            </div>
+              <!-- Input per l'email -->
+              <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
+                <label class="form-label" for="email">Inserisci la tua Email<span class="text-danger">*</span></label>
+                <input
+                  name="email"
+                  type="text"
+                  id="email"
+                  v-model="store.email"
+                  :class="{ 'pe-none opacity-50': valid }"
+                  class="form-control"
+                  placeholder="Email"
+                  aria-describedby="email-help"
+                />
+                <small id="emailerror"></small>
 
-            <!-- Input per il numero di telefono -->
-            <div class="d-flex flex-column my-3">
-              <label for="tel">Numero di telefono*</label>
-              <input
-                name="tel"
-                type="tel"
-                id="phone"
-                v-model="store.tel"
-                :class="{ 'pe-none opacity-50': valid }"
-                class="form-control"
-                placeholder="telefono"
-                aria-describedby="phone-help"
-              />
-              <small id="telerror"></small>
-            </div>
+              </div>
 
-            <div class="d-flex flex-column my-3">
-              <label for="description">Inserisci più dettagli sulla consegna</label>
-              <textarea
-                name="description"
-                id="description"
-                cols="50"
-                rows="10"
-                v-model="store.description"
-                :class="{ 'pe-none opacity-50': valid }"
-              ></textarea>
-              <small id="descriptionerror"></small>
+              <!-- Input per l'indirizzo di casa -->
+              <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
+                <label class="form-label" for="address">Inserisci il tuo indirizzo di casa<span class="text-danger">*</span></label>
+                <input
+                  name="address"
+                  type="text"
+                  id="address"
+                  v-model="store.address"
+                  :class="{ 'pe-none opacity-50': valid }"
+                  class="form-control"
+                  placeholder="Indirizzo"
+                  aria-describedby="address-help"
+                />
+                <small id="addresserror"></small>
+              </div>
+
+              <!-- Input per il numero di telefono -->
+              <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
+                <label class="form-label" for="tel">Numero di telefono<span class="text-danger">*</span></label>
+                <input
+                  name="tel"
+                  type="tel"
+                  id="phone"
+                  v-model="store.tel"
+                  :class="{ 'pe-none opacity-50': valid }"
+                  class="form-control"
+                  placeholder="telefono"
+                  aria-describedby="phone-help"
+                />
+                <small id="telerror"></small>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label" for="description">Inserisci più dettagli sulla consegna</label>
+                <textarea
+                  name="description"
+                  id="description"
+                  class="form-control"
+                  cols="50"
+                  rows="5"
+                  v-model="store.description"
+                  :class="{ 'pe-none opacity-50': valid }"
+                ></textarea>
+                <small id="descriptionerror"></small>
+              </div>
             </div>
           </div>
           
@@ -277,7 +282,7 @@ export default {
           </div>
         </div>
 
-        <button class="btn-validazione" @click="validation()">
+        <button class="btn-validazione mt-3" v-if="!valid" @click="validation()">
           Clicca per validare i dati
         </button>
 
