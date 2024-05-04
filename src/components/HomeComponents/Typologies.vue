@@ -28,24 +28,22 @@ export default {
 
 
 <template>
-
-<div class="d-flex flex-row flex-wrap gap-2">
-    <div v-if="store.typesLoading">
-        <Loader/>
-    </div>
-
-
-    <div v-for="(type, index) in store.type" :key="type.id" v-else class="card-type">
-        <div class="p-3">
-
-            <!-- intera card, function -->
-            <div @click="activeTypologies(type.slug)" class="orange-border rounded-5 larghezza-singola-card" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
-                <div class="position-relative d-flex justify-content-center align-content-center">
-                    <figure class="mb-0 m-0">
-                        <img class="dish-img" :src="type.image" :alt="type.slug">
-                    </figure>
-                    <div class="opacity-bg-black rounded px-3 py-1 position-absolute top-50 start-50 translate-middle">
-                        <p class="mb-0 text-uppercase">{{ type.slug }}</p>
+<div class="py-2">
+    <div class="px-1">
+        <div class="row">
+            <div v-if="store.typesLoading">
+                <Loader/>
+            </div>
+            <div v-for="(type, index) in store.type" :key="type.id" class="col-6 col-sm-4 col-md-3 col-lg-2 col-xxl py-2" v-else>
+                <!-- intera card, function -->
+                <div @click="activeTypologies(type.slug)" class="orange-border rounded-5" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
+                    <div class="position-relative d-flex justify-content-center align-content-center">
+                        <figure class="mb-0 m-0">
+                            <img class="dish-img" :src="type.image" :alt="type.slug">
+                        </figure>
+                        <div class="opacity-bg-black rounded px-3 py-1 position-absolute top-50 start-50 translate-middle">
+                            <p class="mb-0 text-uppercase">{{ type.slug }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,14 +86,4 @@ export default {
         }
     }
 
-    .card-type{
-        --gap: 0.5rem;
-        --columns: 10;
-        flex-basis: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
-
-    }
-
-    .larghezza-singola-card{
-        width: 100%;
-    }
 </style>
