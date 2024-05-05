@@ -30,7 +30,7 @@ export default {
 <template>
 <div class="py-2">
     <div class="px-1">
-        <div class="row">
+        <div class="row mx-0">
             <div v-if="store.typesLoading">
                 <Loader/>
             </div>
