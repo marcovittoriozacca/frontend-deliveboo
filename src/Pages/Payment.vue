@@ -4,11 +4,13 @@ import { store } from "../Store";
 import { router } from "../router";
 
 import CartCard from "../components/Header/CartCard.vue";
+import Loader from "../components/GeneralComponents/Loader.vue";
 
 export default {
   name: "Payment",
   components: {
     CartCard,
+    Loader,
   },
   data() {
     return {
@@ -17,6 +19,7 @@ export default {
       gotToken: false,
       restaurant: "",
       valid: false,
+      paymentLoader: false,
     };
   },
   mounted() {
@@ -27,6 +30,7 @@ export default {
     store.tel = "";
     store.description = "";
     this.valid = false;
+    this.paymentLoader = false;
   },
   methods: {
     validation() {
@@ -117,6 +121,7 @@ export default {
     },
 
     braintreeInit() {
+      const self = this;
       const button = document.querySelector("#submit-button");
       braintree.dropin.create(
         {
@@ -126,6 +131,7 @@ export default {
         },
         function (createErr, instance) {
           button.addEventListener("click", function () {
+            self.paymentLoader = true;
             instance.requestPaymentMethod(async function (
               requestPaymentMethodErr,
               payload
@@ -135,6 +141,7 @@ export default {
                   "Error requesting payment method:",
                   requestPaymentMethodErr
                 );
+                self.paymentLoader = false;
                 return;
               }
 
@@ -153,8 +160,10 @@ export default {
                 })
                 .then((res) => {
                   if (res.data.success) {
+                    self.paymentLoader = false;
                     router.push({ name: "Success" });
                   } else {
+                    self.paymentLoader = false;
                     router.push({ name: "FailedCheckout" });
                   }
                 });
@@ -289,9 +298,14 @@ export default {
         <div class="col-12 mb-5" :class="valid == true ? 'd-bock' : 'd-none'">
           <div class="d-flex flex-column align-items-center">
             <div id="dropin-container"></div>
-            <button class="btn btn-warning" id="submit-button" @click="payBtn">
+
+            <button v-if="!paymentLoader" class="btn btn-warning" id="submit-button" @click="payBtn">
               Paga ora
             </button>
+            <div v-else>
+              <Loader/>
+            </div>
+
           </div>
         </div>
 
