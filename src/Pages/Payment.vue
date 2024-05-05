@@ -182,12 +182,12 @@ export default {
       <div class="row">
         <div class="col-12 d-flex flex-column flex-lg-row gap-lg-3">
           <div class="col-12 col-lg-6 pb-4">
-            <h1>Dettagli di fatturazione</h1>
+            <h1 class="text-center">Dettagli di fatturazione</h1>
             <!-- Input per il nome completo -->
             <div class="row row-gap-3 row-gap-lg-4">
 
               <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
-                <label class="form-label"for="name">Nome e Cognome<span class="text-danger">*</span></label>
+                <label class="form-label" for="name">Nome e Cognome<span class="text-danger">*</span></label>
                 <input
                   name="name"
                   type="text"
@@ -266,7 +266,7 @@ export default {
             </div>
           </div>
           
-          <div class="col-12 col-lg-6" style="height: 600px">
+          <div class="col-12 col-lg-6" style="max-height: 600px">
             <div class="bg-light rounded-2 overflow-y-scroll" style="height: 100%">
               <h1 class="text-center">
                 {{ store.actualrestaurant.restaurant?.activity_name }}

@@ -112,7 +112,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
     <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
         <!--Prima sezione blu con carosello-->
-        <div>
+        <div class="w-100">
             <Typologies
             />
         </div>
