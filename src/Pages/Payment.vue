@@ -276,8 +276,8 @@ export default {
           </div>
           
           <div class="mx-auto col-12 col-sm-10 col-lg-6" style="max-height: 600px">
-            <div class="bg-light rounded-2 overflow-y-scroll" style="height: 100%">
-              <h1 class="text-center">
+            <div class="bg-light rounded-2 overflow-y-scroll position-relative" style="height: 100%">
+              <h1 class="restaurant-name text-center py-2 gray-bg position-sticky top-0">
                 {{ store.actualrestaurant.restaurant?.activity_name }}
               </h1>
               <div
@@ -351,5 +351,11 @@ small {
 }
 .validated-inputs {
   background-color: lightgray;
+}
+.restaurant-name{
+  color: #f58115;
+}
+.gray-bg{
+  background-color: #e0e2e6;
 }
 </style>
