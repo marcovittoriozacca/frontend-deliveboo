@@ -44,6 +44,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 store.restaurantLoading = true;
                 await axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                     this.restaurants = res.data.restaurant;
+                    store.filtered_restaurants = res.data.restaurant;
                     store.restaurantLoading = false;
                 })
                 .catch(error => {
@@ -133,11 +134,12 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
 
             <div class="py-4 px-3">
                 <div class="container-fluid px-0">
+                    {{ console.log(store.filtered_restaurants.length, restaurants.length) }}
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
                     <Loader v-if="store.restaurantLoading"/>
                     <div v-else>
-                        <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">    
+                        <div v-if="store.filtered_restaurants.length > 0">
                             <h2 v-if="store.active_typologies.length > 0">Ristoranti trovati: {{ store.filtered_restaurants.length }}</h2>
                             <h2 v-else>Ristoranti trovati: {{ restaurants.length }}</h2>                           
                             <div class="container-fluid px-0">
