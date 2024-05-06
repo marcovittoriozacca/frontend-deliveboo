@@ -74,11 +74,13 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 // store.filtered_restaurants = this.restaurants.filter(restaurant => {
                 // return restaurant.types.some(type => store.active_typologies.includes(type.slug));
                 // });
+                store.restaurantLoading = true;
                  if(store.active_typologies.length != 0){
                      //questa funzione compone l'endpoint con una sintassi di array chiave => valore da mandare a laravel. con Map, iteriamo ogni elemento e aggiungiamo type[indexElemento]=slug in modo da farlo capire a laravel
                      const url = `http://localhost:8000/api/filtertypologies?${store.active_typologies.map((slug, index) => `type[${index}]=${slug}`).join('&')}`;
                     await axios.get(url).then((res) => store.filtered_restaurants = res.data.restaurants);
                 }
+                store.restaurantLoading = false;
             },
             deep: true
         },
