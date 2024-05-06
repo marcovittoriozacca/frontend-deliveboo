@@ -34,14 +34,14 @@ export default {
             <div v-if="store.typesLoading">
                 <Loader/>
             </div>
-            <div v-for="(type, index) in store.type" :key="type.id" class="col-6 col-sm-4 col-md-3 col-lg-2 col-xxl py-2" v-else>
+            <div v-for="(type, index) in store.type" :key="type.id" class="col-4 col-sm-4 col-md-3 col-lg-2 col-xxl py-2" v-else>
                 <!-- intera card, function -->
                 <div @click="activeTypologies(type.slug)" class="orange-border rounded-5" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
                     <div class="position-relative d-flex justify-content-center align-content-center">
                         <figure class="mb-0 m-0">
                             <img class="dish-img" :src="type.image" :alt="type.slug">
                         </figure>
-                        <div class="opacity-bg-black rounded px-3 py-1 position-absolute top-50 start-50 translate-middle">
+                        <div class="opacity-bg-black rounded fs-6 px-0 px-sm-3 py-1 position-absolute top-50 start-50 translate-middle">
                             <p class="mb-0 text-uppercase">{{ type.slug }}</p>
                         </div>
                     </div>
