@@ -112,7 +112,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
     <!--Qualsiasi cosa sotto all'immagine blurrata-->
     <div class="bg-blu">
         <!--Prima sezione blu con carosello-->
-        <div class="w-100">
+        <div>
             <Typologies
             />
         </div>
@@ -131,8 +131,8 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 </span>
             </div>
 
-            <div class="py-4">
-                <div class="container">
+            <div class="py-4 px-3">
+                <div class="container-fluid px-0">
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
                     <Loader v-if="store.restaurantLoading"/>
@@ -140,8 +140,8 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                         <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">    
                             <h2 v-if="store.active_typologies.length > 0">Ristoranti trovati: {{ store.filtered_restaurants.length }}</h2>
                             <h2 v-else>Ristoranti trovati: {{ restaurants.length }}</h2>                           
-                            <div class="container">
-                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 ">
+                            <div class="container-fluid px-0">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 px-0">
                                     <div v-for="(restaurant, index) in (store.active_typologies.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id" class="mb-4">
                                         <Restaurant
                                             :restaurant="restaurant"
