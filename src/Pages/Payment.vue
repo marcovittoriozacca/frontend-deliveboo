@@ -285,7 +285,7 @@ export default {
                 :key="index"
                 class="overflow-y-scroll"
               >
-                <CartCard :plate="plate" />
+                <CartCard :plate="plate" :verified="valid"/>
               </div>
             </div>
           </div>

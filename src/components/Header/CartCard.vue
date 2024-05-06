@@ -4,7 +4,7 @@ import axios from 'axios';
 import { store } from '../../Store';
 export default {
     name:'CartCard',
-    props:['plate'],
+    props:['plate', 'verified'],
     components:{
         CartSingleRemoveBtn,
     },
@@ -105,20 +105,22 @@ export default {
             <!-- bottoni quantità -->
             <div class="col-2">
                 <div class="d-flex flex-column row-gap-2 align-items-center">
-                    <button class="btn text-dark orange-button" @click="increment(plate)">
+                    <button :class="{'btn-disabled' : verified}" class="btn text-dark orange-button" @click="increment(plate)">
                         <div class="d-flex align-items-center justify-content-center">
                             +
                         </div>
                     </button>
                     <span class="border rounded p-1 text-center">{{plate.quantity}}</span>
-                    <button class="btn gray-btn border" @click="decrement(plate)">
+                    <button :class="{'btn-disabled' : verified}" class="btn gray-btn border" @click="decrement(plate)">
                         <div class="d-flex align-items-center justify-content-center">
                             -
                         </div>
                     </button>
                     <!-- bottone rimozione del singolo prodotto -->
                     <CartSingleRemoveBtn
-                    @click="removeSinglePlate(plate)"/>
+                    @click="removeSinglePlate(plate)"
+                    :class="{'btn-disabled' : verified}"
+                    />
                 </div>
             </div>
 
@@ -181,8 +183,11 @@ export default {
         &:hover{
             background-color: #e2e2e2;
         }
-        
-        
+    }
+
+    .btn-disabled{
+        pointer-events: none;
+        opacity: 50%;
     }
 
 
