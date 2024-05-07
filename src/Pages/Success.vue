@@ -1,4 +1,5 @@
 <script>
+import { router } from "../router";
 import {store} from '../Store';
 export default {
     name:'Success',
@@ -19,7 +20,12 @@ export default {
             setTimeout(() => {
                 store.actualrestaurant="";    
             }, 150);
-            
+
+            setTimeout(() => {
+                router.push({ name: "home" }); 
+            }, 3500);
+
+        
             console.log(store.actualrestaurant)
             localStorage.clear();
         }
@@ -37,6 +43,9 @@ export default {
             <h1 class="my-4">Fantastico</h1>
             <p>
                 Ecco la conferma del tuo ordine! Il pagamento è stato elaborato con successo. Grazie per aver completato il pagamento. Se hai domande o dubbi, non esitare a contattarci.
+            </p>
+            <p>
+                A breve verrai reindirizzato alla home, se non accade premere il pulsante OK in basso
             </p>
         </div>
         <!-- parte arancione con bottone ok  -->

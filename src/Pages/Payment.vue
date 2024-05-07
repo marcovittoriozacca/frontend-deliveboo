@@ -229,7 +229,7 @@ export default {
 
               <!-- Input per l'indirizzo di casa -->
               <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
-                <label class="form-label" for="address">Inserisci il tuo indirizzo di casa<span class="text-danger">*</span></label>
+                <label class="form-label" for="address">Inserisci indirizzo di consegna<span class="text-danger">*</span></label>
                 <input
                   name="address"
                   type="text"
