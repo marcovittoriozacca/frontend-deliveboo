@@ -66,10 +66,13 @@ export default {
                 switch (true) {
                     case restaurant_image == undefined:
                       return  image = '/img/deliveboo-logo.png';
+                    case restaurant_image.includes('https://'):
+                        return image = restaurant_image;
                     case restaurant_image.includes('restaurant_images/'):
                     return image =  `http://127.0.0.1:8000/storage/${restaurant_image}`;
                 }
-            },},
+            },
+        },
 
         watch: {
             'store.alertbox':{

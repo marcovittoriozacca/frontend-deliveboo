@@ -11,23 +11,38 @@ export default{
             store,
         };
     },
+    methods: {
+        setRestaurantImage(restaurant_image){
+            let image = '';
+            switch (true) {
+                case restaurant_image == undefined:
+                    return  image = 'https://codyhouse.co/demo/squeezebox-portfolio-template/img/img.png';
+                case restaurant_image.includes('https://'):
+                    return image = restaurant_image;
+                case restaurant_image.includes('restaurant_images/'):
+                    return image =  `http://127.0.0.1:8000/storage/${restaurant_image}`;
+            }
+        },
+    },
+
+
 }
 </script>
 
 <template>
 <!-- componente ristoranti -->
-            <div class="col contenitore p-3 ">
+            <div class="col contenitore p-3 scale-anim">
             <router-link :to="{name:'Single-Restaurant',params:{slug:restaurant.slug}}">
                     <div class="justify-content-center justify-content-md-start bg-white rounded">
+                        {{ console.log(restaurant.image) }}
                         <!-- immagina card  -->
                         <figure class="m-0 position-relative">
-                            <img v-if="restaurant.image" class="restaurant-bg rounded-4 mb-3" :src="`http://127.0.0.1:8000/storage/${restaurant.image}`" alt="img-ristorante">
-                            <img v-else class="restaurant-bg rounded-4 mb-3" src="https://codyhouse.co/demo/squeezebox-portfolio-template/img/img.png" alt="image-missing">
+                            <img class="img-fluid rounded-4 mb-3" :src="setRestaurantImage(restaurant.image)" :alt="restaurant.activity_name">
                         </figure>
                         <!-- testo card  -->
                         <div class="d-flex flex-column row-gap-2 text-dark">
                             <h2 class="mb-0">{{ restaurant.activity_name  }}</h2>
-                            <span>{{ restaurant.address }} <i class="fa-solid fa-location-dot" style="color:#002452;" st></i></span>
+                            <span>{{ restaurant.address }} <i class="fa-solid fa-location-dot" style="color:#002452;"></i></span>
                             <div class="d-flex column-gap-2">
                                 <span class="cetegoty-pill badge rounded-pill mb-0" v-for="(types, index) in restaurant.types" :key="index">
                                 {{  types.slug }}
@@ -70,18 +85,13 @@ export default{
         background-color: $orange;
         padding: 5px;
     }
-   .restaurant-bg{
-    width: 100%;
-    height: 100%;
-   }
 
-   transition: all 0.5s ease;
-   overflow: hidden;
-   margin-left: -1%;
+    
 }
-
-.contenitore:hover{
-    width: 102%;
-    margin-left: 0%;
+.scale-anim{
+    transition: all .3s ease-out;
+    &:hover{
+        transform: scale(103%);
+    }
 }
 </style>
