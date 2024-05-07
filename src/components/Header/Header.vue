@@ -1,11 +1,21 @@
 <script>
+import { watch } from 'vue';
 import CartButton from './CartButton.vue'
     export default {
         name: "Header",
         components: {
         CartButton
+    },
+    data() {
+        return {
+            
+        }
+    },
+
+    
     }
-    }
+
+    
 </script>
 
 <template>
@@ -42,7 +52,7 @@ import CartButton from './CartButton.vue'
                             <a class="link-orange" href="http://127.0.0.1:8000">Registrati</a>
                         </li>
                         
-                            <CartButton/>
+                            <CartButton id="test" v-if="$route.path !== '/checkout'"/>
                         
                     </ul>
                 </div>

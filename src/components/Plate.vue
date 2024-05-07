@@ -11,7 +11,6 @@ export default {
         return {
             store,
             ContolloRistorante:[],
-            
             storedArray:"",
             parsedArray:[],
             controllo:false,
@@ -45,13 +44,20 @@ export default {
             
 
             if(localStorage.getItem("restaurant"+this.restaurant.id) == null && store.Sospeso!=true){
-                // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere il piatto
+                // se non esistono chiavi con lo stesso id del ristoratne attuale e non ci sono ordini in sospeso posso aggiungere le informazioni del ristorante e poi del piatto
+
                 plate.quantity = 1;
                 this.parsedArray.push(plate)
                 this.arrayString=JSON.stringify(this.parsedArray)
                 localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString);
                 store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id));
+                document.getElementById("testicon").classList.toggle("animate__animated")
+                document.getElementById("testicon").classList.toggle("animate__bounce")
 
+                setTimeout(() => {
+                    document.getElementById("testicon").classList.toggle("animate__animated")
+                    document.getElementById("testicon").classList.toggle("animate__bounce") 
+                }, 1000);
                 
             }else{
                 if(store.Sospeso==false){
@@ -81,6 +87,14 @@ export default {
                         localStorage.setItem("restaurant" + this.restaurant.id, this.arrayString) 
                         store.listplatelocalstorage = JSON.parse(localStorage.getItem("restaurant" + this.restaurant.id))
 
+                        document.getElementById("testicon").classList.toggle("animate__animated")
+                        document.getElementById("testicon").classList.toggle("animate__bounce")
+
+                        setTimeout(() => {
+                            document.getElementById("testicon").classList.toggle("animate__animated")
+                            document.getElementById("testicon").classList.toggle("animate__bounce") 
+                        }, 1000);
+
                     }else{
                         console.log('evento 2')
                         // Trova l'indice dell'elemento nell'array principale basato sull'ID del piatto
@@ -101,6 +115,12 @@ export default {
                             temporaryArray.splice(storageIndexToRemove, 1);
                             if(temporaryArray.length == 0){
                                 localStorage.clear();
+                                store.actualrestaurant=""
+                                store.full_name="";
+                                store.email="";
+                                store.address="";
+                                store.tel="";
+                                store.description="";
                             }else{
                                 // Aggiorna il local storage
                                 localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(temporaryArray));
@@ -119,7 +139,10 @@ export default {
         },
         isInCart(plate){
             return store.listplatelocalstorage.some(element => element.id === plate.id)? true : false 
-        }
+        },
+    },
+    mounted() {
+        console.log(this.restaurant)
     },
 }
 </script>
@@ -147,29 +170,20 @@ export default {
                 </div>
 
                 <div class="col-12">
-                    <button type="button" class="ingredienti" data-bs-toggle="modal" data-bs-target="#ingredients">
-                        Lista ingredienti
-                    </button>
-
                     <!-- Modale ingredienti -->
-                    <div class="modal fade" id="ingredients" tabindex="-1" aria-labelledby="ingredientsLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-dark" id="ingredientsLabel">Ingredienti:</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="my-2 text-dark">{{ plate.ingredient }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="close-btn" data-bs-dismiss="modal">Chiudi</button>
-                                </div>
-                            </div>
+                    <p class="d-inline-flex gap-1">
+                        <a class="ingredienti" data-bs-toggle="collapse" :href="'#ingredienti' + plate.id" role="button" aria-expanded="false" :aria-controls="'ingredienti' + plate.id">
+                            Ingredienti
+                        </a>
+                    </p>
+                    <div class="collapse position-absolute dropdown-ingredienti" :id="'ingredienti' + plate.id">
+                        <div class="card card-body p-3 text-dark">
+                            {{ plate.ingredient }}
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12 mt-auto" :class="plate.visible==0 ? 'd-none' : '' ">
+                <div class="col-12 mt-auto pt-3" :class="plate.visible==0 ? 'd-none' : '' ">
                     <div class="d-flex align-items-center justify-content-between ">
                         <div class="border-pill rounded-5">
                             <div class="split-pill">
@@ -179,9 +193,12 @@ export default {
                         </div>
                         <div>
                             <!-- Bottone aggiungi al carrello -->
-                            <AddToCartBtn  @click="addplate(plate)"
+                           
+                            
+                            <AddToCartBtn   @click="addplate(plate)"
                             :in-cart="isInCart(plate)"
                             />
+                            
                         </div>
                     </div>
                 </div>
@@ -239,7 +256,7 @@ export default {
     background-color: transparent;
     border: none;
     color: #f58115;
-    text-decoration: underline;
+    text-decoration: underline !important; 
 }
 
 .h-description{
@@ -270,4 +287,12 @@ export default {
     transition-duration: 0.5s;
     color: black;
 }
+
+.dropdown-ingredienti{
+    max-width: 350px;
+    z-index: 2;
+}
+
+
+
 </style>

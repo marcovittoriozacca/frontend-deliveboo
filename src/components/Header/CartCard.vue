@@ -1,15 +1,17 @@
 <script>
 import CartSingleRemoveBtn from '../GeneralComponents/CartSingleRemoveBtn.vue';
+import axios from 'axios';
 import { store } from '../../Store';
 export default {
     name:'CartCard',
-    props:['plate'],
+    props:['plate', 'verified'],
     components:{
         CartSingleRemoveBtn,
     },
     data() {
         return {
             store,
+            debounceTimer: "",
         }
     },
     methods: {
@@ -23,6 +25,17 @@ export default {
             }
         },
         increment(plate){
+            
+            // Annulla il timer debounce precedente se esiste
+            clearTimeout(this.debounceTimer);
+
+            console.log("Pulsante premuto");
+
+            // Avvia il timer debounce
+            this.debounceTimer = setTimeout(() => {
+                console.log("Timer scaduto. Eseguo la richiesta Axios.");
+                this.takerestaurant();
+            }, 1000); //timer di debounce in ms
             plate.quantity++;
             localStorage.setItem(`restaurant${plate.restaurant_id}`, JSON.stringify(store.listplatelocalstorage));
         },
@@ -55,8 +68,32 @@ export default {
 
                 if(store.listplatelocalstorage.length === 0){
                     localStorage.clear();
+                    store.actualrestaurant=""
+                    store.full_name="";
+                    store.email="";
+                    store.address="";
+                    store.tel="";
+                    store.description="";
                 }
         },
+        takerestaurant(){
+            let id="";
+        this.ContolloRistorante=Object.keys(localStorage)
+        this.ContolloRistorante.forEach(element => {
+                if(element.includes("restaurant")){
+                    console.log(element.substring(10))
+                    return id=element.substring(10)
+                }
+            });
+            
+        axios.get(`http://127.0.0.1:8000/api/restaurantsid/${id}`).then((res)=>{
+            store.actualrestaurant=res.data
+        })
+        }
+    },
+    mounted() {
+        this.takerestaurant();
+
     },
     
 }
@@ -67,21 +104,23 @@ export default {
         <div class="row">
             <!-- bottoni quantità -->
             <div class="col-2">
-                <div class="d-flex flex-column row-gap-2">
-                    <button class="btn text-dark orange-button" @click="increment(plate)">
+                <div class="d-flex flex-column row-gap-2 align-items-center">
+                    <button :class="{'btn-disabled' : verified}" class="btn text-dark orange-button" @click="increment(plate)">
                         <div class="d-flex align-items-center justify-content-center">
                             +
                         </div>
                     </button>
                     <span class="border rounded p-1 text-center">{{plate.quantity}}</span>
-                    <button class="btn gray-btn border" @click="decrement(plate)">
+                    <button :class="{'btn-disabled' : verified}" class="btn gray-btn border" @click="decrement(plate)">
                         <div class="d-flex align-items-center justify-content-center">
                             -
                         </div>
                     </button>
                     <!-- bottone rimozione del singolo prodotto -->
                     <CartSingleRemoveBtn
-                    @click="removeSinglePlate(plate)"/>
+                    @click="removeSinglePlate(plate)"
+                    :class="{'btn-disabled' : verified}"
+                    />
                 </div>
             </div>
 
@@ -107,6 +146,8 @@ export default {
 
 <style lang="scss" scoped>
     @use '../../assets/sass/partials/variables' as *;
+
+    
 
     .orange-button{
         background-color: $orange;
@@ -142,7 +183,14 @@ export default {
         &:hover{
             background-color: #e2e2e2;
         }
-        
-        
     }
+
+    .btn-disabled{
+        pointer-events: none;
+        opacity: 50%;
+    }
+
+
+
+    
 </style>

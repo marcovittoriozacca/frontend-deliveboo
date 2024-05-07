@@ -12,7 +12,7 @@
     <div class="container pb-5">
         <div class="d-flex flex-column flex-md-row align-items-md-stretch align-items-center text-center gap-3 justify-content-between pt-5">
             <div>
-                <ul>
+                <ul class="px-0">
                     <li class="titleLi">
                         <span>Servizio clienti</span>
                     </li>
@@ -34,7 +34,7 @@
                 </ul>
             </div>
             <div>
-                <ul>
+                <ul class="px-0">
                     <li class="titleLi">
                         <span>Scopri di più su di noi</span>
                     </li>
@@ -50,7 +50,7 @@
                 </ul>
             </div>
             <div>
-                <ul>
+                <ul class="px-0">
                     <li class="titleLi">
                         <span>Il nostro impegno</span>
                     </li>
@@ -69,7 +69,7 @@
                 </ul>
             </div>
             <div>
-                <ul>
+                <ul class="px-0">
                     <li class="titleLi">
                         <span>Programmi</span>
                     </li>
@@ -111,6 +111,12 @@
     .titleLi{
         color: white;
         font-weight: bold;
+    }
+
+    @media screen and (min-width: 1921px) {
+        .bg-blu{
+            height: 60vh;
+        }
     }
 
     

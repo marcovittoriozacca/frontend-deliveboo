@@ -12,6 +12,8 @@
     "aos": "^2.3.4",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
+    "braintree-web": "^3.101.3",
+    "braintree-web-drop-in": "^1.42.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.2",
     "vue3-carousel": "^0.3.3"

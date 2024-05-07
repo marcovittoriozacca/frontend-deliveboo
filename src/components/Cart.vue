@@ -16,7 +16,13 @@ import CartCard from "./Header/CartCard.vue"
         methods:{
             clearAll(){
                 localStorage.clear()
-                store.listplatelocalstorage = []                
+                store.listplatelocalstorage = []   
+                store.actualrestaurant=""   
+                store.full_name="";
+                store.email="";
+                store.address="";
+                store.tel="";
+                store.description="";          
             },                    
         },
         computed:{
@@ -24,7 +30,9 @@ import CartCard from "./Header/CartCard.vue"
                 let subtotal = 0;
                 if (store.listplatelocalstorage.length > 0) {
                     store.listplatelocalstorage.forEach((element)=>{
+                        if(!element.activity_name){
                         subtotal += +element.price * element.quantity
+                        }
                     })
                 }
                 store.subtotal_price = subtotal;
@@ -39,16 +47,23 @@ import CartCard from "./Header/CartCard.vue"
 <div class="offcanvas canva offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
     <!-- Intestazione dell'offcanvas -->
     <div class="offcanvas-header">
-        <h1 class="text-light mb-0">Riassunto Carrello</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="d-flex flex-column">
+        
+            <h1 class="text-light mb-0">Carrello</h1>
+            <h2 class="text-light mb-0">{{store.actualrestaurant.restaurant?.activity_name}}</h2>
+        </div>
+        <button type="button" class="btn-close me-4 mt-1 h3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <!-- corpo offcanvas, deve andare in overflow-y scroll -->
-    <div class="offcanvas-body">
+    <div class="offcanvas-body pt-0">
+        
+        <!-- <h1 class="text-white">{{ store.actualrestaurant.restaurant.activity_name }}</h1> -->
+        
         <div v-if="store.listplatelocalstorage.length > 0" class="overflow-offcanvas-body">
             <!-- card prodotto -->
             <div class="row row-gap-3 m-0">
                 <div class="col-12 p-0" v-for="(plate, index) in store.listplatelocalstorage" :key="plate.id">
-                    <CartCard :plate="plate" />
+                    <CartCard :plate="plate" v-if="!plate.activity_name"/>
                 </div>
             </div>
         </div>
@@ -75,15 +90,19 @@ import CartCard from "./Header/CartCard.vue"
 
             <!-- bottone checkout  -->
             <div class="d-grid">
-                <button class="my-3 btn btn-lg bg-warning ">Checkout</button>
+                <router-link :to="{name:'checkout'}">
+                    <button class="w-100 mb-3 btn btn-lg bg-warning fw-bolder" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">Paga Ora!</button>
+                </router-link>
             </div>
 
             <!-- Modale rimozione tutti i piatti -->
             <button
                 type="button"
-                class="btn btn-danger btn-lg w-100"
+                class="btn btn-danger btn-lg w-100 fw-bolder"
+                id="bt_clear"
                 data-bs-toggle="modal"
                 data-bs-target="#modalId"
+                
             >
                 Svuota Carrello
             </button>
@@ -108,7 +127,7 @@ import CartCard from "./Header/CartCard.vue"
     >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="modalTitleId">
+                <h5 class="modal-title text-center fw-bolder " id="modalTitleId">
                     Sei sicuro di voler rimuovere tutti i piatti dal tuo carrello?
                 </h5>
                 <button
@@ -120,7 +139,7 @@ import CartCard from "./Header/CartCard.vue"
             </div>
             <div class="modal-footer">
                 <div class="text-center w-100" @click="clearAll()">
-                    <button class="my-3 btn btn-lg text-white bg-danger" data-bs-dismiss="modal">Svuota Carrello</button>
+                    <button class="my-3 btn btn-lg text-white bg-danger bt_clear" data-bs-dismiss="modal">Svuota Carrello</button>
                 </div>
             </div>
         </div>
@@ -130,8 +149,37 @@ import CartCard from "./Header/CartCard.vue"
 
 <style lang="scss" scoped>
 .overflow-offcanvas-body{
-    height: calc(100vh - 410px);
+    height: calc(100vh - 415px);
     overflow-y: scroll;
 
 }
+.d-grid{
+    button{
+        &:hover{
+            background-color: #e2ab06!important;
+            color: black;
+            scale: 102%;
+        }
+    }
+}
+
+#bt_clear{
+    &:hover{
+
+        background-color: #a5222f;
+        scale: 102%;
+    }
+}
+.offcanvas-header{
+    align-items: initial;
+    button{
+        &:hover{
+            
+            scale: 110%;
+        }
+       
+
+    }
+}
+
 </style>

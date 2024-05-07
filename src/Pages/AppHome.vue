@@ -2,6 +2,7 @@
 import axios from 'axios';
 import {store} from '../Store';
 
+import ScrollToTop from '../components/ScrollToTop.vue';
 import Typologies from '../components/HomeComponents/Typologies.vue';
 import InfoCard from '../components/HomeComponents/InfoCard.vue';
 import WorkWithUsBtn from '../components/GeneralComponents/WorkWithUsBtn.vue';
@@ -18,6 +19,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
             Restaurant,
             Loader,
             AnimationComp,
+            ScrollToTop,
         },
         data(){
             return{
@@ -42,6 +44,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 store.restaurantLoading = true;
                 await axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                     this.restaurants = res.data.restaurant;
+                    store.filtered_restaurants = res.data.restaurant;
                     store.restaurantLoading = false;
                 })
                 .catch(error => {
@@ -55,50 +58,50 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 store.active_typologies.splice(index, 1);
             },
             // al caricamento della pagina va aggiornato l'array degli ordini presenti nello store con gli ordini presenti nel local storage
-
-            
-        
-
+            isLastVisibleRestaurant(index) {
+               return index === (this.store.active_typologies.length > 0 ? this.store.filtered_restaurants.length : this.restaurants.length) - 1;
+            }
         },
 
         mounted(){
             this.types();
             this.getRestaurants();
-          
-            
         },
-        
-        
         watch: {
         'store.active_typologies': {
-            handler(newVal, oldVal) {
-
-                store.filtered_restaurants = this.restaurants.filter(restaurant => {
+            async handler(newVal, oldVal) {
                 // Controlla se almeno una tipologia del ristorante è presente nelle tipologie attive
-                return restaurant.types.some(type => store.active_typologies.includes(type.slug));
-
-                });
+                // store.filtered_restaurants = this.restaurants.filter(restaurant => {
+                // return restaurant.types.some(type => store.active_typologies.includes(type.slug));
+                // });
+                store.restaurantLoading = true;
+                 if(store.active_typologies.length != 0){
+                     //questa funzione compone l'endpoint con una sintassi di array chiave => valore da mandare a laravel. con Map, iteriamo ogni elemento e aggiungiamo type[indexElemento]=slug in modo da farlo capire a laravel
+                     const url = `http://localhost:8000/api/filtertypologies?${store.active_typologies.map((slug, index) => `type[${index}]=${slug}`).join('&')}`;
+                    await axios.get(url).then((res) => store.filtered_restaurants = res.data.restaurants);
+                }
+                store.restaurantLoading = false;
             },
             deep: true
-        }
+        },
     }
 }
+
+
 
     
 </script>
 
 
 <template>
+<ScrollToTop/>
 <!--Slogan Deliveboo -->
 <div class="reset-header-height">
     <div id="bg-first-section">
         <div class="container">
             <div class="banner-max-w bg-box rounded-4 p-5">
                 <div class="row align-items-center">
-                    
-                        
                         <AnimationComp/>
-                    
                 </div>
             </div> 
         </div>
@@ -131,18 +134,25 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 </span>
             </div>
 
-            <div class="py-4">
-                <div class="container">
+            <div class="py-4 px-3">
+                <div class="container-fluid px-0">
+                    {{ console.log(store.filtered_restaurants.length, restaurants.length) }}
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
                     <Loader v-if="store.restaurantLoading"/>
                     <div v-else>
-                        <div v-if="store.filtered_restaurants.length > 0 ||  restaurants.length > 0">
-                            <div v-for="(restaurant, index) in (store.filtered_restaurants.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id">
-                                <Restaurant
-                                    :restaurant="restaurant"
-                                />
-                                <hr v-if="index != store.filtered_restaurants.length -1 && index != restaurants.length-1">
+                        <div v-if="store.filtered_restaurants.length > 0">
+                            <h2 v-if="store.active_typologies.length > 0">Ristoranti trovati: {{ store.filtered_restaurants.length }}</h2>
+                            <h2 v-else>Ristoranti trovati: {{ restaurants.length }}</h2>                           
+                            <div class="container-fluid px-0">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 px-0">
+                                    <div v-for="(restaurant, index) in (store.active_typologies.length > 0)? store.filtered_restaurants : restaurants " :key="restaurant.id" class="mb-4">
+                                        <Restaurant
+                                            :restaurant="restaurant"
+                                        />
+                                    </div>
+                                </div>
+                                <!-- <hr v-if="!isLastVisibleRestaurant(index)"> -->
                             </div>    
                         </div>
                         <div v-else class="text-center d-flex flex-column gap-4 py-5">
