@@ -34,7 +34,6 @@ export default{
             <div class="col contenitore p-3 scale-anim">
             <router-link :to="{name:'Single-Restaurant',params:{slug:restaurant.slug}}">
                     <div class="justify-content-center justify-content-md-start bg-white rounded">
-                        {{ console.log(restaurant.image) }}
                         <!-- immagina card  -->
                         <figure class="m-0 position-relative">
                             <img class="img-fluid rounded-4 mb-3" :src="setRestaurantImage(restaurant.image)" :alt="restaurant.activity_name">
