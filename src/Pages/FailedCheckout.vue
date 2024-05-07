@@ -1,6 +1,16 @@
 <script>
+import { router } from "../router";
 export default {
     name:'FailedCheckout',
+    data() {
+        return {
+            mounted() {
+                setTimeout(() => {
+                router.push({ name: "checkout" }); 
+            }, 3500);
+            },
+        }
+    },
 }
 </script>
 
@@ -14,6 +24,7 @@ export default {
                     <img id="failed-img" src="../../public/img/pagamento-rifiutato.svg" alt="pagamento-rifiutato">
                     <h1 id="titolo-richiesta" class="text-center">Pagamento Rifiutato</h1>
                     <h5 id="sotto-titolo-richiesta" class="text-center">C'è stato un problema con il tuo metodo di pagamento, per favore controlla il metodo di pagamento e riprova</h5>
+                    <h5 id="sotto-titolo-richiesta" class="text-center">A breve verrai riportato alla scheda di pagamento, se non avviene premere il tasto Riprova in basso</h5>
                 </div>
             </div>
     
