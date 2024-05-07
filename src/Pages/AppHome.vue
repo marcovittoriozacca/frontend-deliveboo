@@ -79,6 +79,8 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                      //questa funzione compone l'endpoint con una sintassi di array chiave => valore da mandare a laravel. con Map, iteriamo ogni elemento e aggiungiamo type[indexElemento]=slug in modo da farlo capire a laravel
                      const url = `http://localhost:8000/api/filtertypologies?${store.active_typologies.map((slug, index) => `type[${index}]=${slug}`).join('&')}`;
                     await axios.get(url).then((res) => store.filtered_restaurants = res.data.restaurants);
+                }else{
+                    store.filtered_restaurants = this.restaurants;
                 }
                 store.restaurantLoading = false;
             },
