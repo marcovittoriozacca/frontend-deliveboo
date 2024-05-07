@@ -187,7 +187,13 @@ export default {
 </script>
 
 <template>
-  <div class="page-bg py-5">
+  <div class="page-bg pb-5">
+    <span class="h2 restaurant-name text-center mb-0 pt-3 gray-bg text-dark d-block">
+                Completa ordine da
+              </span>
+    <h1 class="restaurant-name text-center pb-2 gray-bg text-dark fw-bold">
+                {{ store.actualrestaurant.restaurant?.activity_name }}
+              </h1>
     <div class="container-fluid py-3 container-lg p-lg-5 rounded-2">
       <div class="row">
         <div class="col-12 d-flex flex-column flex-lg-row gap-lg-3">
@@ -261,7 +267,7 @@ export default {
               </div>
 
               <div class="col-12">
-                <label class="form-label" for="description">Inserisci più dettagli sulla consegna<span class="text-danger">*</span></label>
+                <label class="form-label" for="description">Inserisci più dettagli sulla consegna</label>
                 <textarea
                   name="description"
                   id="description"
@@ -278,9 +284,7 @@ export default {
           
           <div class="mx-auto col-12 col-sm-10 col-lg-6" style="max-height: 600px">
             <div class="bg-light rounded-2 overflow-y-scroll position-relative" style="height: 100%">
-              <h1 class="restaurant-name text-center py-2 gray-bg position-sticky top-0 z-3 ">
-                {{ store.actualrestaurant.restaurant?.activity_name }}
-              </h1>
+              
               <div
                 v-for="(plate, index) in store.listplatelocalstorage"
                 :key="index"
