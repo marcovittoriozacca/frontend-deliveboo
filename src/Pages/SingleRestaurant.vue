@@ -36,7 +36,7 @@ export default {
             
 
             getPlates(){
-                axios.get(`http://127.0.0.1:8000/api/restaurant/${this.$route.params.slug}`).then((res)=> { 
+                axios.get(`http://127.0.0.1:8000/api/restaurant/${this.$route.params.slug}`).then((res)=> {
                     this.plates = res.data.dishes.filter(plate => plate.visible)
                     this.restaurant = res.data.restaurant
                     this.dishSorterer();
@@ -71,8 +71,7 @@ export default {
                     case restaurant_image.includes('restaurant_images/'):
                     return image =  `http://127.0.0.1:8000/storage/${restaurant_image}`;
                 }
-            },
-        },
+            },},
 
         watch: {
             'store.alertbox':{
