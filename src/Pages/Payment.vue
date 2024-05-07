@@ -102,7 +102,8 @@ export default {
           document.getElementById("descriptionerror").innerHTML = "";
         }
       } else {
-        document.getElementById("descriptionerror").innerHTML = "";
+        document.getElementById("descriptionerror").innerHTML = "Inserisci le informazioni";
+        controllo = false;
       }
 
       if (controllo === true) {
@@ -260,7 +261,7 @@ export default {
               </div>
 
               <div class="col-12">
-                <label class="form-label" for="description">Inserisci più dettagli sulla consegna</label>
+                <label class="form-label" for="description">Inserisci più dettagli sulla consegna<span class="text-danger">*</span></label>
                 <textarea
                   name="description"
                   id="description"
@@ -277,7 +278,7 @@ export default {
           
           <div class="mx-auto col-12 col-sm-10 col-lg-6" style="max-height: 600px">
             <div class="bg-light rounded-2 overflow-y-scroll position-relative" style="height: 100%">
-              <h1 class="restaurant-name text-center py-2 gray-bg position-sticky top-0">
+              <h1 class="restaurant-name text-center py-2 gray-bg position-sticky top-0 z-3 ">
                 {{ store.actualrestaurant.restaurant?.activity_name }}
               </h1>
               <div
