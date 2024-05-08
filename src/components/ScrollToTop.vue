@@ -26,7 +26,7 @@ export default {
 
 <template>
     
-    <a href="#top" id="scrollToTop">
+    <a href="#" id="scrollToTop">
         <i class="fa-solid fa-arrow-up" ></i>
     </a>
 

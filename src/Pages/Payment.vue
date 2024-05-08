@@ -213,6 +213,7 @@ export default {
                   class="form-control"
                   placeholder="Nome completo"
                   aria-describedby="fullname-help"
+                  autocomplete="off"
                 />
                 <small id="nameerror"></small>
               </div>
@@ -229,6 +230,7 @@ export default {
                   class="form-control"
                   placeholder="Email"
                   aria-describedby="email-help"
+                  autocomplete="off"
                 />
                 <small id="emailerror"></small>
 
@@ -246,6 +248,7 @@ export default {
                   class="form-control"
                   placeholder="Indirizzo"
                   aria-describedby="address-help"
+                  autocomplete="off"
                 />
                 <small id="addresserror"></small>
               </div>
@@ -262,6 +265,7 @@ export default {
                   class="form-control"
                   placeholder="telefono"
                   aria-describedby="phone-help"
+                  autocomplete="off"
                 />
                 <small id="telerror"></small>
               </div>
@@ -274,6 +278,7 @@ export default {
                   class="form-control"
                   cols="50"
                   rows="5"
+                  autocomplete="off"
                   v-model="store.description"
                   :class="{ 'pe-none opacity-50': valid }"
                 ></textarea>

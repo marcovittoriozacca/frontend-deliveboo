@@ -36,7 +36,7 @@ export default {
             </div>
             <div v-for="(type, index) in store.type" :key="type.id" class="col-4 col-sm-4 col-md-3 col-lg-2 col-xxl py-2" v-else>
                 <!-- intera card, function -->
-                <div @click="activeTypologies(type.slug)" class="orange-border rounded-5" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
+                <div @click="activeTypologies(type.slug)" class="orange-border rounded-5 overflow-hidden" :class="store.active_typologies.includes(type.slug)? 'active-card' : '' ">
                     <div class="position-relative d-flex justify-content-center align-content-center">
                         <figure class="mb-0 m-0">
                             <img class="dish-img" :src="type.image" :alt="type.slug">
