@@ -44,7 +44,11 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 store.restaurantLoading = true;
                 await axios.get('http://127.0.0.1:8000/api/restaurants').then(res=>{
                     this.restaurants = res.data.restaurant;
-                    store.filtered_restaurants = res.data.restaurant;
+
+                    if(store.active_typologies.length === 0){
+                        store.filtered_restaurants = res.data.restaurant;
+                    }
+
                     store.restaurantLoading = false;
                 })
                 .catch(error => {
@@ -77,7 +81,7 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
                 store.restaurantLoading = true;
                  if(store.active_typologies.length != 0){
                      //questa funzione compone l'endpoint con una sintassi di array chiave => valore da mandare a laravel. con Map, iteriamo ogni elemento e aggiungiamo type[indexElemento]=slug in modo da farlo capire a laravel
-                     const url = `http://localhost:8000/api/filtertypologies?${store.active_typologies.map((slug, index) => `type[${index}]=${slug}`).join('&')}`;
+                    const url = `http://localhost:8000/api/filtertypologies?${store.active_typologies.map((slug, index) => `type[${index}]=${slug}`).join('&')}`;
                     await axios.get(url).then((res) => store.filtered_restaurants = res.data.restaurants);
                 }else{
                     store.filtered_restaurants = this.restaurants;
@@ -138,7 +142,6 @@ import AnimationComp from '../components/HomeComponents/AnimationComp.vue'
 
             <div class="py-4 px-3">
                 <div class="container-fluid px-0">
-                    {{ console.log(store.filtered_restaurants.length, restaurants.length) }}
                     <!-- Card ristorange generica. All'interno del componente vengono ciclati gli altri ristoranti e verranno mostrati solo quelli -->
                     <!-- con la corretta tipologia -->
                     <Loader v-if="store.restaurantLoading"/>
