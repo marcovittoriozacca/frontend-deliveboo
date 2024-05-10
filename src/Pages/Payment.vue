@@ -182,6 +182,7 @@ export default {
         }
       },
     },
+    
   },
 };
 </script>
@@ -236,6 +237,7 @@ export default {
 
               </div>
 
+
               <!-- Input per l'indirizzo di casa -->
               <div class="col-12 col-sm-6 col-lg-12 col-xxl-6">
                 <label class="form-label" for="address">Inserisci indirizzo di consegna<span class="text-danger">*</span></label>
@@ -288,7 +290,8 @@ export default {
           </div>
           
           <div class="mx-auto col-12 col-sm-10 col-lg-6" style="max-height: 600px">
-            <div class="bg-light rounded-2 overflow-y-scroll position-relative" style="height: 100%">
+            <span class="fw-bolder h3">Totale Carrello: {{ store.subtotal_price }}<span class="ps-1">€</span></span>
+            <div class="bg-light rounded-2 overflow-y-scroll position-relative" style="height: 95%">
               
               <div
                 v-for="(plate, index) in store.listplatelocalstorage"
