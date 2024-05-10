@@ -136,7 +136,7 @@ export default {
             <!-- Primi piatti -->
             <div v-if="this.ArrayPrimi.length > 0" class="mb-4">
                 <h2>Primi</h2>
-                <div class="container">
+                <div class="container px-0">
                     <div class="row row-gap-3">
                         <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArrayPrimi" :key="plate.id">
                             <Plate :restaurant = restaurant  :plate = plate />
@@ -148,7 +148,7 @@ export default {
             <!-- Secondi piatti -->
             <div v-if="this.ArraySecondi.length > 0" class="mb-4">
                 <h2>Secondi</h2>
-                <div class="container">
+                <div class="container px-0">
                     <div class="row row-gap-3 ">
                         <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArraySecondi" :key="plate.id">
                             <Plate :restaurant = restaurant :plate = plate />
@@ -159,7 +159,7 @@ export default {
             <!-- Dessert -->
             <div v-if="this.ArrayDessert.length > 0" class="mb-4">
                 <h2>Dessert</h2>
-                <div class="container">
+                <div class="container px-0">
                     <div class="row row-gap-3">
                         <div class="col-12 col-md-6 col-lg-4" v-for="(plate, index) in this.ArrayDessert" :key="plate.id">
                             <Plate :restaurant = restaurant :plate = plate />
